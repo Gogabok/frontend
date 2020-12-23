@@ -1,0 +1,46 @@
+.menu
+  .actions
+    display: flex
+    padding: 0 $padding.small.hz + 5px
+    a
+      font-size: $page.font.size.medium
+      line-height: $page.font.size.medium
+      align-items: center
+      text-align: left
+      width: 100%
+      padding: $padding.hz 5px
+      color: $color.font.dark
+      white-space: nowrap
+      height: 53px
+      +mobile()
+        height: 56px
+        flex: 0 0 56px
+      &:not(:last-child)
+        border-bottom: $border.width solid $color.border.default
+      &.to-right
+        text-align: right
+
+.menu
+  .actions
+    &.vertical
+      flex-direction: column
+      align-items: flex-start
+
+.menu
+  .actions
+    &.horizontal
+      align-items: center
+      justify-content: space-between
+      flex-shrink: 0
+      border-top: $border.width solid $color.border.default
+      height: 53px
+      +mobile()
+        height: 56px
+      a
+        border: none
+        width: auto
+
+.menu
+  .actions
+    &.wide
+      padding: 0

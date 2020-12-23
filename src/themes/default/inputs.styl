@@ -1,0 +1,29 @@
+.form-wrap
+  position: relative
+.inputs-container
+  padding-bottom: $margin.vt * 2
+  input, textarea
+    margin-bottom: $margin.vt
+    width: 100%
+    border-left: $border.width solid $color.border.dark
+    padding-left: $padding.small.hz
+    border-right: $border.width solid $color.border.dark
+    border-radius: 0
+    background: #fbfbfb
+    padding-bottom: 2px
+    padding-top: 2px
+    font-size: $page.font.size.small
+    resize: none
+    &.error
+      border-color: $color.font.danger
+    &::placeholder
+      color: $color.font.placeholder
+  input:-webkit-autofill
+    &, &:hover, &:focus, &:active
+      -webkit-box-shadow: 0 0 0 30px #fbfbfb inset !important
+  .notice
+    margin-bottom: $margin.vt
+    font-size: $page.font.size.small
+    &.error
+      color: $color.font.danger
+

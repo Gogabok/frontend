@@ -1,0 +1,17 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: {{ printf "%s.conf" (include "frontend.fullname" .) | quote }}
+  namespace: {{ .Release.Namespace | quote }}
+  labels:
+    helm.sh/chart: {{ include "frontend.chart" . | quote }}
+    app.kubernetes.io/name: {{ include "frontend.name" . | quote }}
+    app.kubernetes.io/instance: {{ .Release.Name | quote }}
+    app.kubernetes.io/managed-by: {{ .Release.Service | quote }}
+    app.kubernetes.io/component: app
+  {{- with .Values.labels }}
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+data:
+  nginx.vh.conf: |
+    {{- tpl (.Files.Get "conf/nginx.vh.conf") . | nindent 4 }}

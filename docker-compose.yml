@@ -1,0 +1,149 @@
+version: '2'
+
+services:
+  app:
+    container_name: ${COMPOSE_PROJECT_NAME}-app
+    image: ${COMPOSE_IMAGE_NAME}:${COMPOSE_IMAGE_TAG}
+    build:
+      context: .
+    depends_on: ["mock-api"]
+    environment:
+      CONF_API_URL: http://backend-api:8081
+      CONF_MOCK_API_URL: http://127.0.0.1:8085
+    volumes:
+      - ./out/:/app/
+      - ./node_modules/:/app/node_modules/
+    network_mode: service:nginx
+  mock-api:
+    container_name: ${COMPOSE_PROJECT_NAME}-mock-api
+    image: node:alpine
+    command: ["node", "./api-mock-server.js"]
+    environment:
+      MEDEA_HOST: http://localhost/medea-control-mock/control-api
+    volumes:
+      - ./:/app/
+    working_dir: /app/
+    network_mode: service:nginx
+  nginx:
+    container_name: ${COMPOSE_PROJECT_NAME}-nginx
+    image: nginx:stable-alpine
+    ports:
+      - "80:80"    # nginx http
+    expose:
+      - 8080       # app ssr
+      - 8085       # mock api graphql
+      - 8086       # mock api ws
+    volumes:
+      - ./out/public/:/var/www/public/:ro
+      - ./.cache/minio/data/files/:/var/www-files/files/:ro
+      - ./_helm/frontend/conf/nginx.vh.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./_dev/nginx/mailhog.vhost.conf:/etc/nginx/conf.d/mailhog.conf:ro
+  backend-api:
+    container_name: ${COMPOSE_PROJECT_NAME}-backend-api
+    image: hub.instrumentisto.com/social/backend:${COMPOSE_BACKEND_TAG}
+    depends_on: ["cockroachdb"]
+    restart: on-failure
+    ports:
+      - "8081:7777"    # backend http
+    volumes:
+      - ./_dev/conf/backend.toml:/config.toml:ro
+  cockroachdb:
+    container_name: ${COMPOSE_PROJECT_NAME}-cockroachdb
+    image: hub.instrumentisto.com/social/backend/db/cockroachdb:${COMPOSE_BACKEND_TAG}
+    command:
+      - start-single-node
+      - --insecure
+      - --log-dir=''
+      - --logtostderr=ERROR
+    ports:
+      - "8070:8080"    # cockroachdb admin ui http
+      - "8071:8081"    # cockroachdb pgweb ui http
+      - "26257:26257"  # cockroachdb sql
+    volumes:
+      - ./.cache/cockroachdb/data/:/cockroach/cockroach-data/
+  cockroachdb-pgweb:
+    container_name: ${COMPOSE_PROJECT_NAME}-cockroachdb-pgweb
+    image: sosedoff/pgweb:latest
+    depends_on: ["cockroachdb"]
+    restart: on-failure
+    environment:
+      DATABASE_URL: postgres://root@127.0.0.1:26257/defaultdb?sslmode=disable
+    network_mode: service:cockroachdb
+  minio:
+    container_name: ${COMPOSE_PROJECT_NAME}-minio
+    image: minio/minio:latest
+    command: ["server", "/data"]
+    ports:
+      - "9000:9000"    # minio s3
+    volumes:
+      - ./.cache/minio/data/:/data/
+  minio-init:
+    container_name: ${COMPOSE_PROJECT_NAME}-minio-init
+    image: minio/mc:latest
+    depends_on: ["minio"]
+    entrypoint: >
+      sh -c "
+        set -e;
+        sleep 5;
+        mc config host add social http://minio:9000 minioadmin minioadmin;
+        mc mb -p social/files;
+        mc policy set download social/files;
+        exec sleep 999999999;
+      "
+  mailhog:
+    container_name: ${COMPOSE_PROJECT_NAME}-mailhog
+    image: mailhog/mailhog:latest
+    environment:
+      MH_HOSTNAME: mailhog.localhost  # robot:test
+      MH_AUTH_FILE: /etc/auth.passwd
+    ports:
+      - "1025:1025"    # mailhog smtp
+    volumes:
+      - ./_dev/mailhog/auth.passwd:/etc/auth.passwd:ro
+  medea:
+    container_name: ${COMPOSE_PROJECT_NAME}-medea
+    image: instrumentisto/medea:edge
+    environment:
+      MEDEA_CONF: /config.toml
+      MEDEA_LOG__LEVEL: DEBUG
+    ports:
+      - "3478:3478"                  # coturn stun
+      - "49066-49100:49166-49200"    # coturn turn
+    expose:
+      - 5766    # coturn cli
+      - 6379    # coturn-db redis
+      - 8090    # medea client-api ws
+      - 8091    # medea control-api grpc
+    volumes:
+      - ./_dev/medea/config.toml:/config.toml:ro
+  coturn:
+    container_name: ${COMPOSE_PROJECT_NAME}-coturn
+    image: instrumentisto/coturn:4.5
+    depends_on: ["coturn-db"]
+    command:
+      - --log-file=stdout
+      #- --Verbose
+    volumes:
+      - ./_dev/coturn/turnserver.conf:/etc/coturn/turnserver.conf:ro
+      - ./.cache/coturn/data:/var/lib/coturn
+    network_mode: service:medea
+  coturn-db:
+    container_name: ${COMPOSE_PROJECT_NAME}-coturn-db
+    image: redis:alpine
+    command: ["redis-server", "/etc/redis.conf"]
+    volumes:
+      - ./_dev/coturn/redis.conf:/etc/redis.conf:ro
+    network_mode: service:medea
+  medea-control-mock:
+    container_name: ${COMPOSE_PROJECT_NAME}-medea-control
+    image: alexlapa/medea-control-api-mock:edge
+    depends_on: ["medea"]
+    command:
+      - --addr=0.0.0.0:8095
+      - --callback-port=8096
+      - --medea-addr=http://medea:8091
+    environment:
+      RUST_LOG: INFO
+    expose:
+      - 8095    # medea-control-mock http
+      - 8096    # medea-control-mock callback grpc

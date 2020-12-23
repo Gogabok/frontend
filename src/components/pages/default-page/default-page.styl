@@ -1,0 +1,33 @@
+@import "~themes/default/sizes"
+@import "~themes/default/responsive"
+
+$minWidth = 700px
+
+.page
+  display: flex
+  flex: 1
+  max-height: "calc(100vh - %s - %s)" % ($header.desktop.height $footer.height)
+  max-height: "calc(%s * 100 - %s - %s)" % ($vh $header.desktop.height $footer.height)
+  min-width: $minWidth
+  +mobile()
+    min-width: 0
+    max-height: inherit !important
+
+.main-content-wrapper
+  max-height: 100%
+  position: relative
+  flex: 1
+  display: flex
+  +mobile()
+    overflow: unset
+    -webkit-overflow-scrolling: unset
+    height: auto
+    max-height: 100% !important
+    width: 100%
+
+.side
+  display: flex
+  width: $menu-sidebar.width
+  +mobile()
+    width: 100%
+

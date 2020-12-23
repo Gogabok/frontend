@@ -1,0 +1,39 @@
+@import "~themes/_variables"
+
+$borderRadius = 20px
+$minWidth = 230px
+
+.contact-information
+  &__item
+    display: flex
+    justify-content: space-between
+    align-items: center
+
+  &__label
+    font-size: var(--regularFont)
+    font-weight: 400
+
+  &__data
+    display: flex
+    align-items: center
+    border-radius: $borderRadius
+    border: 1px solid var(--gray)
+    height: fit-content
+    padding: ($vSpacing * 0.95) ($hSpacing * 2)
+    font-size: var(--regularFont)
+    line-height: 1
+    width: $minWidth
+
+    &__value
+      width: 0
+      flex-grow: 1
+      overflow: hidden
+      text-align: left
+      text-overflow: ellipsis
+      white-space: nowrap
+      margin-right: $hSpacing
+
+    &__icon
+      width: round($iconSize * 0.68)
+      height: @width
+      margin-left: auto

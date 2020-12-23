@@ -1,0 +1,208 @@
+$wrapper = {
+  width: 1366px
+}
+
+$header = {
+  desktop: {
+    height: 37px
+  }
+  mobile: {
+    height: 47px
+  }
+}
+
+$margin = {
+  vt: 10px
+  hz: 20px
+  small: {
+    hz: 10px
+    vt: 5px
+  }
+  large: {
+    hz: 30px
+    vt: 20px
+  }
+}
+
+$footer = {
+  height: 27px
+  mobile-margin: 14px
+}
+
+$padding = {
+  hz: 20px
+  vt: 10px
+  small: {
+    hz: 10px
+    vt: 5px
+  }
+  large: {
+    hz: 30px
+    vt: 20px
+  }
+}
+
+$menu-sidebar = {
+  width: 330px
+  shadow-size: 5px
+  avatar: {
+    width: 100px
+    height: 56px
+  }
+}
+
+$contacts-sidebar = {
+  width: $menu-sidebar.width
+}
+
+$quick-access-sidebar = {
+  width: $menu-sidebar.width
+}
+
+$lang-sidebar = {
+  width: 115px
+}
+
+$border = {
+  width: 1px
+}
+
+$shadow = {
+  width: 5px
+}
+
+$horizontal-panel = {
+  height: 39px
+}
+
+$message = {
+  attachment: {
+    height: {
+      default: 400px
+      small: 270px
+    }
+  }
+}
+
+$line-height = {
+  large: 1.4rem
+  medium: 1.29rem
+  small: 1.14rem
+  likes: 1.45rem
+}
+
+$page = {
+  min: {
+    width: 300px
+  }
+  font: {
+    size: {
+      base: {
+        desktop: 14px
+        tablet: 14px
+        mobile: 17px
+      }
+      large: 1.07rem
+      medium: 1rem
+      small: 0.93rem
+      xsmall: 0.786rem
+      xxsmall: 0.72rem
+    }
+  }
+}
+
+$scrollbar = {
+  width: 3px
+  height: 3px
+  margin: {
+    hz: 1px
+    vt: 1px
+  }
+}
+
+$row = {
+  desktop: {
+    height: $header.desktop.height + 2px
+  }
+  mobile: {
+    height: $header.mobile.height
+  }
+}
+
+$list-type-rows = {
+  default: {
+    height: 114px
+  }
+  message: {
+    height: 292px
+  }
+  action: {
+    height: 59px
+  }
+}
+
+$avatar = {
+  aspectRatio: {
+    hz: 16
+    vt: 9
+  }
+  small: {
+    width: 30px
+    height: 17px
+  }
+  medium: {
+    width: 64px
+    height: 36px
+  }
+  large: {
+    width: 99px
+    height: 56px
+  }
+}
+
+$broadcast-cover = {
+  desktop: {
+    width: 64px
+    height: 55px
+  }
+  mobile: {
+    width: 72px
+    height: 63px
+  }
+}
+
+$wall = {
+  post: {
+    avatar: {
+      height: 56px
+    }
+  }
+}
+
+$transition = {
+  duration: {
+    fast: .3s
+    medium: .8s
+    slow: 1.2s
+  }
+}
+
+$contact-messages = {
+  write-form-replacement: {
+    height: 40px
+  }
+}
+
+$editable-content = {
+  textarea: {
+    height: 120px
+  }
+  controls: {
+    height: 56px
+  }
+}
+
+// Trick to viewport units on mobile and tables.
+// Into mobile devices `vh` units calculated only for initial
+// window state and not changed when address bar shown/hide.
+$vh = var(--vh, 1vh)

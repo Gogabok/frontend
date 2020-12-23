@@ -1,0 +1,67 @@
+@import "~themes/_variables"
+
+$width = 400px
+$searchBarHeight = 60px
+$favIconSize = 16px
+
+.contacts-menu
+  flex-shrink: 0
+  position: relative
+  width: $width
+  height: 100%
+  padding-top: ($searchBarHeight - 1)
+  border-right: 1px solid var(--gray)
+  overflow: visible
+  z-index: 12
+  background-color: var(--lightgray)
+
+  &::-webkit-scrollbar
+    display: none
+
+  &__container
+    display: flex
+    flex-direction: column
+    position: relative
+    width: 100%
+    height: 100%
+    overflow-y: auto
+    max-width: 100%
+    overflow-x hidden
+
+    &::-webkit-scrollbar
+      display: none
+
+    .favorite-icon
+      width: $favIconSize
+      margin-right: ($hSpacing * 1.3)
+
+  &__not-found
+    display: block
+    width: 100%
+    margin-top: ($vSpacing * 6)
+    padding: $vSpacing ($hSpacing * 2)
+    text-align: center
+
+.main-container.is-mobile
+  .contacts-menu
+    position: absolute
+    left: 0
+    bottom: $bottomAppMenuHeight
+    width: 100%
+    height: "calc(100% - %s)" % ($bottomAppMenuHeight)
+
+    &.active
+      transform: translateX(0)
+      z-index: 10
+
+
+.list
+  &-enter-active
+  &-leave-active
+    transition: all 1s
+
+
+  &-enter,
+  &-leave-to
+    opacity: 0
+    transform: translateX(-100%)

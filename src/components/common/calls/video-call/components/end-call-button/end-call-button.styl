@@ -1,0 +1,36 @@
+@import "~themes/_variables"
+
+$size = 50px
+
+.end-call
+  display: flex
+  align-items: center
+  justify-content: space-around
+  position: absolute
+  left: 50%
+  bottom: ($vSpacing * 10)
+  width: $size
+  height: $size
+  border: none
+  border-radius: 50%
+  z-index: 2
+  background: var(--decline-call-button-background-color)
+  transform: translateX(-50%)
+
+  svg
+    width: ($size * 0.4)
+    height: round($iconSize * 1.45)
+    fill: var(--white)
+    stroke: var(--white)
+    transform: "translateY(%s)" % ($vSpacing * 0.2) rotate(137.5deg)
+
+
+.main-container&:not(.is-mobile)
+  .end-call
+    justify-content: center
+    bottom: ($vSpacing * 7)
+    width: $buttonSize
+    height: $buttonSize
+
+    svg
+      height: $iconSize

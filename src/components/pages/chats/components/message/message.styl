@@ -1,0 +1,539 @@
+@import "~themes/_variables"
+
+$imageWidth = 400px
+$forwardIcon = 34px
+$borderRadius = 8px
+$toolsSize = 20px
+$dotSize = 3px
+$avatarSize = 50px
+$minMessageWidth = 90px
+
+.dialog-container
+  padding: ($vSpacing * 2) ($hSpacing) 0
+  transition: all .2s ease-out
+
+  .message
+    position: relative
+    width: 100%
+    margin: ($vSpacing * 2) 0
+    font-size: var(--regularFont)
+    color: var(--black)
+
+    &:after
+      content: ""
+      display: table
+      clear: both
+
+    &-active .message__back
+      background-color: var(--gray)
+      opacity: 1
+
+    &__wrapper
+      display: inline-block
+      max-width: 85%
+      position: relative
+      float: left
+      transition: 0.2s transform ease-in-out
+
+      &.select-mode
+        transform: "translateX(%s)" % ($hSpacing * 6)
+
+      &.image
+        width: 100%
+        max-width: $imageWidth
+
+    &.is-user-message
+      float: left
+
+    &__date
+      font-size: var(--regularSubFont)
+
+    &__forward-image
+      display: flex
+      align-items: center
+      justify-content: center
+      position: absolute
+      top: 50%
+      width: $forwardIcon
+      height: $forwardIcon
+      border: 1px solid var(--gray)
+      border-radius: 100%
+      background: var(--lightgray)
+      transform: translateY(-50%)
+      color: var(--graydarker)
+      cursor: pointer
+
+      svg
+        height: round($iconSize * 0.63)
+
+    &__checkbox
+      position: absolute
+      left: ($hSpacing * 1.5)
+      top: 50%
+      transform: translateY(-50%)
+      width: $checkboxSize
+      height: $checkboxSize
+      border: 1px solid var(--white)
+      background: var(--white)
+      border-radius: $borderRadius
+      transition: all .2s ease-out
+
+
+      &-icon
+        width: ($iconSize / 2)
+        position: absolute
+        left: 50%
+        top: 50%
+        transform: translate(-50%, -50%)
+
+
+    &__back
+      display: block
+      position: absolute
+      left: (- $hSpacing)
+      right: (- $hSpacing)
+      top: (- $vSpacing)
+      bottom: (- $vSpacing)
+      opacity: 0
+      transition: all .2s ease-out
+
+      .selected
+        opacity: 1
+
+    &-last
+      &.is-speaker-message
+        .message__container
+          border-bottom-left-radius: 0
+      &.is-user-message
+        .message__container
+          border-bottom-right-radius: 0
+
+    .date
+      margin-left: auto
+      font-size: var(--regularSubFont)
+      text-align: right
+      color: var(--graydarker)
+
+    .date-spacing
+      display: inline-block
+      width: ($hSpacing * 7)
+
+    &__status
+      margin-left: ($hSpacing * 0.8)
+
+      img
+        height: $vSpacing
+
+    &__image
+      width: $imageWidth
+      padding-bottom: 100%
+      transition: var(--message-attachment-hover-transition)
+
+      &:hover
+        cursor: pointer
+        filter: var(--message-attachment-hover)
+
+    &__tools
+      display: flex
+      justify-content: center
+      align-items: center
+      position: absolute
+      right: (- $hSpacing * 1.6)
+      bottom: ($vSpacing * 0.6)
+      width: $toolsSize
+      height: $toolsSize
+      visibility: hidden
+      opacity: 0
+      transition: all .2s ease-out
+      cursor: pointer
+
+      &-container
+        display: flex
+        flex-direction: column
+        justify-content: space-between
+        width: ($toolsSize * 0.15)
+        height: ($toolsSize * 0.75)
+
+      &-item
+        width: $dotSize
+        height: $dotSize
+        border-radius: 100%
+        background: var(--graydarker)
+
+      img
+        width: ($iconSize * 0.325)
+        height: round($iconSize * 1.16)
+
+    &__container
+      position: relative
+      width: 100%
+      padding: ($vSpacing) ($hSpacing)
+      border-radius: round($borderRadius * 1.6)
+      background-color: var(--message-background-color)
+      transition: all .3s ease-out
+
+      &-control-delete
+        position: absolute
+        left: ($hSpacing * 3)
+        top: 50%
+        transform: translateY(-50%)
+
+      &-control-reply
+        position: absolute
+        right: ($hSpacing * 3)
+        top: 50%
+        transform: translateY(-50%)
+
+        svg
+          height: ($iconSize * 1.25)
+          transform: rotateY(180deg)
+
+      &.non-transition
+        transition: all 0s ease-out
+
+      &.menu-opened
+        z-index: 13
+
+      &-map
+        padding: ($vSpacing * 0.5) ($hSpacing * 0.5)
+
+        &-item
+          border-radius: $borderRadius
+          overflow: hidden
+
+      &-contact
+        .message__text
+          margin-bottom: 0
+
+      &-list
+        display: grid
+        grid-template-rows: 1fr
+        grid-gap: ($hSpacing)
+
+      &-item
+        display: flex
+        align-items: center
+        .contact-preview__avatar
+          margin-left: 0
+          max-width: $avatarSize
+          min-width: $avatarSize
+          max-height: $avatarSize
+          min-height: $avatarSize
+
+      &-video
+        padding: ($vSpacing * 0.5) ($hSpacing * 0.5)
+        &-text
+          max-width: ($imageWidth + 5px)
+
+          .date-spacing
+            width: 100%
+
+          .message__text
+            margin-left: ($hSpacing * 0.3)
+            margin-right: ($hSpacing * 0.3)
+
+      &-replied
+        &.message__container-replied-noself
+          .message__container-replied-box
+            margin-left: (- $hSpacing)
+            margin-right: (- $hSpacing)
+            padding-left: ($hSpacing)
+            padding-right: ($hSpacing)
+
+          .message__container-forwarded-box
+            margin-bottom: 0
+            padding-bottom: $vSpacing
+            margin-left: (- $hSpacing)
+            margin-right: (- $hSpacing)
+            margin-top: (- $hSpacing)
+            padding-left: $hSpacing
+            padding-top: $vSpacing
+            padding-right: $hSpacing
+            border-top-left-radius: ($borderRadius * 1.625)
+            border-top-right-radius: ($borderRadius * 1.625)
+
+        &-box
+          padding-bottom: $vSpacing
+          margin-bottom: $vSpacing
+          border-bottom: 1px solid var(--gray)
+
+          .replied
+            &__text
+              font-size: var(--smallFont)
+              color: var(--graydarker)
+              overflow: hidden
+              text-overflow: ellipsis
+              display: -webkit-box
+              -webkit-box-orient: vertical
+              -webkit-line-clamp: 1
+
+            &__container
+              display: flex
+              justify-content: space-between
+              align-items: center
+
+            &__box
+              display: flex
+              flex-direction: column
+              justify-content: space-around
+              height: 100%
+              width: 100%
+
+            &__image
+              width: $iconSize
+              height: $iconSize
+              margin-right: $hSpacing
+
+        &.message__container-video
+          padding: ($vSpacing) ($hSpacing)
+
+        .message__container-forwarded-text svg
+          height: $iconSize
+          transform translateY(-1px)
+          margin-right: $hSpacing
+
+        .message__container-forwarded-box
+          border-bottom: 0
+          padding-bottom: 0
+
+        .message__container-file__item
+          margin-bottom: ($vSpacing * 0.5)
+          padding-bottom: $vSpacing
+          border-bottom: 1px solid var(--gray)
+          position: relative
+
+
+
+      &-forwarded
+        &-with-text
+          .message__text
+            margin-bottom: ($vSpacing * 0.5)
+
+        &-box
+          padding-bottom: $vSpacing
+
+        &-text
+          font-size: var(--smallFont)
+          color: var(--graydarker)
+          display: flex
+          align-items: center
+          line-height: 1
+
+          span
+            overflow: hidden
+            text-overflow: ellipsis
+            white-space nowrap
+
+          svg
+            margin-right: ($hSpacing * 0.5)
+            transform: translateY(1px)
+            height: $iconSize
+
+        .contact-preview__avatar-small
+          margin-left: 0
+
+      &-file
+        &__item
+          display: flex
+          align-items: center
+          width: 100%
+
+          &.doc
+            & + .message__text
+              display: block
+              margin-top: ($vSpacing * 1.2)
+
+              & ~ .message__footer
+                margin-top: $vSpacing
+
+            & ~ .message__footer
+              margin-top: ($vSpacing * 1.8)
+
+          &-video
+            width: 100%
+            position: relative
+
+            &-button
+              position absolute
+              left: 0
+              top: 0
+              right: 0
+              bottom: 0
+              display: flex
+              align-items: center
+              justify-content: center
+              z-index: 5
+              cursor: pointer
+              transition: all .2s ease-out
+
+              &-item
+                width: round($iconSize * 2.27)
+                height: @width
+                border: 2px solid var(--white)
+                border-radius: 100%
+                display: flex
+                align-items: center
+                justify-content: center
+                background: var(--play-button-background-color)
+
+                svg
+                  height: round($iconSize * 1.36)
+                  transform: "translateX(%s)" % ($hSpacing * 0.3)
+
+                  g path.cls-1
+                    stroke: var(--white)
+            &-item
+              width: $imageWidth
+              height: @width
+              object-fit: cover
+              cursor: pointer
+              border-radius: $borderRadius
+
+
+      .file__attachment
+        margin-right: ($hSpacing * 0.5)
+
+        svg
+          width: round($iconSize * 0.9)
+
+      .file__name
+        margin-right: $hSpacing
+
+      .file__size
+        color: var(--graydarker)
+
+      &-image
+        &-with-text
+          .message__image
+            border-radius: $borderRadius
+            margin-bottom: ($vSpacing * 0.6)
+            width: "calc(100% + %s)" % ($hSpacing)
+
+        .message__image
+          margin-bottom: (- $vSpacing * 0.3)
+          border-radius: $borderRadius
+
+      &:hover
+        .message__tools
+          opacity: 1
+          visibility: visible
+
+    &.is-user-message
+      .message__container-replied-noself .message__container-forwarded-box
+        background: var(--message-background-color)
+
+      .message__container-replied-noself .message__container-replied-box
+        background: var(--message-background-color)
+
+      .message__forward-image
+        right: "calc(100% + %s)" % ($hSpacing)
+
+      .message
+        &__tools
+          right: unset
+          left: (- $hSpacing * 1.6)
+
+        &__wrapper
+          float:right
+
+        &__container
+          background-color: var(--own-message-background-color)
+
+      + .message.is-user-message
+        margin-top: (- $vSpacing * 1.5)
+
+      + .message.is-user-message
+        margin-top: (- $vSpacing * 1.5)
+
+    &.is-speaker-message
+      float: left
+
+      .message__forward-image
+        left: "calc(100% + %s)" % ($hSpacing)
+
+      .date
+        right: ($hSpacing * 0.9)
+
+      .message
+        &__tools
+          right: (- $hSpacing * 1.6)
+
+      + .message.is-speaker-message
+        margin-top: (- $vSpacing * 1.5)
+
+    &__footer
+      display: flex
+      align-items: center
+      justify-content: space-between
+      width: 100%
+      min-width: $minMessageWidth
+
+      .date
+        display: block
+
+    &__text
+      &-size
+        font-size: var(--regularSubFont)
+        text-align: left
+        color: var(--graydarker)
+
+      &-extention
+        font-size: var(--regularSubFont)
+        text-align: center
+        color: var(--graydarker)
+        left: 50%
+        transform: translateX(-50%)
+
+
+
+.is-mobile
+  .contacts-page__container .left-side .content
+    margin-top: $dialogHeaderHeight
+    height: "calc(100% - %s)" % ($chatsInputHeight) !important
+
+  .contacts-page__top-tools
+    max-width: var(--mobile-breakpoint)
+    left: 0
+    right: 0
+    margin: auto
+
+  .contacts-page__contacts-menu
+    position: absolute
+    top: 0
+    bottom: $chatsInputHeight
+    width: 100%
+    min-width: auto
+    left: 0
+    z-index: 0
+    transform: translateX(-100%)
+
+    &.active
+      transform: translateX(0)
+      z-index: 10
+
+  .message > *
+    -webkit-touch-callout: none  // iOS Safari
+    -webkit-user-select: none    // Safari
+    -khtml-user-select: none     // Konqueror HTML
+    -moz-user-select: none       // Old versions of Firefox
+    -ms-user-select: none        // Internet Explorer/Edge
+    user-select: none            // Non-prefixed version, currently supported by
+                                 // Chrome, Edge, Opera and Firefox
+
+
+.message__container
+  &-image
+    .message__footer
+      margin-top: ($vSpacing * 1.2)
+
+  &-group ~ .message__footer
+    margin-top: ($vSpacing * 1.2)
+
+
+.fade-enter
+.fade-leave-to
+  opacity: 0
+
+.fade-enter-active
+.fade-leave-active
+  transition: 0.2s opacity ease-in-out

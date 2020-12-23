@@ -1,0 +1,44 @@
+@import "~themes/_variables"
+
+$avatarSize = 25px
+
+.member-item
+  display: flex
+  align-items: center
+  width: 100%
+  margin-bottom: ($vSpacing * 1.5)
+  &:first-child
+    margin-top: ($vSpacing * 1.5)
+
+  &__avatar
+    border-radius: 50%
+    overflow: hidden
+    width: $avatarSize
+    height: @width
+    margin-right: ($hSpacing * 1.5)
+
+    &.default
+      background-color: white
+
+  &__delete
+    margin-left: auto
+    font-size: var(--regularSubFont)
+    opacity: 0
+    visibility: hidden
+    transition: 0.2s ease-in-out opacity,
+                0.21s ease-in-out visibility
+
+  &__name
+    transition: 0.2s ease-in-out color
+    font-size: var(--smallFont)
+
+  &:hover
+    cursor: pointer
+
+    .member-item__name
+      color: var(--black)
+
+    .member-item__delete
+      opacity: 1
+      visibility: visible
+

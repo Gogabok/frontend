@@ -1,0 +1,111 @@
+@import "~themes/_variables"
+
+$headerHeight = 60px
+$borderRadius = 20px
+$maxContainerWidth = 500px
+
+$lineHeight = 1px
+
+$maxErrorWidth = 90%
+
+$socialButtonWidth = 70%
+
+.main-container
+  &:not(.is-mobile)
+    .login__body-column
+      max-width: $maxContainerWidth
+      width: 100%
+      margin: 0 auto
+      padding: ($vSpacing * 3.5) ($hSpacing * 2)
+
+.login__container
+  position: absolute
+  left: 0
+  top: 0
+  right: 0
+  bottom: 0
+
+.is-mobile
+  .login__container
+    bottom: var(--bottom-menu-height)
+
+.login__body
+  position: absolute
+  left: 0
+  top: $headerHeight
+  right: 0
+  bottom: 0
+  overflow: auto
+  &::-webkit-scrollbar
+    width: 1px
+  &::-webkit-scrollbar-track
+    background: var(--superlightgray)
+  &::-webkit-scrollbar-thumb
+    background: var(--thumb-color)
+    &:hover
+      background: var(--darksilver)
+
+.login__body
+  &-column
+    display: flex
+    flex-direction: column
+    padding: ($vSpacing * 3.5) ($hSpacing * 2)
+
+  &-box
+    display: flex
+    margin-bottom: ($vSpacing * 2)
+    position: relative
+
+  &-btn
+    align-self: flex-end
+    font-size: var(--regularFont)
+    cursor: pointer
+
+  &-title
+    font-size: var(--mediumFont)
+    margin-bottom: ($vSpacing * 2)
+    align-self: flex-start
+
+  &-line
+    position: relative
+    height: $lineHeight
+    width: 100%
+    margin-top: ($vSpacing * 2.7)
+    margin-bottom: ($vSpacing * 2.7)
+    &:before
+      content: ''
+      position: absolute
+      left: 0
+      right: 0
+      top: 50%
+      transform: translateY(-50%)
+      height: $lineHeight
+      background: var(--gray)
+
+  &-social
+    display: grid
+    grid-template-columns: 1fr
+    grid-gap: ($vSpacing * 2)
+
+  &-item
+    display: flex
+    flex-direction: column
+
+  &-controls
+    width: 100%
+    display: flex
+    align-items: center
+    justify-content: space-between
+
+  &-error
+    margin-bottom: ($vSpacing * 2)
+    color: red
+    max-width: $maxErrorWidth
+    align-self: flex-start
+    text-align: left
+    margin-left: $hSpacing
+
+
+.not-logged-in .login__container
+  bottom: 0 !important
+

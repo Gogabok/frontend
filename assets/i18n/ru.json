@@ -1,0 +1,551 @@
+{
+  "notification": {
+    "fatal-error": "Что-то пошло не так. Пожалуйста, перезагрузите страницу.",
+    "reload-required": "Похоже, что сайт обновился. Чтобы получить доступ ко всем улучшениям, нажмите сюда (страница будет перезагружена)."
+  },
+  "lang": {
+    "short": "RU",
+    "long": "RU, Русский"
+  },
+  "common": {
+    "share": "Поделиться",
+    "support": "Поддержать"
+  },
+  "validation": {
+    "messages": {
+      "required": "Обязательное для заполнения",
+      "required_if": "@:validation.messages.required",
+      "email": "Некорректный E-mail",
+      "email-used": "Указанный Е-mail уже используется",
+      "name": "Только буквы, цифры и пробел",
+      "confirmed": "Пароли не совпадают",
+      "ext": "Неверное расширение файла",
+      "mimes": "Неверный тип файла",
+      "min": "Должно быть как минимум {length} символов",
+      "max": "Должно быть не более {length} символов",
+      "alpha": "Только буквы",
+      "alphanumspaces": "Только буквы, цифры и пробелы",
+      "login": "Только английские буквы, цифры, а также символы \".\", \"_\" и \"-\", начинаться должен с цифры или буквы. Не может состоять только из цифр",
+      "unique_login": "Логин должен быть уникальным",
+      "cant-load-file": "Не удалось загрузить файл",
+      "unexpected-type": "Неверный тип файла",
+      "password": "Пароль должен содержать минимум одну заглавную букву и одну цифру"
+    },
+    "authorization": {
+      "empty-account": "Пожалуйста укажите Логин, E-mail или Gapopa&nbsp;ID",
+      "account-not-found": "Указанный аккаунт не найден",
+      "empty-password": "Пожалуйста введите пароль",
+      "incorrect-password": "Неверный пароль",
+      "login-occupied": "Данный логин уже занят другим пользователем"
+    },
+    "attributes": {}
+  },
+  "pages": {
+    "home": {
+      "title": "Главная страница"
+    },
+    "im": {
+      "title": "Сообщения",
+      "full_title": "@:pages.im.title ({count})"
+    },
+    "search": {
+      "title": "Поиск"
+    },
+    "profile": {
+      "title": "Профиль",
+      "edit": "Редактировать",
+      "save": "Сохранить",
+      "cancel": "Отмена",
+      "name": "Имя",
+      "login": "Логин",
+      "birth": "Дата рождения",
+      "language": "Язык",
+      "status": "Статус",
+      "education": "Учеба",
+      "place": "Место",
+      "job": "Работа",
+      "marital_status": "Семейное положение",
+      "gapopa": "Gapopa",
+      "photos": "Фотографии",
+      "wall": "Стена",
+      "user-info": "Анкета",
+      "contact": "Связаться",
+      "support": "Поддержать",
+      "share": "Поделиться",
+      "share-profile": "Поделиться профилем",
+      "unique-text-placeholder": "Ваш уникальный текст",
+      "change": "Изменить",
+      "copy": "Копировать",
+      "generate": "Сгенерировать",
+      "add-text": "Вы можете добавить собственный текст, например",
+      "check-statistic-info": "Статистика переходов будет доступна в разделе \"@:pages.business.title\" после нажатия кнопки \"@:pages.profile.copy\"",
+      "translation-sum": "Сумма, ",
+      "comment-placeholder": "Комментарий",
+      "marital_statuses": {
+        "male": {
+          "single": "не женат",
+          "married": "женат",
+          "complicated": "все сложно"
+        },
+        "female": {
+          "single": "не замужем",
+          "married": "замужем",
+          "complicated": "все сложно"
+        }
+      },
+      "languages": {
+        "english": "английский",
+        "russian": "русский",
+        "spain": "испанский",
+        "italian": "итальянский",
+        "deutsch": "немецкий"
+      },
+      "placeholders": {
+        "login": "Уникальный логин",
+        "slogan": "Статус"
+      }
+    },
+    "media": {
+      "title": "Вещания"
+    },
+    "photos": {
+      "title": "Фотографии"
+    },
+    "events": {
+      "title": "Новости"
+    },
+    "money": {
+      "title": "Деньги",
+      "add_funds": "Пополнить",
+      "balance": "Баланс"
+    },
+    "business": {
+      "title": "Бизнес"
+    },
+    "broadcast": {
+      "title": "Транслировать"
+    },
+    "settings": {
+      "actions": {
+        "add-change": "Добавить/Изменить",
+        "assign": "Присвоить",
+        "change": "Изменить",
+        "continue": "Продолжить",
+        "delete": "Удалить",
+        "confirm": "Подтвердить",
+        "copy": "Копировать",
+        "link": "Привязать",
+        "upload": "Загрузить"
+      },
+      "title": "Настройки",
+      "navigation-bar": {
+        "account": "@:pages.settings.tabs.account",
+        "privacy": "@:pages.settings.tabs.privacy",
+        "security": "@:pages.settings.tabs.security"
+      },
+      "tabs": {
+        "account": "Аккаунт",
+        "privacy": "Конфеденциальность",
+        "security": "Безопасность"
+      },
+      "categories": {
+        "avatar": {
+          "info": "Аватар является графическим не уникальным идентификатором Вашего аккаунта. Помогает другим пользователям запомнить Вас на уровне визуализации.",
+          "title": "Аватар",
+          "title-short": "Аватар"
+        },
+        "default-id": {
+          "info": "Пожалуйста, укажите, какой идентификатор использовать для отображения другим пользователям. Например, в публичном профиле, мини профиле, подписи к сообщениям, в списках контактов и т.п. Вы можете использовать только установленный идентификатор, например, Уникальный логин, Имя, e-mail или Num.",
+          "none": "Ничего",
+          "title": "По умолчанию отображать",
+          "title-short": "По умолчанию"
+        },
+        "email": {
+          "info": "Ваш E-mail является дополнительным уникальным идентификатором Вашего аккаунта. Может использоваться для входа в систему. Может использоваться при отображении Вашего аккаунта другим пользователям. Может использоваться для восстановления доступа к аккаунту.",
+          "link": "Привязать",
+          "email-confirm-notification": "Ссылка на подтверждение e-mail успешно отправлена на Ваш e-mail. Ссылка будет действительна 24 часа.",
+          "resend": "Отправить заново",
+          "resend-errors": {
+            "no-unconfirmed-email": "Похоже Вы еще не предоставили e-mail для подтверждения. Пожалуйста, отправьте Ваш актуальный e-mail адрес."
+          },
+          "title": "E-mail",
+          "title-short": "E-mail",
+          "unlink": "Отвязать",
+          "unconfirmed-label": "Не подтвержден"
+        },
+        "num": {
+          "info": "Ваш Num является основным уникальным идентификатором Вашего аккаунта. Может использоваться для входа в систему. Может использоваться при отображении Вашего аккаунта другим пользователям. Не может быть изменен.",
+          "title": "Num",
+          "title-short": "Num"
+        },
+        "login": {
+          "info": "Ваш уникальный логин является дополнительным уникальным идентификатором Вашего аккаунта. Может использоваться для входа в систему. Может использоваться при отображении Вашего аккаунта другим пользователям. Не может быть изменен.",
+          "title": "Уникальный логин",
+          "title-short": "Уникальный логин",
+          "confirm-success": "Ваш уникальный логин успешно изменен.",
+          "validation-info": "Уникальный логин может содержать только буквы латинского алфавита, цифры и символы \"-\", \".\" и \"_\". Должен начинаться с буквы или цифры и быть не менее 3х символов."
+        },
+        "name": {
+          "info": "Имя или название является дополнительным не уникальным идентификатором Вашего аккаунта. Может использоваться при отображении Вашего аккаунта другим пользователям. Может быть изменено.",
+          "title": "Имя или название",
+          "title-short": "Имя",
+          "confirm-success": "Ваше имя успешно изменено.",
+          "delete-errors": {
+            "is-display-name": "Ошибка! Вы не можете удалить имя, которое используется как имя для отображения."
+          },
+          "validation-info": "Имя или название должно начинаться с буквы или цифры. Может содержать только буквы, цифры и символ пробела."
+        },
+        "password": {
+          "info": "Пароль должен быть не менее шести символов и содержать минимум одну заглавную букву и одну цифру.",
+          "new-password": "Новый пароль",
+          "old-password": "Старый пароль",
+          "repeat-password": "Повторите пароль",
+          "repeat-new-password": "Повторите новый пароль",
+          "title": "Пароль",
+          "title-short": "Пароль",
+          "validation-info": "@:pages.settings.categories.password.info"
+        }
+      }
+    },
+    "confirm-email": {
+      "title": "Подтверждение email адреса",
+      "redirect-button": "Вернуться на страницу Настроек",
+      "confirmation-success": "Поздравляем, Ваш email адрес успешно подтвержден!",
+      "confirmation-errors": {
+        "occupied": "Данный адрес электронной почты уже используется другим пользователем.",
+        "invalid-token": "Ошибка! Передан неверный токен."
+      }
+    },
+    "confirm-page": {
+      "title": "Страница подтверждения",
+      "confirmation-success": "Поздравляем, Ваш пароль был успешно сброшен!",
+      "confirmation-error": "Ошибка! Похоже, срок действия ссылки истек. Попробуйте запросить сброс пароля еще раз.",
+      "header": "Сброс пароля",
+      "redirect": {
+        "home": "Главная",
+        "settings": "Настройки"
+      },
+      "reset-button": "Сбросить"
+    },
+    "not-found": {
+      "title": "Страница не существует",
+      "message": "Запрошенная Вами страница не существует"
+    }
+  },
+  "mobilePages": {
+    "home": {
+      "title": "Главная"
+    },
+    "im": {
+      "title": "Диалоги"
+    },
+    "applicationSettings": {
+      "title": "Настройки приложения"
+    }
+  },
+  "components": {
+    "incoming-call": {
+      "audio": "Аудио звонок",
+      "video": "Видео звонок"
+    },
+    "avatar-editor": {
+      "add-avatar": "Добавить аватар",
+      "drop-hint": "Перетащите изображение в данную область или",
+      "add-photo": "Добавить фото...",
+      "browse": "выберите...",
+      "change-image": "Изменить изображение",
+      "change": "Изменить",
+      "cancel": "Отмена",
+      "accept": "Подтвердить"
+    },
+    "authorization": {
+      "continue": "Продолжить",
+      "new-gapopa": "Новая Gapopa ID",
+      "registration-not-mandatory": "Регистрация не требуется",
+      "start": "Начать",
+      "log-in": "Вход",
+      "restore-password": "Восстановление пароля"
+    },
+    "sign-in": {
+      "saved-gapopa": "Сохраненные аккаунты",
+      "last-visit": "Последний вход: {date}",
+      "delete": "Удалить",
+      "clear": "Очистить",
+      "log-in": "Вход",
+      "next": "Продолжить",
+      "forgot-password": "Забыли пароль?",
+      "remove-saved-notification": "Все сохраненные аккаунты будут удалены из браузера",
+      "cancel": "Отменить",
+      "confirm": "Подтвердить",
+      "remember-me": "Запомнить меня",
+      "login-placeholder": "Логин, E-mail or Gapopa ID",
+      "password-placeholder": "Пароль",
+      "email-placeholder": "E-mail",
+      "account-removed": "В связи с истечением текущей сессии(72 часа) аккаунт был удален. В связи с тем, что к данному аккаунту не был задан пароль, его восстановление невозможно.",
+      "password-restore-tooltip": "E-mail, привязанный к Вашему аккаунту",
+      "password-restore-notification": "Ссылка на восстановление пароля успешно отправлена на Ваш e-mail. Ссылка будет действительна 24 часа.",
+      "back": "Назад",
+      "continue": "Продолжить",
+      "restore-fail-reasons": {
+        "default": "Ошибка восстановления доступа к аккаунту. Обратитесь в службу поддержки.",
+        "not-exist": "К сожалению, указанный e-mail не привязан ни к какому аккаунту. Ссылка на восстановление доступа не была отправлена."
+      },
+      "feedback-types": {
+        "email": "email",
+        "phone": "телефон"
+      }
+    },
+    "account-access": {
+      "name": "Имя или название",
+      "confirm": "Подтвердить",
+      "copy": "Копировать",
+      "continue": "Продолжить",
+      "optional-fields": "Необязательные Поля",
+      "password": "Пароль",
+      "repeat-password": "Повторите пароль",
+      "e-mail": "E-mail",
+      "unique-login": "Уникальный логин",
+      "useful-information": "Полезная информация",
+      "password-tip": "Вы МОЖЕТЕ использовать сервис НЕ указывая пароля. В этом случае Вы имеете доступ к своему аккаунту только пока файл cookie хранится на Вашем устройстве. В случае смены устройства, или браузера, или потери (удаления) файла cookie, восстановить доступ к Вашему аккаунту невозможно.",
+      "e-mail-tip": "Вы МОЖЕТЕ использовать сервис НЕ указывая e-mail. Но в случае утери пароля восстановить доступ к Вашему аккаунту будет невозможно. Кроме того, Вы можете использовать e-mail для входа в Ваш аккаунт.",
+      "login-tip": "Уникальный логин может использоваться для осуществления входа в аккаунт и/или идентификации Вас Вашими корреспондетами.",
+      "name-tip": "Имя может использоваться для идентификации Вас Вашими корреспондентами.",
+      "unknown-error": "Неизвестная ошибка. Обратитесь в службу поддержки",
+      "set-login-fail-reasons": {
+        "already-exist": "@:validation.messages.unique_login",
+        "default": "@:components.account-access.unknown-error"
+      },
+      "set-password-fail-reasons": {
+        "password-allready-set": "Пароль уже установлен",
+        "default": "@:components.account-access.unknown-error"
+      },
+      "replace-password-fail-reasons": {
+        "wrong-old-password": "Неправильный старый пароль",
+        "default": "@:components.account-access.unknown-error"
+      },
+      "set-email-fail-reasons": {
+        "already-used": "@:validation.messages.email-used",
+        "invalid": "@:validation.messages.email"
+      },
+      "set-name-fail-reasons": {
+        "invalid": "@:validation.messages.name",
+        "exceeds-max-length": "Превышена максимально допустимая длина"
+      },
+      "set-avatar-fail-reasons": {
+        "cant-load-file": "@:validation.messages.cant-load-file",
+        "unexpected-type": "@:validation.messages.unexpected-type",
+        "default": "@:components.account-access.unknown-error"
+      }
+    },
+    "call": {
+      "advertising": "Здесь может быть ваша реклама",
+      "report-quality": "Пожаловаться на качество связи",
+      "send": "Отправить",
+      "report-result": "Благодарим за вашу информацию",
+      "report-info": "Наши специалисты проведут анализ данных телеметрии и постараются решить проблему в самое ближайшее время"
+    },
+    "timeline": {
+      "start": "Начало",
+      "now": "Сейчас"
+    },
+    "lang-sidebar": {
+      "select-lang": "Выберите язык отображения сайта",
+      "mobile-select-lang": "Выберите язык приложения"
+    },
+    "share-window": {
+      "generate": "Сгенерировать",
+      "cancel": "Отменить",
+      "change": "Изменить",
+      "copy": "Копировать",
+      "business": "\"@:pages.business.title\"",
+      "conversion-statistic": "Статистика переходов будет доступна в разделе ",
+      "conversion-statistic-underway": "Вы уже делились этой ссылкой. Подсчет статистики переходов ведется в разделе ",
+      "add-text": "Вы можете добавить собственный текст, например:",
+      "text-placeholder": "Ваш уникальный текст...",
+      "notice-end": "после нажатия кнопки \"Копировать\".",
+      "copy-title": "Скопировать в буфер обмена и сохранить в разделе 'Бизнес'",
+      "link-copied": "Ссылка скопирована в буфер обмена.",
+      "unknown-error": "Неизвестная ошибка.",
+      "error-empty-link": "Ошибка: отсутствует текст ссылки.",
+      "error-unacceptable-symbols": "Ошибка: текст ссылки содержит недопустимые символы. Могут использоваться только буквы латинского алфавита, цифры, а также символы \"_\"  и  \".\"",
+      "error-already-use": "Ошибка: текст ссылки уже используется. Пожалуйста, измените текст ссылки.",
+      "error-max-length": "Ошибка: текст ссылки превышает максимально допустимое количество символов (256)"
+    },
+    "top-menu": {
+      "menu": "Меню",
+      "add_funds": "@:pages.money.add_funds",
+      "broadcast": "@:pages.broadcast.title",
+      "media": "@:pages.media.title",
+      "events": "@:pages.events.title: {count}",
+      "im": "@:pages.im.title: {count}",
+      "balance": "@:pages.money.balance",
+      "show": "Показать",
+      "search": "@:pages.search.title",
+      "login": "Войти"
+    },
+    "bottom-menu": {
+      "terms-of-use": "Пользовательское соглашение",
+      "feedback": "Обратная связь",
+      "privacy-policy": "Политика конфиденциальности",
+      "faq": "Вопросы и ответы",
+      "input-broadcast": "Вх. вещание",
+      "input-call": "Вх. звонок",
+      "help": "Помощь"
+    },
+    "menu-sidebar": {
+      "profile": "@:pages.profile.title",
+      "media": "@:pages.media.title",
+      "photos": "@:pages.photos.title",
+      "im": "@:pages.im.title",
+      "events": "@:pages.events.title",
+      "money": "@:pages.money.title",
+      "business": "@:pages.business.title",
+      "broadcast": "@:pages.broadcast.title",
+      "search": "@:pages.search.title",
+      "settings": "@:pages.settings.title",
+      "info": "Справка",
+      "logout": "Выход",
+      "login": "Вход",
+      "applicationSettings": "Настройки приложения",
+      "help": "Справка"
+    },
+    "editable-content": {
+      "to_write": "Написать..."
+    },
+    "im": {
+      "go-to-profile": "Перейти к профилю {name}",
+      "open-dialog": "Открыть диалог с {name}",
+      "dialog-cleared": "Диалог очищен",
+      "dialog-empty": "Нет сообщений",
+      "dialog-empty-description": "Ваши сообщения и звонки защищены шифрованием и доступны только Вам и Вашему корреспонденту.",
+      "sent-on-message": "Пересланное сообщение",
+      "status-message": "Статус",
+      "removed": "Удалено. ",
+      "failed": "Не отправлено",
+      "resend-failed": "Повторить",
+      "restore": "Восстановить",
+      "send-on-message": "Переслать",
+      "enable": "Включить",
+      "disable": "Отключить",
+      "sended": "Отправлено",
+      "translation-sum": "Сумма, ",
+      "comment-translate-price": "Стоимость перевода комментария {br} составляет: {amount}",
+      "donation-notice": "Уведомление о вашей поддержке будет отправлено личным сообщением.",
+      "comment-placeholder": "Комментарий...",
+      "join": "Присоединиться",
+      "remember": "Запомнить",
+      "remember_title": "Добавить в избранные контакты",
+      "forget-contact": "Удалить из избранных",
+      "forget": "Удалить",
+      "forget_title": "Удалить из избранных контактов",
+      "block": "Заблокировать",
+      "unblock": "Разблокировать",
+      "remove": "Удалить",
+      "translate": "Перевести",
+      "write": "Написать",
+      "hide": "Скрыть",
+      "rename": "Переименовать",
+      "add-contact": "Добавить в избранные",
+      "clear-conversation": "Очистить диалог",
+      "save": "Сохранить",
+      "saved": "Сохранено",
+      "send-attachment": "Переслать",
+      "search": "Поиск",
+      "cancel": "Отменить",
+      "confirm": "Подтвердить",
+      "message-control": "Управление сообщениями",
+      "fortuna": "Фортуна",
+      "close": "Закрыть",
+      "back": "Назад",
+      "random-contact": "Случайный Собеседник",
+      "authorized-user-required": "Для общения с другими пользователями вы должны авторизоваться",
+      "contacts": {
+        "remove": "Удалить диалог",
+        "all": "Избранные",
+        "recent": "Последние",
+        "messenger-info-gapopa": "Вы можете использовать мессенджер без регистрации.",
+        "add-contacts-info": "Для добавления контакта Вы можете:{br}- воспользоваться поиском;{br}- воспользоваться ссылкой «Добавить контакт»;{br}- перетащить аватар контакта в область списка контактов.",
+        "add-contact": "Добавить контакт",
+        "donation-fail": {
+          "no-funds": "Недостаточно средств.",
+          "empty-donation": "Донат должен быть не нулевым.",
+          "less-than-allowed": "Донат меньше минимальной суммы.",
+          "unknown-error": "Неизвестная ошибка."
+        }
+      },
+      "slogan": {
+        "header": "Текст доступен каждому Вашему корреспонденту. На его/ее языке если заказан перевод.",
+        "translate-price": "Стоимость перевода текста статуса составляет: {price}",
+        "translate-confirm": "Подтвердить",
+        "translate-confirmed": "Текст статуса изменен",
+        "placeholder": "Текст статуса..."
+      },
+      "statuses": {
+        "online": "Онлайн",
+        "offline": "Оффлайн",
+        "busy": "занят",
+        "away": "Отошел"
+      },
+      "messages": {
+        "attachment-size": "Размер файла: {size}",
+        "was-online": "Последний раз онлайн: ",
+        "contact-renamed": "Контакт переименован",
+        "contact-favourite-added": "Пользователь добавлен в избранные",
+        "contact-favourite-removed": "Пользователь удален из избранных",
+        "block-contact": "Вы лишаете пользователя возможности связаться с Вами и оставлять комментарии",
+        "contact-blocked": "Пользователь заблокирован",
+        "remove-contact": "Пользователь будет удален из списка последних диалогов и избранных",
+        "contact-removed": "Пользователь удален из списка последних диалогов и избранных",
+        "attachments-sent-to": "Отправлено контактам",
+        "translate-price": "Стоимость перевода",
+        "message-translating": "Сообщение отправлено в перевод",
+        "message-control": "Управление сообщениями",
+        "remove": "Удалить",
+        "removed": "Сообщение удалено",
+        "restore": "Восстановить",
+        "conversation-is-cleared": "Диалог очищен",
+        "translate": "Перевести",
+        "clear-conversation": "Очистить диалог",
+        "cancel": "Отменить",
+        "confirm": "Подтвердить",
+        "save": "Сохранить",
+        "saved": "Сохранено",
+        "send": "Переслать",
+        "sended": "Отправлено",
+        "search": "Поиск",
+        "roll-up": "Свернуть",
+        "today": "Сегодня",
+        "yesterday": "Вчера",
+        "just-now": "только что",
+        "comment-placeholder": "Комментарий...",
+        "comment-translation-amount": "Стоимость перевода комментария",
+        "last-online": "{day} в {time}"
+      },
+      "attachments": {
+        "title": "Прикрепление файлов",
+        "max-count-warning": "К одному сообщению можно прикрепить не более {count} файлов.",
+        "errors": {
+          "PayloadTooLargeError": "Превышен максимально допустимый размер файла",
+          "NetworkError": "Ошибка сети. Загрузка прервана."
+        }
+      },
+      "you_are_offline": "Вы отключены от сети",
+      "blocked_by_me": "Вы заблокировали данный контакт",
+      "me_blocked": "Пользователь запретил Вам отправлять ему сообщения",
+      "message_fail": "Ошибка при отправке, сообщение не отправлено. {br} Нажмите чтобы повторить"
+    }
+  },
+  "helpers": {
+    "size-unit": {
+      "0": "байт",
+      "1": "KB",
+      "2": "MB",
+      "3": "GB",
+      "4": "TB",
+      "5": "PB",
+      "6": "EB",
+      "7": "ZB",
+      "8": "YB"
+    }
+  }
+}

@@ -1,0 +1,81 @@
+@import "~themes/_variables"
+
+$controlsPanelHeight = 60px
+$itemSize = {
+  desktop: 70px
+  mobile: 30px
+}
+
+.slider-wrapper
+  display: flex
+  flex-direction: column
+  justify-content: center
+  position: fixed
+  top: 0
+  right: 0
+  bottom: 0
+  left: 0
+  width: 100%
+  z-index: 11
+  background-color: var(--media-player-background-color)
+
+  .preview_container
+    width: 100%
+    height: 100%
+
+    &__item
+      height: 100%
+      width: 100%
+
+.thumbnails-wrapper
+  width: $itemSize.desktop + 2 * $hSpacing
+  position: absolute
+  right: 0
+  top: 0
+  bottom: 0
+  background-color: var(--media-player-background-color)
+  z-index: 1000
+  opacity: 0
+  transition: 0.4s ease-in-out opacity
+  &.active
+    opacity: 1
+
+.slider__thumbnails
+  padding: $vSpacing $hSpacing
+  width: 100%
+  height: 100%
+
+  .thumbnail__slide
+    width: $itemSize.desktop
+    height: @width
+    margin-bottom: $vSpacing * 0.5
+
+    &:first-child
+      margin-top: - $itemSize.desktop - $vSpacing
+
+    img
+      transition: 0.2s ease-in-out transform
+      width: 100%
+      height: 100%
+      object-fit: cover
+      object-position: center center
+
+      &.active
+        transform: scale(1.13)
+
+.is-mobile
+  .slider__thumbnails
+    padding: 0
+
+  .thumbnails-wrapper
+    width: 100%
+    bottom: $controlsPanelHeight + $vSpacing * 1.5
+    height: $itemSize.mobile
+    top: unset
+
+  .thumbnail__slide
+    width: $itemSize.mobile
+    height: @width
+    margin-bottom: 0
+    margin-right: $vSpacing * 0.5
+

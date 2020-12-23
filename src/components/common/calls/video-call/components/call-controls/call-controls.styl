@@ -1,0 +1,119 @@
+@import "~themes/_variables"
+
+$buttonSize = 45px
+$mobileButtonSize = 60px
+$disabledLineWidth = 1px
+$buttonBlurSize = 7px
+
+.call__controls
+  position: absolute
+  left: 0
+  right: 0
+  bottom: ($vSpacing * 1.5)
+  z-index: 2
+  display: flex
+  align-items: center
+  justify-content: space-around
+
+  &-item
+    width: $mobileButtonSize
+    height: $mobileButtonSize
+    display: flex
+    align-items: center
+    justify-content: center
+    background: var(--lightgray)
+    border-radius: 100%
+    margin: 0 $hSpacing
+    position: relative
+    overflow: hidden
+    cursor: pointer
+    transition: all 0.2s ease-out
+    border: 1px solid var(--call-controls-border-color)
+    background: var(--call-controls-background-color)
+    backdrop-filter: "blur(%s)" % ($buttonBlurSize)
+
+    &:before
+      left: 50%
+
+    &.video:before
+    &.audio:before
+      content: ""
+      opacity: 0
+      visibility: hidden
+      position: absolute
+      top: 50%
+      left: 47%
+      width: calc(70%)
+      height: $disabledLineWidth
+      box-shadow: 0 0 @height @height var(--gray)
+      background: var(--graydarker)
+      transform: translate(-50%, -50%) rotate(-45deg)
+      transition: all 0.2s ease-out
+      z-index: 2
+
+    &.disabled:before
+      opacity: 1
+      visibility: visible
+      transition: all 0.2s ease-out
+
+    &:disabled
+      svg
+        opacity: 0.4
+
+      &:before
+      &:after
+        opacity: 0.4
+
+    svg
+      transition: opacity 0.2s ease-in-out
+      height: round($iconSize * 0.72)
+
+    &.audio
+      svg
+        height: round($iconSize * 0.9)
+
+    &.video svg
+      height: ($iconSize * 0.77)
+      transform: "translateX(%s)" % ($hSpacing * 0.2)
+
+    &.end-call
+      display: flex
+      align-items: center
+      justify-content: center
+      background: var(--call-end-call-button-background-color)
+      border: 1px solid var(--call-end-call-button-border-color)
+
+      svg
+        width: ($buttonSize * 0.4)
+        height: round($iconSize * 1.45)
+        fill: var(--white)
+        stroke: var(--white)
+        transform: "translateY(%s)" % ($vSpacing * 0.1) rotate(137.5deg)
+
+    &.rotate
+    &.screen-share
+      svg
+        height: round($iconSize * 0.9)
+
+    &.disabled
+      background: var(--gray)
+
+
+.main-container:not(.is-mobile)
+  .call__controls
+    justify-content: center
+
+    .call__controls-item
+      width: $buttonSize
+      height: $buttonSize
+
+      &.video svg
+        height: ($iconSize * 0.77)
+
+      &.audio
+      &.rotate
+        svg
+          height: ($iconSize * 0.9)
+
+  .end-call svg
+    height: $iconSize

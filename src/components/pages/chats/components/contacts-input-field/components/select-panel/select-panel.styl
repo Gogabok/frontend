@@ -1,0 +1,116 @@
+$height = 50px
+$borderRadius = 13px
+
+.contacts__input-selecting
+  position: absolute
+  left: 0
+  bottom: 0
+  right: 0
+  background: var(--lightgray)
+  height: $height
+  padding-left: @height / 2
+  padding-right: @padding-left
+  padding-top: ($vSpacing * 0.7)
+  transition: all .3s ease-out
+
+.contacts__input-selecting-container
+  height: 100%
+  display: flex
+  align-items: center
+  justify-content: space-between
+
+.contacts__input-selecting-question
+  font-size: calc(var(--extrasmallFont, 10px) + 1px)
+  transform: "translate(0px, %s)" % (- $vSpacing * 0.3)
+
+.contacts__input-selecting-icon-close svg
+  transform: rotate(45deg)
+
+.contacts__input-selecting-icon svg
+  height: $iconSize
+
+.contacts__input-selecting-text
+  font-size: var(--regularFont)
+  display: flex
+  align-items: center
+
+
+.fade-up-enter-active
+  transition: all .3s ease
+
+.fade-up-leave-active
+  transition: all .3s ease
+
+.fade-up-enter, .fade-up-leave-to
+  /* .slide-fade-leave-active до версии 2.1.8 */
+  transform: translateY(100%)
+  opacity: 0
+
+
+.confirm__delete
+  position: fixed
+  left: var(--sidebar-width)
+  right: 0
+  top: $dialogHeaderHeight
+  bottom: ($bottomAppMenuHeight + $chatsInputFieldHeight)
+  background: var(--overlay-backplate)
+  display: flex
+  align-items: flex-end
+  border-bottom: 1px solid var(--gray)
+  justify-content: center
+  z-index: 6
+
+.is-mobile .confirm__delete
+  top: 0
+  bottom: $chatsInputHeight
+  left: 0
+  align-items: flex-end
+  border-bottom: 1px solid var(--gray)
+
+.is-mobile .confirm__delete-container
+  max-width: unset
+  border-bottom-left-radius: 0
+  border-bottom-right-radius: 0
+
+.is-mobile .confirm__delete-controls
+  display: none
+
+.is-mobile .confirm__delete-text
+  text-align: left
+
+.confirm__delete-container
+  padding: ($vSpacing * 2.5) ($hSpacing * 3.5)
+  border-radius: $borderRadius
+  background: var(--lightgray)
+  width: 100%
+  max-width: unset
+  border-bottom-left-radius: 0
+  border-bottom-right-radius: 0
+
+.confirm__delete-title
+  margin-bottom: ($vSpacing * 2)
+  /*color: #000*/
+  font-size: var(--smallFont)
+  text-align: center
+
+.confirm__delete-text
+  margin-bottom: $vSpacing
+  font-size: var(--regularFont)
+  width: 100%
+  margin-left: auto
+  margin-right: auto
+  text-align: center
+
+.confirm__delete-controls
+  align-items: center
+  justify-content: space-between
+  border-top: 1px solid var(--gray)
+  padding-top: ($vSpacing * 2)
+  display: none
+
+.confirm__delete-controls-item
+  color: var(--graydarker)
+
+.confirm__delete-controls-item-cancel svg
+  transform: rotate(45deg)
+

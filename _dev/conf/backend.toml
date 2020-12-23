@@ -1,0 +1,25 @@
+# Configuration file of socia/backend for Docker Compose environment.
+#
+# See full options list at:
+# https://git.instrumentisto.com/social/backend/blob/master/config.toml
+
+[mode]
+debug = true
+
+[log.app]
+level = "INFO"
+
+[db.cockroachdb]
+host = "cockroachdb"
+
+[storage.files.s3]
+host = "minio"
+
+[smtp]
+host = "mailhog"
+port = 1025
+user = "robot"
+pass = "test"
+[smtp.tls]
+verify_host = false
+verify_cert = false

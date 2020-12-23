@@ -1,0 +1,12 @@
+apiVersion: v2
+name: frontend
+version: 0.0.0-edge
+type: application
+dependencies:
+  - name: backend
+    version: 0.1.0-alpha.1
+    repository: "@instrumentisto-social-backend"
+    condition: backend.deploy
+  - name: medea
+    version: 0.1.0
+    repository: file://../medea

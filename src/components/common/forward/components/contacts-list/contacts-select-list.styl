@@ -1,0 +1,83 @@
+@import "~themes/_variables"
+
+$contentWidth = 500px
+$searchBarHeight = 56px
+$inputFieldHeight = 49px
+$contactPreviewAvatarSize = 25px
+
+.forward-container__contacts-list
+  position: relative
+  width: 100%
+  max-width: $contentWidth
+  height: 100%
+  margin: 0 auto
+  overflow: hidden auto
+  z-index: 11
+  background: var(--lightgray)
+
+  &::-webkit-scrollbar
+    display: none
+
+  &__letter-group__letter
+    display: block
+    position:-webkit-sticky
+    position:sticky
+    top: 0
+    width: 100%
+    padding: ($contentWidth * 0.01) ($contentWidth * 0.055)
+    border-bottom: 1px solid var(--lightgray)
+    z-index: 1
+    background: var(--lightgrey2)
+    text-transform: capitalize
+
+  .contact-select
+    position: relative
+    transition: all .2s ease-out
+
+    .contact-preview
+      height: unset
+      padding: ($contactPreviewAvatarSize * 0.6)
+
+      &__avatar
+        min-width: $contactPreviewAvatarSize
+        max-width: $contactPreviewAvatarSize
+        min-height: $contactPreviewAvatarSize
+        max-height: $contactPreviewAvatarSize
+
+        .avatar-icon
+          top: ($contactPreviewAvatarSize * 0.08)
+          left: ($contactPreviewAvatarSize * 0.08)
+          bottom: ($contactPreviewAvatarSize * 0.08)
+          right: ($contactPreviewAvatarSize * 0.08)
+          width: "calc(100% - %s)" % ($contactPreviewAvatarSize * 0.16)
+          height: "calc(100% - %s)" % ($contactPreviewAvatarSize * 0.16)
+
+.contacts__list
+  &-check
+    position: absolute
+    right: ($checkboxSize * 0.9)
+    top: 50%
+    transform: translateY(-50%)
+
+    &-box
+      width: $checkboxSize
+      height: $checkboxSize
+      border: 1px solid var(--gray)
+      border-radius: 100%
+      transition: all .2s ease-out
+
+    &-icon
+      width: ($iconSize * 0.5)
+      position: absolute
+      left: 50%
+      top: 50%
+      transform: translate(-50%, -50%)
+
+.main-container:not(.is-mobile) .contacts__list
+  position: absolute
+  left: 50%
+  transform: translateX(-50%)
+  top: 0
+  bottom: 0
+  max-width: $contentWidth
+  width: 100%

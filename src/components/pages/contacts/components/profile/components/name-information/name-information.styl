@@ -1,0 +1,52 @@
+@import "~themes/_variables"
+
+$minHeight = 57px
+
+.fade
+  &-enter, &-leave-to
+    opacity: 0
+
+  &-enter, &-leave
+    &-active
+      transition: 0.15s ease-in-out
+
+
+.user-profile__section
+  &.name-section
+    padding: ($vSpacing * 2.6) 0
+    min-height: $minHeight
+
+.name-section
+  &.empty-about
+    display: flex
+    align-items: center
+
+  &__name
+    display: flex
+    justify-content: space-between
+    align-items: center
+    width: 100%
+    font-size: var(--largeFont)
+
+  &__members
+    margin-top: ($vSpacing * 0.1)
+    font-size: var(--regularSubFont)
+
+  &__about
+    margin-top: ($vSpacing * 2)
+    font-size: var(--smallFont)
+
+  &__input
+    height: fit-content
+    line-height: 1
+
+  &__icon
+    width: fit-content
+    height: fit-content
+
+    .accept
+      width: round($iconSize * 0.54)
+      height: @width
+
+      path.cls-1
+        stroke-width: 4px

@@ -1,0 +1,366 @@
+stages:
+  - deps
+  - build
+  - test
+  - release
+  - deploy
+default:
+  image: instrumentisto/gitlab-builder
+  services:
+    - name: docker:stable-dind
+      entrypoint: ['dockerd-entrypoint.sh', '$(DOCKER_OPTS)']
+  interruptible: yes
+variables:
+  CARGO_HOME: .cache/cargo/
+  RUST_VER: '1.42'
+  NODE_VER: 'latest'
+  TMP_VER: pipeline-$CI_PIPELINE_ID
+
+
+
+
+# Deps stage
+
+deps:cargo:
+  stage: deps
+  dependencies: []
+  image: rust:$RUST_VER
+  services: []
+  script:
+    - make cargo dockerized=no
+  cache:
+    key:
+      prefix: $CI_JOB_NAME
+      files:
+        - Cargo.lock
+    paths:
+      - .cache/cargo/registry/
+      - target/debug/
+  artifacts:
+    paths:
+      - graphql.schema.json
+    expire_in: 1 day
+
+deps:helm:
+  stage: deps
+  dependencies: []
+  services: []
+  script:
+    - make helm.dep
+  artifacts:
+    paths:
+      - _helm/frontend/charts/
+    expire_in: 1 day
+
+deps:yarn:dev:
+  stage: deps
+  dependencies: []
+  image: node:$NODE_VER
+  services: []
+  script:
+    - make yarn dev=yes dockerized=no
+  cache:
+    key:
+      prefix: deps:yarn
+      files:
+        - yarn.lock
+    paths:
+      - .cache/cypress/
+      - .cache/yarn/
+  artifacts:
+    paths:
+      - node_modules/
+    expire_in: 1 day
+
+
+
+
+# Build stage
+
+build:helm:
+  stage: build
+  dependencies: ['deps:helm']
+  needs: ['deps:helm']
+  services: []
+  script:
+    - make helm.build ver=$CI_COMMIT_REF_NAME
+  artifacts:
+    paths:
+      - _build/artifacts/rootfs/helm/
+    expire_in: 1 day
+  only: ['master', '/^v[0-9]+/']
+
+build:release:
+  stage: build
+  dependencies: ['deps:cargo', 'deps:yarn:dev']
+  needs: ['deps:cargo', 'deps:yarn:dev']
+  script:
+    - make yarn.build target=client dev=no dockerized=yes
+    - make yarn.build target=server dev=no dockerized=yes
+    - rm -rf node_modules/
+    - make yarn dev=no dockerized=yes
+    - make docker.build no-cache=yes TAG=$TMP_VER
+  after_script:
+    - make docker.tar TAGS=$TMP_VER
+  cache:
+    key:
+      prefix: deps:yarn
+      files:
+        - yarn.lock
+    paths:
+      - .cache/yarn/
+    policy: pull
+  artifacts:
+    paths:
+      - .cache/docker/
+      - out/
+      - graphql.schema.json
+    expire_in: 1 day
+
+code_navigation:
+  stage: build
+  dependencies: ['deps:yarn:dev']
+  needs: ['deps:yarn:dev']
+  image: node:$NODE_VER
+  services: []
+  before_script:
+    - npm install -g lsif-tsc lsif-npm
+  script:
+    - lsif-tsc -p tsconfig.json --stdout
+      | lsif-npm --stdin --package package.json --out dump.lsif
+  allow_failure: yes
+  artifacts:
+    reports:
+      lsif: dump.lsif
+
+docs:ts:
+  stage: build
+  dependencies: ['deps:cargo', 'deps:yarn:dev']
+  needs: ['deps:cargo', 'deps:yarn:dev']
+  image: node:$NODE_VER
+  services: []
+  script:
+    - make docs.ts dockerized=no
+  artifacts:
+    expose_as: TypeScript docs
+    paths:
+      - _build/artifacts/rootfs/docs/ts/
+    expire_in: 1 day
+
+
+
+
+# Test stage
+
+lint:helm:
+  stage: test
+  dependencies: ['deps:helm']
+  needs: ['deps:helm']
+  services: []
+  script:
+    - make helm.lint chart=frontend
+    - make helm.lint chart=medea
+  only:
+    changes:
+      - _helm/**/*
+
+lint:ts:js:
+  stage: test
+  dependencies: ['deps:yarn:dev']
+  needs: ['deps:yarn:dev']
+  image: node:$NODE_VER
+  services: []
+  script:
+    - make yarn.lint fix=no dockerized=no
+
+test:docker:
+  stage: test
+  dependencies: ['deps:yarn:dev', 'build:release']
+  needs: ['deps:yarn:dev', 'build:release']
+  before_script:
+    - make docker.untar TAGS=$TMP_VER
+  script:
+    - make test.docker TAG=$TMP_VER
+
+.test_e2e_template: &test_e2e
+  stage: test
+  dependencies: ['deps:yarn:dev', 'build:release']
+  needs: ['deps:yarn:dev', 'build:release']
+  before_script:
+    - make docker.untar TAGS=$TMP_VER
+    - echo $CI_REGISTRY_PASSWORD
+      | make docker.auth user=$CI_REGISTRY_USER pass-stdin=yes
+  script:
+    - make test.e2e start-app=yes no-cache=yes pull=yes TAG=$TMP_VER
+  allow_failure: yes
+  cache:
+    key:
+      prefix: deps:yarn
+      files:
+        - yarn.lock
+    paths:
+      - .cache/cypress/
+    policy: pull
+  artifacts:
+    expose_as: E2E screenshots
+    paths:
+      - test/e2e/screenshots/
+    expire_in: 1 day
+    when: on_failure
+
+test:e2e:
+  <<: *test_e2e
+  only: ['master', '/^v[0-9]+/']
+
+run:test:e2e:
+  <<: *test_e2e
+  except: ['master', '/^v[0-9]+/']
+  when: manual
+
+test:unit:ts:
+  stage: test
+  dependencies: ['deps:cargo', 'deps:yarn:dev']
+  needs: ['deps:cargo', 'deps:yarn:dev']
+  image: node:$NODE_VER
+  services: []
+  script:
+    - make test.unit.ts watch=no dockerized=no
+  coverage: '/^Statements\s*:\s*(\d+.\d+\%)/'
+
+
+
+
+# Release stage
+
+.release_docker_template: &release_docker
+  stage: release
+  interruptible: no
+  dependencies: ['build:helm', 'build:release', 'docs:ts']
+  before_script:
+    - make docker.untar TAGS=$TMP_VER
+    - make docker.build no-cache=yes IMAGE=artifacts TAG=$TMP_VER
+    - echo $CI_REGISTRY_PASSWORD
+      | make docker.auth user=$CI_REGISTRY_USER pass-stdin=yes
+
+release:docker:edge:
+  <<: *release_docker
+  script:
+    - make docker.tag of=$TMP_VER
+                      TAGS=edge
+    - make docker.tag of=$TMP_VER IMAGE=artifacts
+                      TAGS=edge
+    - make docker.push TAGS=edge
+    - make docker.push TAGS=edge IMAGE=artifacts
+  only: ['master']
+
+release:docker:latest:
+  <<: *release_docker
+  script:
+    - make docker.tag of=$TMP_VER
+                      TAGS=$CI_COMMIT_REF_NAME,latest
+    - make docker.tag of=$TMP_VER IMAGE=artifacts
+                      TAGS=$CI_COMMIT_REF_NAME,latest
+    - make docker.push TAGS=$CI_COMMIT_REF_NAME,latest
+    - make docker.push TAGS=$CI_COMMIT_REF_NAME,latest IMAGE=artifacts
+  only: ['/^v[0-9]+/']
+  except: ['branches']
+
+release:gitlab:
+  stage: release
+  interruptible: no
+  dependencies: []
+  services: []
+  script:
+    - make gitlab.release token=$GITLAB_API_TOKEN
+           api-url="$CI_API_V4_URL"
+           project-id="$CI_PROJECT_ID" project-url="$CI_PROJECT_URL"
+           pages-url="$CI_PAGES_URL"
+  only: ['/^v[0-9]+/']
+  except: ['branches']
+
+
+
+
+# Deploy stage
+
+deploy:review:
+  stage: deploy
+  dependencies: ['deps:helm', 'build:release']
+  needs: ['deps:helm', 'build:release']
+  resource_group: review/$CI_COMMIT_REF_NAME
+  before_script:
+    - make docker.untar TAGS=$TMP_VER
+    - make docker.tag of=$TMP_VER
+                      TAGS=$CI_COMMIT_REF_NAME as-image=review
+    - echo $CI_REGISTRY_PASSWORD
+      | make docker.auth user=$CI_REGISTRY_USER pass-stdin=yes
+  script:
+    - make docker.push TAGS=$CI_COMMIT_REF_NAME IMAGE=review
+    - make helm.up cluster=review rebuild=no wait=yes
+    - make helm.discover.sftp cluster=review
+  environment:
+    name: review/$CI_COMMIT_REF_NAME
+    url: https://$CI_COMMIT_REF_SLUG.front.soc.rev.t11913.org
+    kubernetes:
+      namespace: staging-review
+    on_stop: stop:deploy:review
+    auto_stop_in: 1 day
+  only:
+    refs: ['branches']
+    kubernetes: active
+  except: ['master', 'release']
+  when: manual
+
+stop:deploy:review:
+  stage: deploy
+  dependencies: []
+  needs: ['deps:helm', 'build:release']
+  services: []
+  resource_group: review/$CI_COMMIT_REF_NAME
+  script:
+    - make helm.down cluster=review check=yes
+    - reg rm -u $CI_REGISTRY_USER -p "$CI_REGISTRY_PASSWORD"
+             $CI_REGISTRY_IMAGE/review:$CI_COMMIT_REF_NAME
+  environment:
+    name: review/$CI_COMMIT_REF_NAME
+    kubernetes:
+      namespace: staging-review
+    action: stop
+  only:
+    refs: ['branches']
+    kubernetes: active
+  except: ['master', 'release']
+  when: manual
+
+deploy:staging:
+  stage: deploy
+  dependencies: ['deps:helm']
+  resource_group: staging
+  script:
+    - make helm.up cluster=staging rebuild=no wait=yes
+    - make helm.discover.sftp cluster=staging
+  environment:
+    name: staging
+    url: https://front.soc.stg.t11913.org
+    kubernetes:
+      namespace: staging
+  only:
+    refs: ['master']
+    kubernetes: active
+
+pages:
+  stage: deploy
+  dependencies: []
+  resource_group: pages
+  before_script:
+    - rm -rf public/
+    - echo $CI_REGISTRY_PASSWORD
+      | make docker.auth user=$CI_REGISTRY_USER pass-stdin=yes
+    - make docker.pull TAGS=@all IMAGE=artifacts
+  script:
+    - make artifacts.deployment dir=public pull=no
+  only: ['master', '/^v[0-9]+/']
+  artifacts:
+    paths:
+      - public/
+    expire_in: 1 day

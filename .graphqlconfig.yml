@@ -1,0 +1,6 @@
+schemaPath: graphql.schema.json
+extensions:
+  endpoints:
+    local:
+      url: http://front.soc.localhost/api/graphql
+#      subscription: ws://front.soc.localhost/ws

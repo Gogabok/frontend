@@ -1,0 +1,9 @@
+{
+  "android": {
+    "v8Flags": "--expose_gc",
+    "markingMode": "none"
+  },
+  "main": "entry/native",
+  "name": "social-frontend-native",
+  "version": "0.1.0"
+}

@@ -1,0 +1,64 @@
+nameOverride: socfront
+
+
+image:
+  tag: dev
+  pullPolicy: Never
+
+deployment:
+  src:
+    hostPath: /mount/social-frontend
+
+ingress:
+  hosts:
+    - front.soc.test
+  tls:
+    enabled: yes
+    auto: yes
+
+
+backend:
+  deploy: yes
+  image:
+    tag: auto-injected  # see Makefile
+  conf:
+    db:
+      cockroachdb:
+        user: root
+        pass: ""
+
+
+  cockroachdb:
+    deploy: yes
+    image:
+      tag: auto-injected  # see Makefile
+
+
+    pgweb:
+      deploy: yes
+
+
+  filestorage:
+    deploy: yes
+    ingress:
+      hosts:
+        - minio.test
+
+
+  mailserver:
+    deploy: yes
+    ingress:
+      hosts:
+        - host: mailhog.test
+          paths: ["/"]
+
+
+medea:
+  server:
+    conf:
+      server:
+        client:
+          http:
+            public_url: wss://front.soc.test/medea/ws
+      turn:
+        host: front.soc.test

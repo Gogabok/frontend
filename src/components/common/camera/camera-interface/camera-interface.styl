@@ -1,0 +1,199 @@
+@import "~themes/_variables"
+
+$controlsHeight = 54px
+$smallContainerHeight = "calc(100% - %s)" % ($controlsHeight)
+$actionButtonPaddingSize = 3px
+$playButtonSize = 50px
+
+.camera
+  display: flex
+  align-items: center
+  justify-content: center
+  position: absolute
+  left: 0
+  right: 0
+  bottom: 0
+  top: 0
+  z-index: 11
+  background: var(--lightgray)
+
+  &.small
+    height: $smallContainerHeight
+    padding-bottom: 0
+
+    .camera__container
+      padding-bottom: 0
+
+    .camera__controls
+      position: absolute
+      bottom: - $controlsHeight
+      left: 0
+
+  &__container
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: center
+    width: 100%
+    height: 100%
+    padding-bottom: $controlsHeight
+    z-index: 0
+
+  &__canvas
+    position: absolute
+    top: 0
+    left: 0
+    width: 100%
+    height: calc(100% - $controlsHeight)
+
+  &__video
+    width: 100%
+    height: 100%
+    object-fit: cover
+    object-position: center
+
+  &__accept
+  &__cancel
+  &__rotate
+    height: $iconSize
+    cursor: pointer
+
+  &__rotate
+    transition: all .2s ease-out
+
+    &.camera__rotate-hidden
+      visibility: hidden
+      opacity: 0
+
+  &__cancel svg
+    transform: rotate(45deg)
+
+  &__icons
+    position: relative
+
+  &__counter
+    position: relative
+    top: 0
+    right: 0
+    visibility: visible
+    opacity: 1
+    transition: all .2s ease-out
+
+  &__photo
+    position: absolute
+    left: 50%
+    transform: translateX(-50%)
+    width: ($iconSize * 1.5)
+    height: ($iconSize * 1.5)
+    border: 1px solid var(--graydarker)
+    border-radius: 100%
+    cursor: pointer
+
+    .clicked:after
+      transform: scale(.8)
+
+    &:after
+      content: ''
+      position: absolute
+      top: $actionButtonPaddingSize
+      right: $actionButtonPaddingSize
+      bottom: $actionButtonPaddingSize
+      left: $actionButtonPaddingSize
+      border-radius: 100%
+      background: var(--graydarker)
+      transition: all .2s ease-out
+
+    &-video:after
+      background: var(--blue)
+
+    &-active:after
+      top: ($actionButtonPaddingSize * 3)
+      right: ($actionButtonPaddingSize * 3)
+      bottom: ($actionButtonPaddingSize * 3)
+      left: ($actionButtonPaddingSize * 3)
+      border-radius: 0
+
+  &__image
+    width: 100%
+    height: 100%
+    object-fit: cover
+    object-position: center
+
+  &__controls
+    display: flex
+    justify-content: space-between
+    align-items: center
+    position: absolute
+    right: 0
+    bottom: 0
+    left: 0
+    min-height: $controlsHeight
+    padding: ($vSpacing * 0.8) ($hSpacing * 2.5)
+    padding-bottom: ($vSpacing * 0.6)
+    border-top: 1px solid var(--gray)
+    z-index: 1
+    background: var(--lightgray)
+
+  &__textarea
+    display: flex
+    align-items: center
+    width: 100%
+    margin-right: ($hSpacing * 2.5)
+    margin-left: ($hSpacing * 2.5)
+    border: 1px solid var(--gray)
+    border-radius: 13px
+    background: var(--message-background-color)
+
+  &__textarea-item
+    width: 100%
+    height: round($controlsHeight * 0.55)
+    padding: ($vSpacing * 0.5) $hSpacing
+    border: none
+    resize: none
+    background: transparent
+    font-family: 'Verdana'
+    font-size: var(--regularFont)
+    color: var(--darkgray)
+
+
+  &__container-button
+    display: flex
+    justify-content: center
+    align-items: center
+    position: absolute
+    top: 0
+    right: 0
+    bottom: 0
+    left: 0
+    z-index: 10
+    cursor: pointer
+    transition: all 0.2s ease-out
+
+  &__container-button-item
+    display: flex
+    justify-content: center
+    align-items: center
+    width: $playButtonSize
+    height: $playButtonSize
+    border: 2px solid var(--white)
+    border-radius: 100%
+    background: var(--play-button-background-color)
+
+    &__container-button-item svg
+      height: ($playButtonSize * 0.6)
+
+.is-mobile .camera
+  position: fixed
+  top: $dialogHeaderHeight
+
+  &.small
+    bottom: $controlsHeight
+    height: "calc(100% - %s - %s)" % ($dialogHeaderHeight $controlsHeight)
+
+.fade-enter-active
+.fade-leave-active
+  transition: opacity .5s
+
+.fade-enter
+.fade-leave-to
+  opacity: 0

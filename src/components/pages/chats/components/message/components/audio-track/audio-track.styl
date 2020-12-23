@@ -1,0 +1,72 @@
+@import "~themes/_variables"
+
+$minWidth = 200px
+$height = 30px
+
+.audio-message
+  display: flex
+  align-items: flex-end
+  width: 100%
+  height: $height
+
+  &-progress
+    display: flex
+    align-items: flex-end
+    justify-content: space-between
+    position: relative
+    min-width: $minWidth
+    height: $height
+    border-bottom: 1px solid var(--gray)
+
+    &-bar
+      width: 100%
+      background: var(--gray)
+      transition: all .2s ease-out
+
+      &-wrapper
+        display: flex
+        align-items: flex-end
+        width: 100%
+        height: 100%
+        padding-left: ($hSpacing * 0.1)
+        padding-right: ($hSpacing * 0.1)
+        cursor: pointer
+
+        &:hover > .audio-message-progress-bar
+          background: var(--shadow-color)
+
+    .active
+      background: var(--graydarker) !important
+
+  &-button
+    display: flex
+    align-items: center
+    justify-content: center
+    width: 100%
+    height: $height
+    min-width: @height
+    max-width: @height
+    margin-right: ($hSpacing * 0.7)
+    border: 1px solid var(--superdarkgray)
+    border-radius: 100%
+    opacity: .55
+    cursor: pointer
+    transition: all .2s ease-out
+
+    &:hover
+      opacity: 1
+
+
+audio
+  ::-webkit-media-controls-timeline-container
+    display: none
+
+  ::-webkit-media-controls-current-time-display
+    display: none
+
+
+  ::-webkit-media-controls-time-remaining-display
+    display: none
+
+.is-speaker-message audio::-webkit-media-controls-panel
+  background: var(--message-background-color)

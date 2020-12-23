@@ -1,0 +1,64 @@
+@import "~themes/_variables"
+
+$height = 60px
+$buttonSize = 40px
+$contentWidth = 500px
+
+.preview-container
+  &__buttons-wrapper
+    display: flex
+    align-items: center
+    justify-content: space-between
+    height: 100%
+    width: 100%
+    max-width: $contentWidth
+    margin: 0 auto
+
+  &__controls
+    position: sticky
+    //bottom: 0
+    left: 0
+    right: 0
+    margin-top: auto
+    height: $height
+    padding: 0 ($hSpacing * 2.6)
+    z-index: 11
+    background-color: var(--media-player-background-color-opacity)
+
+    button
+      display: flex
+      align-items: center
+      border: 1px solid var(--darksilver)
+      border-radius: 50%
+      width: $buttonSize
+      height: @width
+      justify-content: center
+      transition: border-color var(--icon-transition)
+
+      &.active
+        border-color: var(--blue)
+
+      svg
+        height: round($iconSize * 0.9)
+
+    &-forward svg
+      height: round($iconSize * 0.8)
+
+    &-close svg
+      transform: rotate(45deg)
+      height: round($iconSize * 0.9)
+
+    &-btn
+      svg
+        height: round($iconSize * 0.81) !important
+        transform: none !important
+
+      &.hidden
+        opacity: 0
+        visibility: hidden
+
+
+.is-mobile
+  .preview-container
+    &__buttons-wrapper
+      max-width: 100%

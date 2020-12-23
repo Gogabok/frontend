@@ -1,0 +1,93 @@
+@import "~themes/default/colors"
+@import "~themes/default/responsive"
+@import "~themes/default/sizes"
+@import "~themes/_variables"
+
+.app-bottom-menu
+  display: flex
+  justify-content: flex-start
+  left: 0
+  bottom: 0
+  width: 100%
+  height: $bottomAppMenuHeight
+  border-top: 1px solid var(--gray)
+  z-index: 7
+  background-color: var(--message-background-color)
+  transition: 0.2s left ease-in-out
+
+  &.hidden
+    left: -100%
+
+  .item
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
+    position: relative
+    height: 100%
+    margin-right: ($hSpacing * 1.5)
+    padding: ($vSpacing * 0.5) ($hSpacing * 2.5)
+    text-align: center
+    cursor: pointer
+    color: var(--graydarker)
+
+    &.help
+      margin-left: auto
+
+    &:last-child
+      margin-right: 0
+
+    svg
+      height: round($iconSize * 0.9)
+      margin: 0 auto ($vSpacing * 0.5)
+
+    span
+      left: 0
+      width: 100%
+      font-size: var(--extrasmallFont)
+      line-height: 1
+
+    line, path, ellipse, circle
+      transition: 0.2s stroke ease-in-out
+
+    span
+      transition: 0.2s color ease-in-out
+
+    &:hover
+      svg
+        line, path, ellipse, circle
+          stroke: var(--darkgray)
+
+        text
+          fill: var(--darkgray)
+
+      span
+        color: var(--darkgray)
+
+    &.menu-active
+      svg
+        line, path, ellipse, circle
+          stroke: var(--superdarkgray) !important
+
+        text
+          fill: var(--superdarkgray)
+
+      span
+        color: var(--superdarkgray)
+
+.is-mobile
+  .app-bottom-menu
+    justify-content: space-between
+    position: absolute
+    bottom: 0
+    left: 0
+    width: 100%
+    max-width: var(--mobile-breakpoint)
+    z-index: 11
+    opacity: 1
+
+    .item
+      margin-right: 0
+
+      &.help
+        margin-left: 0

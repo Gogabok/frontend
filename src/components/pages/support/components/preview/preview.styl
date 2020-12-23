@@ -1,0 +1,78 @@
+@import "~themes/_variables"
+
+$borderRadius = 13px
+$closeOverlay = rgba(0, 0, 0, 0.5)
+
+.support__body
+  &-preview
+
+    &-player
+      width: 100%
+      height: 100%
+
+    &-input
+      width: 100%
+
+      &-margin
+        padding: ($vSpacing / 2)
+
+    &-item
+      width: "calc(33.33% - %s)" % ($hSpacing)
+      padding-top: "calc(33.33% - %s)" % ($vSpacing)
+      margin: ($vSpacing / 2)
+      position: relative
+
+    &-media
+      width: 100%
+      height: 100%
+      position: absolute
+      left: 0
+      top: 0
+      border-radius: $borderRadius
+      overflow: hidden
+      border: 1px solid var(--gray)
+
+    &-image
+      width: 100%
+      height: 100%
+      object-fit: cover
+
+    &-close
+      position: absolute
+      left: 0
+      top: 0
+      right: 0
+      bottom: 0
+      display: flex
+      align-items: flex-end
+      justify-content: flex-end
+      padding: ($vSpacing * 1.5)
+      background: $closeOverlay
+      opacity: 0
+      transition: all 0.3s ease-out
+      z-index: 5
+
+      button
+        cursor: pointer
+
+      &:hover
+        opacity: 1
+
+    &-file
+
+      &-item
+        height: 100%
+        width: 100%
+        display: flex
+        flex-direction: column
+        justify-content: center
+        align-items: center
+
+      &-icon
+        svg
+          height: ($iconSize / 2.2)
+          margin-bottom: $vSpacing
+
+      &-name
+        font-size: var(--extrasmallFont)
+        text-align: center

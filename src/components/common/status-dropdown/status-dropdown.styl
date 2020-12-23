@@ -1,0 +1,83 @@
+@import "~themes/_variables";
+
+$borderRadius = 20px
+$activeStatusBackground = #fafafa
+
+.status-dropdown
+  display: flex
+  flex-direction: column
+  position: relative
+
+  &__active
+    display: flex
+    align-items: center
+    justify-content: space-between
+    padding: ($vSpacing * 0.95) ($hSpacing * 2)
+    border: 1px solid var(--gray)
+    border-radius: $borderRadius
+    font-size: var(--regularFont)
+    background: $activeStatusBackground
+    color: var(--graydarker)
+
+
+    .value
+      width: 100%
+      text-align: left
+      overflow: hidden
+      text-overflow: ellipsis
+      white-space: nowrap
+
+    .icon
+      display: block
+      margin-left: ($hSpacing * 1.5)
+      height: round($iconSize * 0.45)
+      transform: rotateZ(90deg)
+
+
+
+  &__options-list
+    position: absolute
+    left: 0
+    right: 0
+    top: "calc(100% + %s)" % ($vSpacing * 1.5)
+    background-color: $activeStatusBackground
+    border-radius: $borderRadius
+    overflow: hidden
+    overflow-y: scroll
+    max-height: var(--max-options-list-height, 300px)
+    &::-webkit-scrollbar
+      display: none
+
+  &__add-status
+    width: 100%
+    display: flex
+    flex-direction: column
+    padding: $vSpacing * 1.3 $hSpacing * 3.2
+
+
+.add-status
+  &__input
+    width: 100%
+    font-size: var(--regularFont)
+    margin-bottom: $vSpacing
+
+    &-wrapper
+      display: flex
+      align-items: center
+      justify-content: space-between
+
+  &__icon
+    width: round($iconSize * 0.62)
+
+
+.expand
+  &-enter
+  &-leave-to
+    max-height: 0
+
+  &-enter
+  &-leave
+    &-active
+      transition: 0.3s ease-in-out max-height
+      will-change: max-height
+

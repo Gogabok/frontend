@@ -1,0 +1,109 @@
+@import "~themes/_variables"
+
+$containerWidth = 500px
+$borderRadius = 13px
+
+.attachment-preview
+  display: flex
+  position: relative
+  width: 100%
+  max-width: $containerWidth
+  height: fit-content
+  margin-bottom: ($vSpacing * 0.4)
+
+  &--image
+  &--video
+    width: 100%
+    height: auto
+    z-index: 0
+    object-fit: cover
+
+  &--document
+    flex-direction: column
+    padding: $hSpacing
+    border-radius: $borderRadius
+    background-color: var(--own-message-background-color)
+
+  &__footer
+    display: flex
+    justify-content: space-between
+    align-items: flex-end
+    position: absolute
+    bottom: 0
+    left: 0
+    right: 0
+    width: 100%
+    padding: ($hSpacing * 1.5)
+    z-index: 1
+    background-image: linear-gradient(
+      to top,
+      rgba(0, 0, 0, .4),
+      rgba(0, 0, 0, 0)
+    )
+
+    &__name
+      color: var(--white)
+
+    &__delete-button
+      &:hover
+        animation-name: shake
+        animation-duration: 0.6s
+        animation-direction: normal
+        animation-fill-mode forwards
+        animation-timing-function: ease-in-out
+        cursor: pointer
+
+      &__icon
+        height: round($iconSize * 0.9)
+
+  &--document
+    .attachment-preview__footer
+      position: relative
+      margin-top: ($vSpacing * 1.5)
+      padding: 0 ($hSpacing * 0.5) 0 0
+      background-image: none
+
+      &__name
+        color: var(--graydarker)
+
+
+  &__header
+    display: flex
+    justify-content: flex-start
+    align-items: center
+
+    &__icon
+      margin-right: ($hSpacing * 0.5)
+
+    &__name
+      font-size: var(--regularFont)
+      color: var(--black)
+
+    &__icon
+      width: round($iconSize * 0.9)
+
+@keyframes shake
+  0%
+  100%
+    transform: scale(1) rotate(0deg)
+
+  14%
+    transform: scale(1.04) rotate(-10deg)
+
+  28%
+    transform: scale(1.08) rotate(10deg)
+
+  42%
+    transform: scale(1.12) rotate(-10deg)
+
+  50%
+    transform: scale(1.15) rotate(0deg)
+
+  56%
+    transform: scale(1.12) rotate(10deg)
+
+  80%
+    transform: scale(1.08) rotate(-10deg)
+
+  92%
+    transform: scale(1.04) rotate(10deg)

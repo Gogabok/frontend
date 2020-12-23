@@ -1,0 +1,88 @@
+@import "~themes/_variables"
+
+$width = 240px
+$itemVSpacing = $vSpacing * 1.3
+$itemHSpacing = $hSpacing * 2.6
+$borderRadius = 13px
+$bottomPosition = 10px
+$mediaLineContainerWidth = 800px
+
+.contacts__menu
+  display: flex
+  flex-direction: column
+  position: fixed
+  top: unset
+  right: unset
+  bottom: $bottomPosition
+  left: "calc((100vw - %s) / 2)" % ($mediaLineContainerWidth)
+  width: $width
+  max-width: unset
+  visibility: collapse
+  z-index: 14
+  transform: none
+  opacity: 0
+  transition: all 0.2s linear
+
+  &.active-menu
+    visibility: visible
+    z-index: 14
+    transform: none
+    opacity: 1
+
+  &-overlay
+    position: fixed
+    left: 0
+    top: 0
+    bottom: 0
+    right: 0
+    background: var(--overlay-backplate)
+
+  &-list
+    position: relative
+    border: 1px solid var(--gray)
+    border-radius: $borderRadius
+    border-bottom-left-radius: 0
+    z-index: 2
+    background: var(--lightgray)
+
+  &-item
+    display: flex
+    justify-content: space-between
+    align-items: center
+    height: 100%
+
+    &-forward
+      height: auto
+
+  .separator
+    width: 80%
+    margin: $vSpacing auto
+    border: none
+    border-top: 1px solid var(--gray)
+
+.close-icon
+  transform: rotateZ(45deg)
+
+.is-mobile
+  .contacts__menu
+    position: fixed
+    top: unset
+    right: 0
+    bottom: 0
+    left: 0
+    width: 100%
+    max-width: unset
+    border-bottom-right-radius: 0
+    box-shadow: none
+
+    &-overlay
+      position: absolute
+      bottom: 0
+      left: 0
+      right: 0
+      top: unset
+      height: 100vh
+
+    &-list
+      border-bottom-right-radius: 0
+      border-bottom-left-radius: 0

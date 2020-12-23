@@ -1,0 +1,47 @@
+@import "rupture"
+
+$screen = {
+  mobile: 756px
+  small_tablet: 875px
+  tablet: 1150px
+}
+
+
+// Rupture plugin configuration.
+// More info: https://github.com/jescalan/rupture
+rupture = {
+  scale: 0 $screen.mobile $screen.tablet
+  scale-names: 'mobile' 'tablet' 'desktop'
+  mobile-cutoff: $screen.mobile
+  desktop-cutoff: ($screen.mobile + 1px)
+}
+
+
++mobile()
+  .hidden-mobile
+    display: none !important
+
+not-mobile()
+  +above($screen.mobile + 1px)
+    {block}
+
+small-tablet()
+  +below($screen.small_tablet)
+    {block}
+
+tablet()
+  +below($screen.tablet)
+    {block}
+
++desktop()
+  .hidden-desktop
+    display: none !important
+
+
+touch-device()
+  @media (pointer: coarse)
+    {block}
+
+orientation(value)
+  @media (orientation: value)
+    {block}

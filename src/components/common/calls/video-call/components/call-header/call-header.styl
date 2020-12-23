@@ -1,0 +1,263 @@
+@import "~themes/_variables"
+
+$avatarSize = 70px
+$headerHeight = 60px
+$loaderDotSize = 2px
+$networkBarsAmount = 4
+$networkBarSize = {
+  height: 8px
+  width: 2px
+}
+$techInfoPosition = 13px
+$borderRadius = 13px
+$dotsTripletSize = 3px
+$disabledLineWidth = 1px
+
+.call
+  &-settings
+    position: absolute
+    top: (- $vSpacing)
+    right: (- $hSpacing)
+
+    &__container
+      position: absolute
+      top: $headerHeight
+      right: ($vSpacing * 2)
+      max-width: "calc(100% - %s)" % (@right * 2)
+      background: var(--lightgray)
+      border-radius: $borderRadius
+      border-top-right-radius: 0
+      overflow: hidden
+      z-index: 2
+
+    &__item
+      padding: ($vSpacing * 1.5) ($hSpacing * 2)
+      margin-left: ($hSpacing * 0.6)
+      margin-right: ($hSpacing * 0.6)
+      border-bottom: 1px solid var(--gray)
+      display: flex
+      align-items: center
+      cursor: pointer
+      font-size: var(--smallFont)
+      color: var(--graydarker)
+
+      &:last-child
+        border-bottom: none
+
+      &__icon
+        position: relative
+        margin-right: ($hSpacing * 1.5)
+        display: flex
+        align-items: center
+
+        &.disabled:before
+          content: ''
+          position: absolute
+          width: 100%
+          top: ($vSpacing * 0.2)
+          right: ($hSpacing * 0.6)
+          height: $disabledLineWidth
+          background: var(--graydarker)
+          transform: rotate(-45deg)
+          transform-origin: right top
+          box-shadow: 0 0 @height (@height * 2) var(--lightgray)
+
+        svg
+          width: ($iconSize * 0.9)
+
+  &__loader
+    display: flex
+    align-items: flex-end
+    justify-content: center
+    font-size: var(--smallFont)
+    color: var(--white)
+
+    span
+      font-size: var(--smallFont)
+
+    &-dot
+      border-radius: 50%
+      width: $loaderDotSize
+      height: @width
+      background-color: var(--white)
+      animation: dot-keyframes 1.5s infinite ease-in-out
+      margin-right: ($hSpacing * 0.2)
+      margin-bottom: ($vSpacing * 0.1)
+
+      &:last-of-type
+        margin-right: 0
+
+      &:nth-of-type(2)
+        animation-delay: 0.15s
+
+      &:nth-of-type(3)
+        animation-delay: 0.3s
+
+  &__await
+    display: flex
+    flex-direction: column
+    justify-content: flex-start
+    align-items: center
+    position: absolute
+    left: 50%
+    width: 100%;
+    padding: 0 ($hSpacing * 8)
+    top: "calc(50% + %s)" % ($vSpacing)
+    transform: translate(-50%, -50%)
+
+    .call__name
+      font-size: var(--largeFont)
+      text-overflow: ellipsis
+      overflow: hidden
+      white-space: nowrap
+      color: white
+      margin-bottom: ($vSpacing * 0.8)
+      max-width: 100%
+      line-height: 1.21
+
+  &-header
+    padding: 0 $hSpacing
+    height: $headerHeight
+    display: flex
+    align-items: center
+    justify-content: space-between
+    position: absolute
+    left: 0
+    top: 0
+    right: 0
+    z-index: 10
+    color: var(--white)
+
+    &__icon
+      cursor: pointer
+      margin-left: ($hSpacing * 1.5)
+
+      &.dots-triplet
+        width: ($iconSize + $hSpacing)
+        height: @width
+        margin-bottom: ($vSpacing * 0.3)
+
+        .dots-triplet--icon
+          width: $dotsTripletSize
+          height: @width
+          border-radius: 50%
+          position: relative
+          background-color: white
+          margin: 0 auto
+
+          &::before
+            content: ''
+            position: absolute
+            display: block
+            top: (- $dotsTripletSize * 2)
+            left: 0
+            width: inherit
+            height: inherit
+            background-color: inherit
+            border-radius: inherit
+
+          &::after
+            content: ''
+            position: absolute
+            display: block
+            top: ($dotsTripletSize * 2)
+            left: 0
+            width: inherit
+            height: inherit
+            background-color: inherit
+            border-radius: inherit
+
+      &:first-child
+        margin-left: 0
+
+      img
+        height: round($iconSize * 0.9)
+
+      svg
+        height: round($iconSize * 0.9)
+        stroke: var(--white)
+
+      &-disabled
+        opacity: 0.7
+
+    &__tech-info
+      display: flex
+      align-items: center
+      flex-direction: column
+      position: absolute
+      top: $techInfoPosition
+      left: 50%
+      transform: translateX(-50%)
+
+      &--network
+        display: flex
+        align-items: flex-end
+        justify-content: center
+        height: $networkBarSize.height
+        width: 100%;
+
+        .network-bar
+          margin: 0 ($hSpacing * 0.1)
+          width: $networkBarSize.width
+          background: var(--gray)
+
+          for i in (1..$networkBarsAmount)
+            &:nth-child({i})
+              height: "calc(100% * %s)" % (i / $networkBarsAmount)
+
+          &.active
+            background-color: var(--white)
+
+      &--time
+        margin-top: ($vSpacing * 0.5)
+        color: var(--white)
+        width: 100%
+        text-align: center
+
+    &__actions
+      width: 100%
+      display: flex
+      align-items: center
+      position: relative
+
+      &--left
+        display: flex
+        justify-content: flex-start
+
+        .navigation__arrow
+          cursor: pointer
+          margin-right: 0
+          display: flex
+          align-items: center
+
+          .label
+            display: block
+            margin-left: $hSpacing
+
+          .icon
+            transform: rotate(180deg)
+            width: round($iconSize * 0.63)
+
+      &--right
+        display: flex
+        align-items: center
+        position: relative
+        margin-left: auto
+
+
+
+.main-container:not(.is-mobile)
+  .call__loader
+    font-size: var(--regularFont)
+
+
+
+@keyframes dot-keyframes
+  0%
+    opacity: 1
+
+  30%
+    opacity: 0
+
+  60%
+    opacity: 1

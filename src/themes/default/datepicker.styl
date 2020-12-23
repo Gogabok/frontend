@@ -1,0 +1,35 @@
+// `vuejs-datepicker` plugin configuration.
+// More info and documentation: https://github.com/charliekassel/vuejs-datepicker
+
+@import "./colors"
+
+$background = $color.background.wrapper.default
+
+.vdp-datepicker > div:first-child
+  display: flex
+  > .vdp-datepicker__clear-button
+    display: flex !important
+    > i
+      background-repeat: no-repeat !important
+      background-position: center !important
+/deep/ .datepicker-input
+  border: none
+  background: none
+  padding: 0
+  width: 75px
+/deep/ .datepicker-calendar
+  color: $color.font.default
+  .selected
+    background: $background !important
+  .day:not(.blank):not(.disabled):hover,
+  .month:not(.disabled):hover,
+  .year:not(.disabled):hover
+    border: $border.width solid $color.border.default !important
+  .day-header
+    color: $color.font.dark
++mobile()
+  .vdp-datepicker
+    position: static
+  /deep/ .datepicker-calendar
+    left: 0
+    width: 280px

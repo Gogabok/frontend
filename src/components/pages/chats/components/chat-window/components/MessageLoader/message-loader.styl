@@ -1,0 +1,71 @@
+@import "~themes/_variables"
+
+$btnWidth = 40px
+$btnHeight = 40px
+
+$loaderSize = 16px
+$loaderPadding = 5px
+$top = (63 68 71 72 71 68 63 56)
+$maxLoaderR = 16px
+$left = (63 56 48 40 32 24 17 12)
+$dt = 0.036s
+
+.message-loader
+  display flex
+  align-items center
+  justify-content center
+  position absolute
+  left: 50%
+  top ($dialogHeaderHeight + $vSpacing * 5)
+  transform translate(-50%, 0)
+  height $btnHeight
+  width $btnWidth
+  border-radius 50%
+  background var(--lightgray)
+  box-shadow 1px 2px 3px 3px rgba(0, 0, 0, .1)
+  transition all .2s ease-out
+  cursor pointer
+  z-index 5
+  & .lds-roller
+    width: $loaderSize
+    height: $loaderSize
+    position: relative
+
+    &-container
+      display: flex
+      flex-shrink: 0
+      justify-content: center
+      align-items: center
+      padding: $loaderPadding
+      width: 100%
+      height: $loaderSize + $loaderPadding * 2 + $maxLoaderR
+      min-height: $loaderSize + $loaderPadding * 2 + $maxLoaderR
+
+    div
+      animation: lds-roller 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite
+      transform-origin: ($loaderSize/2) ($loaderSize/2)
+
+      &:after
+        content: " "
+        display: block
+        position: absolute
+        width: ($loaderSize * 0.08)
+        height: @width
+        margin: @height * (-0.5) 0 0 @height * (-0.5)
+        border-radius: 50%
+        background: var(--graydarker)
+
+      for i in (1..8)
+        &:nth-child({i})
+          animation-delay: -0.036 - ($dt * (i - 1))
+
+          &:after
+            top: $top[(i - 1)]
+            left: $left[(i - 1)]
+
+@keyframes lds-roller
+  0%
+    transform: rotate(0deg)
+
+  100%
+    transform: rotate(360deg)

@@ -1,0 +1,30 @@
+@import "~themes/_variables"
+
+$blurSize = 7px
+
+.profile-settings__slider__item
+  width: 100%
+  height: 100%
+  z-index: 0
+  position: relative
+  overflow: hidden
+
+  &__poster
+    height: 100%
+    width: 100%
+    object-fit: contain
+    position: absolute
+    z-index: 1
+
+  &__background
+    position: absolute
+    width: 110%
+    height: 110%
+    top: -5%
+    left: -5%
+    object-fit: cover
+    filter: blur($blurSize)
+    z-index: 0
+
+.is-mobile .profile-settings__slider__item__poster
+  object-fit: cover

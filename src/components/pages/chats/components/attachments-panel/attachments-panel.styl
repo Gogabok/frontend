@@ -1,0 +1,98 @@
+@import "~themes/_variables"
+
+$containerWidth = 300px
+$borderRadius = 13px
+$chatsMenuWidth = 400px
+$iconSize = 17px
+
+.attachments-menu
+  position: absolute
+  bottom: 100%
+  width: 100%
+  max-width: $containerWidth
+  background: var(--lightgray)
+  border-bottom: 1px solid var(--gray)
+  border-top: 1px solid var(--gray)
+  border-right: 1px solid var(--gray)
+  border-radius: $borderRadius
+  border-bottom-left-radius: 0
+  z-index: 6
+  visibility: visible
+  opacity: 1
+  transition: all 0.2s linear
+
+  &__back
+    position: fixed
+    top: $dialogHeaderHeight
+    right: 0
+    width: calc(100vw - var(--sidebar-width) - 1)
+    height: 'calc(100vh - %s)' % ($bottomAppMenuHeight + $dialogHeaderHeight + $chatsInputHeight)
+    background-color: rgba(0, 0, 0, 0.2)
+
+
+  .uploading-container
+    display: flex
+    justify-content: center
+    align-items: center
+    position: fixed
+    top: 0
+    left: 0
+    right: 0
+    bottom: 0
+    width: 100vw
+    height: 100vh
+
+  &-list
+    position: relative
+    border-bottom: 1px solid var(--gray)
+    border-top: 1px solid var(--gray)
+    border-right: 1px solid var(--gray)
+    border-left: 1px solid var(--gray)
+    border-radius: $borderRadius
+    border-bottom-left-radius: 0
+    z-index: 2
+    background: var(--lightgray)
+
+  &-input
+    position: absolute
+    height: 0
+    width: 0
+    overflow: hidden
+    opacity: 0
+
+  &.attachments
+    left: ($hSpacing * 7.5)
+
+    .active-menu
+      bottom: 100%
+
+
+  &-item-attach svg
+    height: round($iconSize * 0.7)
+
+  &-item-translate svg
+    height: round($iconSize * 1.35)
+
+
+.is-mobile
+  .attachments-menu
+    left: 0
+    max-width: var(--mobile-breakpoint)
+    border-right: 1px solid transparent
+    border-bottom-right-radius: 0
+
+    &__back
+        right: 0
+        width: 100vw
+
+
+.message
+  .attachments-menu
+    &-item
+      padding: ($hSpacing * 1.5)
+
+      .item__text
+        color: var(--graydarker)
+
+      svg
+        height: $iconSize

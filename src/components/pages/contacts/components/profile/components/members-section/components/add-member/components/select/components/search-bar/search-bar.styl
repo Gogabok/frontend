@@ -1,0 +1,54 @@
+@import "~themes/_variables"
+
+$searchBarHeight = 56px
+$inputFieldHeight = 50px
+
+.forward-container__search-bar
+  display: flex
+  justify-content: space-between
+  align-items: center
+  width: 100%
+  height: $searchBarHeight
+  margin: 0 auto
+  padding: round($searchBarHeight * 0.26) ($hSpacing * 2)
+  border-bottom: 1px solid var(--gray)
+  background-color: var(--lightgray)
+  font-size: var(--regularFont)
+
+  &__search-icon
+    width: $iconSize
+    margin-right: ($hSpacing * 2)
+
+  &__input
+    flex-grow: 1
+    width: 0
+    height: 100%
+    padding: ($vSpacing * 0.3) ($hSpacing * 0.3)
+
+  &__all-checked
+    display: flex
+    align-items: center
+    margin-left: ($hSpacing * 2)
+
+    &__checkbox
+      width: 0
+      height: 0
+      visibility: hidden
+      overflow: hidden
+      opacity: 0
+
+    &__face
+      display: flex
+      justify-content: center
+      align-items: center
+      width: $iconSize
+      height: $iconSize
+      border: 1px solid var(--gray)
+      border-radius: 50%
+      transition: all 0.2s ease-out
+
+      &:hover
+        cursor: pointer
+
+      svg
+        width: ($iconSize / 2)

@@ -1,0 +1,91 @@
+@import "~themes/_variables"
+
+$mediaLineContainerWidth = 800px
+$toolsMenuPadding = ($hSpacing * 0.8)
+$checkboxBorderColor = rgba(245, 245, 245, 0.5)
+
+.media-line-item
+  position: relative
+  width: 100%
+
+  &__media
+    display: block
+    position: relative
+    width: 100%
+    max-width: $mediaLineContainerWidth
+    margin-left: auto
+    margin-right: auto
+
+    img
+    video
+      width: 100%
+
+    &-container
+      position: relative
+      width: 100%
+      transition:all .2s ease-out
+
+      &.menu-opened
+        z-index: 10
+        pointer-events: none
+
+  &__tools
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+    align-items: center
+    position: absolute
+    bottom: ceil($toolsDotSize * 3.3 - $toolsMenuPadding)
+    left: ceil($toolsDotSize * -3.3 - $toolsMenuPadding)
+    width: fit-content
+    height: ($toolsDotSize * 5 + $toolsMenuPadding * 2)
+    padding: $toolsMenuPadding
+
+    &-item
+      width: $toolsDotSize
+      height: $toolsDotSize
+      border-radius: 50%
+      background: var(--graydarker)
+
+
+  &__play
+    display: flex
+    align-items: center
+    justify-content: center
+    width: $playButtonSize
+    height: $playButtonSize
+    position: absolute
+    top: 50%
+    left: 50%
+    transform: translate(-50%, -50%)
+    border-radius: 50%
+    border: 2px solid var(--white)
+    background: rgba(24, 24, 24, .3)
+
+    svg
+      height: ($playButtonSize * 0.6)
+      transform: translate(($playButtonSize * 0.06), ($playButtonSize * 0.04))
+
+  &__checkbox
+    display: flex
+    justify-content: center
+    align-items: center
+    position: absolute
+    top: 50%
+    left: ($checkboxSize * 0.68)
+    width: $checkboxSize
+    height: $checkboxSize
+    margin-left: ($checkboxSize * 0.45)
+    border: 1px solid $checkboxBorderColor
+    border-radius: 50%
+    z-index: 6
+    transform: translateY(-50%)
+    background: var(--darksilver)
+    transition: all .2s ease-out
+
+    &-icon
+      width: floor($checkboxSize * 0.5)
+      position: absolute
+      left: 50%
+      top: 50%
+      transform: translate(-50%, -50%)

@@ -1,0 +1,48 @@
+@import "~themes/_variables"
+
+$controlsPanelHeight = 55px
+
+.avatar-editor
+  position: fixed
+  left: 0
+  top: 0
+  right: 0
+  bottom: 0
+  width: 100%
+  height: "calc(100% - %s)" % ($bottomAppMenuHeight)
+  z-index: 4
+  background-color: var(--lightgray)
+
+  &__cropper
+    position: relative
+    width: "calc(%s / 16 * 9)" % (@height)
+    height: "calc(100% - %s)" % ($controlsPanelHeight)
+    margin: 0 auto
+
+    .cropper-container
+      width: 100%
+      height: 100%
+
+  &__controls
+    display: flex
+    justify-content: space-between
+    align-items: center
+    position: absolute
+    bottom: 0
+    left: 0
+    right: 0
+    width: 100%
+    height: $controlsPanelHeight
+    padding: 0 ($hSpacing * 2)
+    border-top: 1px solid var(--gray)
+    background-color: var(--lightgray)
+
+    &__button
+      width: fit-content
+      height: $iconSize
+
+      &.close
+        transform: rotateZ(45deg)
+
+      &.accept .cls-1
+        stroke-width: floor($iconSize * 0.13)

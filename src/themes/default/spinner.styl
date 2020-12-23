@@ -1,0 +1,21 @@
+// `vue-simple-spinner` plugin configuration.
+// More info and documentation: https://github.com/dzwillia/vue-simple-spinner
+
+$spinnerLigthColor = #bbb
+$spinnerDarkColor = #636363
+
+.vue-simple-spinner
+  border-color: $spinnerDarkColor $spinnerLigthColor $spinnerLigthColor !important
+
+.spinner-overlay
+  display: flex
+  flex-direction: column
+  align-items: center
+  justify-content: space-around
+  position: absolute
+  z-index: 1
+  top: 0
+  left: 0
+  width: 100%
+  height: 100%
+  background: rgba(255, 255, 255, 0.3)

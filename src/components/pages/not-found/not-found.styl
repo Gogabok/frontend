@@ -1,0 +1,24 @@
+@import "~themes/default/colors"
+@import "~themes/default/responsive"
+@import "~themes/default/sizes"
+@import "~themes/_variables"
+
+
+section.not-found
+  display: flex
+  flex-direction: column
+  align-items: center
+  margin: auto
+  text-align: center
+  +mobile()
+    padding: 0 ($hSpacing * 2)
+
+  img.error
+    width: fit-content
+    margin-top: $padding.vt
+    +mobile()
+      width: 75%
+
+.main-content
+  display: flex
+  width: 100%

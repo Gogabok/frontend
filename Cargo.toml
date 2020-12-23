@@ -1,0 +1,19 @@
+[package]
+name = "soc-frontend"
+version = "0.0.0"
+edition = "2018"
+authors = ["Instrumentisto Team <developer@instrumentisto.com>"]
+readme = "README.md"
+repository = "https://git.instrumentisto.com/social/frontend"
+publish = false
+
+[dependencies]
+serde_json = "1.0"
+[dependencies.api-graphql]
+    package = "soc-api-graphql"
+    git = "https://proj-social-frontend:m7DjZq2Ccj4pGZqfSVUSSeSsh@git.instrumentisto.com/social/backend"
+    tag = "v0.1.0-alpha.1"
+    features = ["client"] # TODO: remove on next upgrade
+[dependencies.juniper]
+    git = "https://github.com/graphql-rust/juniper"
+    rev = "6a04b113e64d8088b3a034fd1971059c175006dd" # branch = "master"

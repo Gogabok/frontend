@@ -1,0 +1,54 @@
+@import "~themes/_variables"
+
+$height = 55px
+$itemSize = 40px
+
+.contacts-menu__footer
+  display: flex
+  justify-content: space-between
+  align-items: center
+  position: absolute
+  right: 0
+  bottom: 0
+  left: ($hSpacing * 0.1)
+  width: 100%
+  height: $height
+  padding: 0 ($hSpacing * 2.5)
+  border-top: 1px solid var(--gray)
+  border-right: 1px solid var(--gray)
+  z-index: 2
+  transform: translateY(100%)
+  background-color: var(--lightgray)
+
+  &-item
+    border: 1px solid var(--gray)
+    border-radius: 50%
+    width: $itemSize
+    height: @width
+    display: flex
+    justify-content: center
+    align-items: center
+
+    &.active
+      border-color: var(--blue)
+
+      svg
+        stroke: var(--blue)
+
+    svg
+      height: round($iconSize * 0.9)
+
+  .backplate
+    display: none
+
+.main-container:not(.is-mobile) .backplate
+  display: block
+  position: fixed
+  left: var(--sidebar-width)
+  right: 0
+  bottom: 0
+  height: calc(var(--vh, 1vh) * 100)
+  width: calc(100vw - var(--sidebar-width))
+  background-color: var(--overlay-backplate)
+
+

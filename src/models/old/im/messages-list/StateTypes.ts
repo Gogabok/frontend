@@ -1,0 +1,22 @@
+export enum StateTypes {
+    MESSAGES,
+}
+
+export enum MessageMenuStateTypes {
+    NOT_ACTIVE,
+    ACTIONS,
+    CONFIRM_TRANSLATE_MSG,
+    CONFIRM_SEND_MESSAGE_TRANSLATE,
+    CONFIRM_FAST_TRANSLATE_MSG,
+    MESSAGE_TRANSLATED,
+    CONFIRM_SEND_ATTACHMENT,
+    CONFIRM_FAST_SEND_ATTACHMENT,
+    ATTACHMENT_SENT,
+}
+
+export enum TranslateMessageStateTypes {
+    NONE,
+    GROUPED,
+    SENDING,
+    SINGLE,
+}

@@ -1,0 +1,46 @@
+@import "~themes/_variables"
+
+$defaultBulletSize = 30px
+$controlsPanelHeight = 50px
+
+.swiper-pagination
+  bottom: ($controlsPanelHeight + 5) !important
+  left: 50%
+  transform: translateX(-50%)
+  white-space: nowrap
+  will-change: opacity, visibility
+  transition: 0.2s opacity ease-in-out, 0.21 visibility ease-in-out
+  visibility: visible
+  opacity: 1
+
+  &-bullet
+    margin: 0 ($hSpacing * 0.3)
+
+    &-custom
+      width: $defaultBulletSize !important
+      height: $defaultBulletSize !important
+      border: 2px solid var(--white)
+      border-radius: 0
+      transform: scale(1)
+      opacity: 0.4
+      background: none
+      box-shadow: 0 1px 1px var(--play-button-background-color)
+      transition: all 0.3s
+
+      & > img
+        width: 100%
+        height: 100%
+
+    &-active
+      opacity: 1
+      transform: scale(1.2) !important
+
+
+  &-bullets-hidden
+    opacity: 0
+    visibility: hidden
+    transition: 0.2s opacity ease-in-out, 0.21s visibility ease-in-out
+
+
+.swiper-container-horizontal>.swiper-pagination-bullets .swiper-pagination-bullet
+  margin: ($defaultBulletSize * 0.1) round($defaultBulletSize * 0.13)

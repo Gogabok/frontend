@@ -1,0 +1,9 @@
+dependencies:
+- name: backend
+  repository: https://social.io.instrumentisto.com/backend/helm
+  version: 0.1.0-alpha.1
+- name: medea
+  repository: file://../medea
+  version: 0.1.0
+digest: sha256:e3e7fd2730b39405ea826d3973f92e85cad6223a5a85125ac48218c440a5aa12
+generated: "2020-11-10T18:44:36.426436+01:00"

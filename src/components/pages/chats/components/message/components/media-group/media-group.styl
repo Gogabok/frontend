@@ -1,0 +1,55 @@
+@import "~themes/_variables"
+
+$width = 400px
+$borderRadius = 8px
+
+.message__container-group
+  display: grid
+  grid-template-columns: 1fr 1fr
+  grid-gap: ($vSpacing * 0.5) ($hSpacing * 0.5)
+  width: $width
+  max-width: 100%
+
+  &-image
+    position: absolute
+    left: 0
+    top: 0
+    width: 100%
+    height: 100%
+    object-fit: cover
+    background-size: cover
+    background-position: center
+    background-repeat: no-repeat
+    transition: var(--message-attachment-hover-transition)
+
+    &:hover
+      cursor: pointer
+      filter: var(--message-attachment-hover)
+
+
+  &-count
+    display: flex
+    align-items: center
+    justify-content: center
+    position: absolute
+    left: 0
+    top: 0
+    width: 100%
+    height: 100%
+    background: var(--gray)
+    font-size: calc(var(--largeFont) * 2.5)
+    color: var(--white)
+
+  &-item
+    position: relative
+    width: 100%
+    padding-top: 100%
+    border-radius: $borderRadius
+    overflow: hidden
+
+  &-text
+    margin-bottom: $vSpacing
+
+
+.is-mobile .message__container-group-count
+  font-size: calc(var(--largeFont) * 1.5)

@@ -1,0 +1,80 @@
+@import "~themes/_variables";
+
+$notification = {
+  borderRadius: 10px
+  shadow: {
+    x: 1px
+    y: 2px
+    blur: 3px
+    spread: 3px
+    color: rgba(0, 0, 0, 0.1)
+  }
+}
+
+$avatarSize = 70px
+$avatarBorderRadius = 50%
+
+$closeIconWidth = round($iconSize / 0.73)
+$closeIconRotate = 45deg
+
+.notification
+  width: 100%
+  padding: $vSpacing ($hSpacing * 1.5)
+  border: 1px solid var(--gray)
+  border-radius: $notification.borderRadius
+  background: var(--lightgrey2)
+  box-shadow: $notification.shadow.x $notification.shadow.y $notification.shadow.blur $notification.shadow.spread $notification.shadow.color
+
+  &__avatar
+    position: relative
+    min-width: $avatarSize
+    max-width: $avatarSize
+    min-height: $avatarSize
+    max-height: $avatarSize
+    margin-right: ($hSpacing * 1.5)
+    border-radius: $avatarBorderRadius
+    overflow: hidden
+
+    &-icon
+      position: absolute
+      border: 1px solid var(--lightgrey2)
+      border-radius: $avatarBorderRadius
+      overflow: hidden
+      background-color: var(--white)
+      background-repeat: no-repeat
+      background-position: center
+      background-size: 100% auto
+
+  &__box
+    display: flex
+    align-items: center
+
+  &__text
+    display: flex
+    flex-direction: column
+    width: 100%
+    max-width: "calc(100% - %s - %s - %s)" % ($avatarSize  ($hSpacing * 1.5) $closeIconWidth)
+
+  &__title
+    margin: ($vSpacing / 2) 0
+    font-size: var(--mediumFont)
+    color: var(--superdarkgray)
+
+  &__description
+    width: "calc(100% - %s)" % ($hSpacing * 1.5)
+    overflow: hidden
+    font-size: var(--smallFont)
+    white-space: nowrap
+    text-overflow: ellipsis
+
+  &__close
+    width: 100%
+    max-width: $closeIconWidth
+    cursor: pointer
+
+    svg
+      width: 100%
+      transform: "rotate(%s)" % ($closeIconRotate)
+
+.is-mobile .notification__text
+  max-width: "calc(100% - %s - %s)" % ($avatarSize  ($hSpacing * 1.5))

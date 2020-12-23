@@ -1,0 +1,143 @@
+{
+  "extends": [
+    "eslint:recommended"
+  ],
+  "env": {
+    "node": true,
+    "es6": true
+  },
+  "overrides": [
+    {
+      "files": "*.ts",
+      "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended"
+      ],
+      "env": {
+        "node": false,
+        "browser": true,
+        "es6": true,
+        "es2017": true
+      },
+      "parser": "@typescript-eslint/parser",
+      "parserOptions": {
+        "project": "tsconfig.json",
+        "tsconfigRootDir": ".",
+        "ecmaVersion": 2017,
+        "sourceType": "module"
+      },
+      "plugins": [
+        "@typescript-eslint/eslint-plugin"
+      ],
+      "rules": {
+        "@typescript-eslint/member-delimiter-style": [
+          "error",
+          {
+            "multiline": {
+              "delimiter": "comma",
+              "requireLast": true
+            },
+            "singleline": {
+              "delimiter": "comma",
+              "requireLast": false
+            },
+            "overrides": {
+              "interface": {
+                "multiline": {
+                  "delimiter": "semi",
+                  "requireLast": true
+                }
+              }
+            }
+          }
+        ],
+        "@typescript-eslint/array-type": [
+          "error",
+          {
+            "default": "array-simple"
+          }
+        ],
+        "@typescript-eslint/no-inferrable-types": 0,
+        "@typescript-eslint/no-use-before-define": 0,
+        "@typescript-eslint/camelcase": 0,
+        "@typescript-eslint/no-non-null-assertion": 2,
+        "@typescript-eslint/typedef": 0,
+        "@typescript-eslint/no-unused-vars": 2,
+        "@typescript-eslint/no-explicit-any": 2,
+        "@typescript-eslint/explicit-function-return-type": 0,
+        "@typescript-eslint/restrict-plus-operands": 2,
+        "max-len": [
+          "error",
+          {
+            "code": 80,
+            "ignorePattern": "import.*from.*|const.*import\\(.*\\)",
+            "ignoreUrls": true,
+            "ignoreRegExpLiterals": true
+          }
+        ],
+        "semi": 2,
+        "sort-imports": [
+          "error",
+          {
+            "ignoreCase": true,
+            "ignoreDeclarationSort": true
+          }
+        ],
+        "sort-keys": [
+          "error",
+          "asc",
+          {
+            "caseSensitive": true,
+            "natural": true,
+            "minKeys": 2
+          }
+        ],
+        "space-before-function-paren": [
+          "error",
+          {
+            "anonymous": "never",
+            "asyncArrow": "always",
+            "named": "never"
+          }
+        ],
+        "space-before-blocks": 2,
+        "quotes": [
+          "error",
+          "single"
+        ],
+        "object-curly-spacing": ["error", "always"],
+        "no-multiple-empty-lines": 2,
+        "brace-style": 2,
+        "no-trailing-spaces": 2,
+        "comma-dangle": ["error", "always-multiline"]
+      },
+      "globals": {
+        "process": "readonly",
+        "require": "readonly",
+        "android": "readonly",
+        "global": "readonly",
+        "__webpack_hash__": "readonly",
+        "TNS_ENV": "readonly",
+        "TNS_CONF_API_URL": "readonly"
+      }
+    },
+    {
+      "files": "test/**/*.ts",
+      "env": {
+        "jest": true,
+        "cypress/globals": true
+      },
+      "plugins": [
+        "cypress"
+      ],
+      "parserOptions":  {
+        "createDefaultProgram": true
+      },
+      "rules": {
+        "@typescript-eslint/no-explicit-any": 0,
+        "@typescript-eslint/no-unused-vars": 0,
+        "no-prototype-builtins": 0
+      }
+    }
+  ]
+}

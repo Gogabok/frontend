@@ -1,0 +1,56 @@
+@import "~themes/_variables"
+
+$avatarSize = 35px
+$avatarOffset = 2px
+$checkboxSize = 22px
+
+.contacts__list
+  &-item
+    position: relative
+    transition: all 0.2s ease-out
+
+    &:first-child
+      margin-top: ($vSpacing * - 0.4)
+
+    svg
+      stroke: var(--active-color)
+
+  .contact-preview
+    height: unset
+    padding: ($vSpacing * 1.5) ($hSpacing * 1.5)
+
+  .contact-preview__avatar
+    max-width: $avatarSize
+    min-width: $avatarSize
+    max-height: $avatarSize
+    min-height: $avatarSize
+
+    .avatar-icon
+      top: $avatarOffset
+      left: $avatarOffset
+      bottom: $avatarOffset
+      right: $avatarOffset
+
+
+  &-check
+    position: absolute
+    right: ($vSpacing * 2)
+    top: 50%
+    transform: translateY(-50%)
+
+    &-box
+      width: $checkboxSize
+      height: $checkboxSize
+      border: 1px solid var(--gray)
+      border-radius: 100%
+      transition: all 0.2s ease-out
+
+    &-icon
+      width: round($iconSize * 0.52)
+      position: absolute
+      left: 50%
+      top: 50%
+      transform: translate(-50%, -50%)
+
+    &-selected
+      border-color: var(--active-color)

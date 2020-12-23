@@ -1,0 +1,80 @@
+@import "~themes/_variables"
+
+$dotSize = 2px
+$headerHeight = 53px
+$headerPadding = {
+  vertical: 13px
+  horizontal: 26px
+}
+$containerWidth = 448px
+
+.section
+  display: flex
+  flex-direction: column
+  max-width: $containerWidth + $headerPadding.horizontal * 2
+  margin: 0 auto
+
+  &__icon
+    width: round($iconSize * 0.9)
+    height: @width
+
+  &__title
+    margin: 0 ($hSpacing * 1.5)
+    width: 90%
+    font-size: (--regularFont)
+    text-align: left
+    font-weight: 400
+
+  &__header
+    height: $headerHeight
+    padding: $headerPadding.vertical $headerPadding.horizontal
+    display: flex
+    align-items: center
+    justify-content: flex-start
+
+  .dots-icon
+    width: $dotSize
+    height: $dotSize
+    border-radius: 50%
+    display: block
+    position: relative
+    background-color: var(--graydarker)
+    margin-left: auto
+
+    &::before
+    &::after
+      content: ''
+      width: inherit
+      height: inherit
+      background-color: inherit
+      border-radius: inherit
+      display: block
+      position: absolute
+      left: 0
+
+    &::before
+      top: - $dotSize * 2
+
+    &::after
+      bottom: - $dotSize * 2
+
+  &__content
+    display: flex
+    flex-wrap: nowrap
+    flex-direction: column
+    width: 100%
+    max-height: 0
+    overflow: hidden
+    will-change: height, max-height
+    transition: 0.4s ease-in-out max-height,
+                0.4s ease-in-out height
+
+    &.expanded
+      max-height: "calc(var(--max-height) + %s)" % ($headerPadding.vertical * 2)
+
+  .content-wrapper
+    width: 100%
+    height: fit-content
+    padding: $headerPadding.vertical $headerPadding.horizontal
+
+

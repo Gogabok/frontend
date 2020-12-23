@@ -1,0 +1,36 @@
+@import "themes/_variables"
+
+$height = 53px
+$containerWidth = 448px + 26px * 2
+$angleIconStrokeWidth = 6px
+
+
+.action
+  display: flex
+  align-items: center
+  width: 100%
+  height: $height
+  max-width: $containerWidth
+  margin: 0 auto
+  justify-content: flex-start
+  padding: ($vSpacing * 1.3) ($hSpacing * 2.6)
+
+  &__icon
+    width: round($iconSize * 0.9)
+    height: 100%
+    stroke: var(--graydarker)
+    margin-right: ($hSpacing * 1.5)
+
+  &__name
+    width: 90%
+    font-size: var(--regularFont)
+    text-align: left
+    font-weight: 400
+    margin: 0
+
+  .angle-icon
+    display: block
+    margin-left: auto
+    width: round($iconSize * 0.13)
+    height: round(@width * 2)
+    --stroke-width: $angleIconStrokeWidth

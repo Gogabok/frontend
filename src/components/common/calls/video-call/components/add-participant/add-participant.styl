@@ -1,0 +1,39 @@
+$contentWidth = 500px
+$searchBarHeight = 56px
+$inputFieldHeight = 49px
+
+.forward-container
+  display: flex
+  flex-direction: column
+  position: absolute
+  top: 0
+  left: 0
+  width: 100%
+  height: 100%
+  z-index: 13
+
+  &.padded
+    bottom: var(--bottom-menu-height)
+    left: var(--sidebar-width)
+    width: calc(100% - var(--sidebar-width))
+    height: calc(100% - var(--bottom-menu-height))
+
+  &__backplate
+    display: block
+    position: absolute
+    top: 0
+    left: 0
+    right: 0
+    bottom: 0
+    width: 100%
+    height: 100%
+    z-index: -1
+    background-color: var(--overlay-backplate)
+
+.is-mobile
+  .forward-container
+  .forward-container.padded
+    left: 0
+    bottom: 0
+    width: 100%
+    height: 100%

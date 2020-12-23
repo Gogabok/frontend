@@ -1,0 +1,81 @@
+@import "~themes/_variables"
+
+$disabledLineWidth = 1px
+
+.call
+  &-participant
+    top: 0
+    position: relative
+    width: 100%
+    height: 100%
+
+    &.minified
+      width: 100%
+      height: 100%
+
+    &.awaiting
+      opacity: 0.35
+
+  .audio-disabled-icon
+    margin-bottom: ($vSpacing * 0.5)
+    position: absolute
+    left: 50%
+    transform: translate(-50%, -50%)
+    bottom: ($vSpacing * 0.5)
+    z-index: 2
+    color: white
+    display: flex
+    flex-direction: column
+    align-items: center
+    height: fit-content
+    top: 50%
+    text-align: center
+
+    .icon
+      position: relative
+      width: fit-content
+      height: fit-content
+
+      &:before
+        content: ""
+        position: absolute
+        top: 40%
+        left: 50%
+        width: calc(160%)
+        height: $disabledLineWidth
+        background: var(--white)
+        transform: translate(-50%, -50%) rotate(-45deg)
+        transition: all 0.2s ease-out
+        z-index: 2
+
+    svg
+      stroke: white
+      height: round($iconSize * 0.82)
+
+
+  &__background
+    background-image: url("~assets/img/bg-gapopa.svg")
+    background-size: round(5.45 * $iconSize)
+    border: 1px solid #ffffff44
+    height: 100%
+    position: absolute
+    top: 0
+    left: 0
+    right: 0
+    bottom: 0
+
+    &.avatar
+      background-size: var(--background-size, 100%)
+      background-image: var(--background, url('~assets/img/default_avatar.svg'));
+      background-position: center center
+      background-repeat: no-repeat
+
+      &.default
+        background-size: contain;
+
+  &__video-element
+    width: 100%
+    height: 100%
+    object-fit: contain
+    background: rgba(0, 0, 0, 0.4)
+

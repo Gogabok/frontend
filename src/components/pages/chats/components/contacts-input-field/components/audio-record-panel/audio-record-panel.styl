@@ -1,0 +1,100 @@
+@import "~themes/_variables"
+
+$recordDotSize = 8px
+
+.microphone__menu
+  display: flex
+  align-items: center
+  justify-content: space-between
+  position: absolute
+  left: 0
+  right: 0
+  bottom: 0
+  top: ($vSpacing * 0.5)
+  padding-left: ($hSpacing * 2.5)
+  padding-right: ($hSpacing * 2.5)
+  transform: translateY(100%)
+  transition: all .2s ease-out
+  background: var(--lightgray)
+  z-index: 3
+
+  &.active-menu
+    visibility: visible
+    transform: none
+    opacity: 1
+
+
+  &-counter
+    display: flex
+    align-items: center
+
+  &-dot
+    display: block
+    width: $recordDotSize
+    height: $recordDotSize
+    margin-right: $hSpacing
+    border-radius: 100%
+    background: var(--red)
+    animation: fadeDot 3s linear 0s infinite
+
+  &-cancel
+    display: flex
+    align-items: center
+    margin-left: ($hSpacing * 4)
+    user-select: none
+
+    svg
+      height: round($iconSize * 0.59)
+      margin-right: ($hSpacing * 0.7)
+      transform: rotate(180deg)
+
+    &-text
+      margin-left: ($hSpacing * 0.5)
+      font-size: var(--extrasmallFont)
+      text-transform: uppercase
+
+  &-text
+    font-size: var(--regularFont)
+
+  &-controls
+    display: flex
+    align-items: center
+
+  &-icon
+    margin-left: ($hSpacing * 4)
+    cursor: pointer
+
+    &-cancel svg
+      height: $iconSize
+
+
+@media screen and (max-width: 450px)
+  .microphone__menu
+    &-icon
+      margin-left: 0
+
+    &-cancel
+      margin-left: 0
+
+    &-cancel-text
+      margin-left: 0
+      font-size: var(--extrasmallFont)
+
+    &-controls
+      justify-content: space-between
+      min-width: "calc(50vw - %s)" % ($hSpacing * 1.7)
+
+
+@media screen and (max-width: 350px)
+  .microphone__menu.active-menu-video .microphone__menu-cancel-text
+    display: none
+
+@keyframes fadeDot
+  0%
+    opacity: 0.2
+
+  50%
+    opacity: 1
+
+  100%
+    opacity: 0.2

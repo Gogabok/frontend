@@ -1,0 +1,31 @@
+.app-leftside-menu
+  display: flex
+  flex-direction: column
+  justify-content: flex-start
+  align-items: flex-start
+  position: absolute
+  top: 0
+  bottom: 0
+  left: -100%
+  width: var(--sidebar-width)
+  height: 100%
+  border-right: 1px solid var(--gray)
+  z-index: 14
+  overflow: hidden
+  overflow-y: auto
+  background-color: var(--lightgray)
+  transition: 0.4s left ease-in-out
+
+  > *
+    width: 100%
+    color: var(--graydarker)
+
+.active-menu .app-leftside-menu
+  left: 0
+
+.is-mobile
+  .app-leftside-menu
+    bottom: $bottomAppMenuHeight
+    width: 100%
+    height: "calc(var(--vh) * 100 - %s)" % ($bottomAppMenuHeight)
+

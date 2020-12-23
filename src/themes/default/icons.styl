@@ -1,0 +1,329 @@
+@import "./animations"
+@import "./colors"
+@import "./sizes"
+
+$icon = {
+  sizes: {
+    small: 16px
+    medium: 32px
+    big: 48px
+  }
+}
+
+icon-size(width, height)
+  background-size: width height
+  width: width
+  height: height
+  flex-basis: width
+
+i.icn
+  for name, value in $icon.sizes
+    &.size-{name}
+      flex-basis: value
+      height: value
+      width: value
+      +mobile()
+        flex-basis: value + 4px
+        height: value + 4px
+        width: value + 4px
+
+  &.rotate
+    icon-size(16px, 16px)
+    +mobile()
+      icon-size(18px, 18px)
+    &.left
+      background: url('~assets/img/icons/rotate-left.svg')
+    &.right
+      background: url('~assets/img/icons/rotate-right.svg')
+
+  &.zoom
+    icon-size(16px, 16px)
+    +mobile()
+      icon-size(18px, 18px)
+    &.in
+      background: url('~assets/img/icons/zoom-in.svg')
+    &.out
+      background: url('~assets/img/icons/zoom-out.svg')
+
+  &.arrow
+    background-image: url('~assets/img/icons/arrow.svg')
+    icon-size(9px, 4px)
+
+  &.unchecked
+    background-image: url('~assets/img/icons/unchecked.svg')
+    background-size: 16px 14px
+
+  &.checked
+    background-image: url('~assets/img/icons/checked.svg')
+    background-size: 16px 14px
+
+  &.like
+    background-image: url('~assets/img/icons/like.svg')
+
+  &.dislike
+    background-image: url('~assets/img/icons/dislike.svg')
+
+  &.login
+    background-image: url('~assets/img/icons/login.svg')
+    icon-size(20px, 13px)
+    +mobile()
+      icon-size(23px, 16px)
+
+  &.logout
+    background-image: url('~assets/img/icons/logout.svg')
+    icon-size(22px, 13px)
+    +mobile()
+      icon-size(27px, 16px)
+
+  &.messages-count
+    background-image: url('~assets/img/icons/message.svg')
+    icon-size(20px, 13px)
+    +mobile()
+      icon-size(23px, 16px)
+
+  &.full-screen
+    background-image: url('~assets/img/icons/full-screen.svg')
+    background-size: 16px 14px
+
+  &.info
+    background-image: url('~assets/img/icons/info.svg')
+    icon-size(14px, 14px)
+    margin-top: 2px
+
+  &.message-sent
+    background-image: url('~assets/img/icons/message-sent.svg')
+    icon-size(12px, 9px)
+    +mobile()
+      icon-size(13px, 10px)
+
+  &.message-delivered
+    background-image: url('~assets/img/icons/message-delivered.svg')
+    icon-size(18px, 9px)
+    +mobile()
+      icon-size(20px, 10px)
+
+  &.message-read
+    background-image: url('~assets/img/icons/message-read.svg')
+    icon-size(18px, 9px)
+    +mobile()
+      icon-size(20px, 10px)
+
+  &.search
+    background-image: url('~assets/img/icons/search.svg')
+    icon-size(13px, 13px)
+    +mobile()
+      icon-size(16px, 16px)
+
+  &.call
+    background-image: url('~assets/img/icons/call.svg')
+    background-size: 18px 10px
+
+  &.video
+    background-image: url('~assets/img/icons/video.svg')
+    background-size: 18px 10px
+
+  &.alarm
+    background-image: url('~assets/img/icons/alarm.svg')
+    background-size: 15px 14px
+
+  &.alarm-on
+    background-image: url('~assets/img/icons/alarm-on.svg')
+    background-size: 15px 14px
+
+  &.media
+    background-image: url('~assets/img/icons/play-2-darker.png')
+
+  &.broadcast
+    background-image: url('~assets/img/icons/nobroadcasting.png')
+    &.online
+      background-image: url('~assets/img/icons/broadcasting.png')
+
+  &.pen
+    background-image: url('~assets/img/icons/pen-line-1.png')
+
+  &.send
+    background-image: url('~assets/img/icons/enter.svg')
+    background-size: 39px 15px
+    +mobile()
+      background-size: 45px 19px
+
+  &.user-status
+    background-size: 7px 7px
+    &.online
+      background-image: url('~assets/img/icons/broadcasting.svg')
+    &.offline
+      background-image: url('~assets/img/icons/nobroadcasting.svg')
+    &.away
+      background-image: url('~assets/img/icons/away.svg')
+    &.online-event
+      background-image: url('~assets/img/icons/online-event-1.png')
+      background-size: auto
+    &.called
+      background-image: url('~assets/img/icons/call.svg')
+      background-size: 9px 9px
+    &.videocalled
+      background-image: url('~assets/img/icons/video.svg')
+      background-size: 9px 9px
+    &.live
+      background-image: url('~assets/img/icons/live.svg')
+      background-size: 7px 7px
+    &.loading
+      background-image: url('~assets/img/icons/status-loader.gif')
+
+
+  &.settings
+    background-image: url('~assets/img/icons/settings-9.png')
+
+  &.swipe-helper
+    background-image: url('~assets/img/icons/stretcher_light-2_vert_mess.png')
+
+  &.swipe-vert
+    background-image: url('~assets/img/icons/stretcher-hor.png')
+
+  &.favorite
+    background-image: url('~assets/img/icons/star-empty-1.png')
+    &.active
+      background-image: url('~assets/img/icons/star-full-1.png')
+
+  &.block
+    background-image: url('~assets/img/icons/chat-block-1.png')
+
+  &.unblock
+    background-image: url('~assets/img/icons/chat-unblock-1.png')
+
+  &.delete
+    background-image: url('~assets/img/icons/trash-2.png')
+
+  &.attachment
+    background-image: url('~assets/img/icons/attachment.svg')
+    background-size: 15px 15px
+    +mobile()
+      background-size: 19px 19px
+
+  &.smile
+    background-image: url('~assets/img/icons/smile.svg')
+    background-size: 15px 15px
+    +mobile()
+      background-size: 19px 19px
+
+  &.translate
+    background-image: url('~assets/img/icons/translate12.png')
+    &.translated
+      background-image: url('~assets/img/icons/translate13.png')
+
+  &.exit-fs
+    background-image: url('~assets/img/icons/exit-full-screen.svg')
+    background-size: 16px 14px
+
+  &.edit
+    background-image: url('~assets/img/icons/chat-edit-1-16.png')
+
+  &.close
+    background-image: url('~assets/img/icons/close.svg')
+    background-size: 11px 11px
+    +mobile()
+      background-size: 13px 13px
+
+  &.error
+    background-image: url('~assets/img/icons/error.png')
+
+  &.file
+    background-image: url('~assets/img/icons/file-archive.png')
+    &.default
+      background-image: url('~assets/img/icons/attachment.svg')
+    &.zip, &.rar, &.tar
+      background-image: url('~assets/img/icons/file-archive.png')
+    &.pdf
+      background-image: url('~assets/img/icons/file-pdf.png')
+
+  &.connect
+    background-image: url('~assets/img/icons/social-actions/connect.png')
+
+  &.share
+    background-image: url('~assets/img/icons/social-actions/share.png')
+
+  &.subscribe
+    background-image: url('~assets/img/icons/social-actions/subscribe.png')
+
+  &.dummy
+    background-image: url('~assets/img/icons/social-actions/icon-dummy.png')
+
+  &.account
+    background-image: url('~assets/img/icons/general/account.png')
+
+  &.login
+    background-image: url('~assets/img/icons/general/login.png')
+
+  &.birth
+    background-image: url('~assets/img/icons/general/birth.png')
+
+  &.job
+    background-image: url('~assets/img/icons/general/job.png')
+
+  &.name
+    background-image: url('~assets/img/icons/general/name.png')
+
+  &.pillar
+    background-image: url('~assets/img/icons/general/pillar.png')
+
+  &.place
+    background-image: url('~assets/img/icons/general/place.png')
+
+  &.socstat
+    background-image: url('~assets/img/icons/general/socstat.png')
+
+  &.education
+    background-image: url('~assets/img/icons/general/education.png')
+
+  &.swipe-left
+    background-image: url('~assets/img/icons/left-1.png')
+
+  &.swipe-right
+    background-image: url('~assets/img/icons/right-1.png')
+
+  &.repost
+    background-image: url('~assets/img/icons/repost.png')
+
+.icon
+  background-repeat: no-repeat
+  &.cam
+    background-image: url('~assets/img/icons/camera-on.svg')
+    &.disabled
+      background-image: url('~assets/img/icons/camera-off.svg')
+  &.mic
+    background-image: url('~assets/img/icons/microphone-on.svg')
+    &.disabled
+      background-image: url('~assets/img/icons/microphone-off.svg')
+  &.switch-cam
+    background-image: url('~assets/img/icons/camera-front.svg')
+    &.disabled
+      background-image: url('~assets/img/icons/camera-inactive.svg')
+    &.frontal
+      background-image: url('~assets/img/icons/camera-back.svg')
+  &.decline-call
+    background-image: url('~assets/img/icons/decline-call-icon.svg')
+  &.accept-call
+    background-image: url('~assets/img/icons/accept-call.svg')
+  &.audio
+    background-image: url('~assets/img/icons/audio-on.svg')
+    &.disabled
+      background-image: url('~assets/img/icons/audio-off.svg')
+  &.fortuna
+    background-image: url('~assets/img/icons/roulette.svg')
+  &.filter
+    background-image: url('~assets/img/icons/filter.svg')
+  &.like
+    background-image: url('~assets/img/icons/like.svg')
+    &.active
+      background-image: url('~assets/img/icons/like-active.svg')
+  &.dislike
+    background-image: url('~assets/img/icons/dislike.svg')
+    &.active
+      background-image: url('~assets/img/icons/dislike-active.svg')
+  &.translate-input, &.remember-input
+    background-image: url('~assets/img/icons/unchecked.svg')
+    background-size: 16px 14px
+    +mobile()
+      background-size: 20px 18px
+    &.checked
+      background-image: url('~assets/img/icons/checked.svg')

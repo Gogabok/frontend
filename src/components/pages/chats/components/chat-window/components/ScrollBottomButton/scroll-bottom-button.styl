@@ -1,0 +1,24 @@
+@import "~themes/_variables"
+
+$btnWidth = 40px
+$btnHeight = 40px
+
+.scroll-bottom-button
+  display flex
+  align-items center
+  justify-content center
+  position fixed
+  right ($hSpacing * 1.5)
+  bottom ($bottomAppMenuHeight + $chatsInputHeight + $vSpacing)
+  height $btnHeight
+  width $btnWidth
+  border-radius 50%
+  background var(--lightgray)
+  box-shadow 1px 2px 3px 3px rgba(0, 0, 0, .1)
+  transition all .2s ease-out
+  cursor pointer
+  & .scroll-bottom-icon
+    transform translateY(3px)
+    & svg 
+      transform rotate(90deg)
+      height $mediumFont

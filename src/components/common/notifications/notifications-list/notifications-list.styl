@@ -1,0 +1,43 @@
+@import "~themes/_variables"
+
+$maxListHeight = 100vh
+$transformValue = 100px
+
+.notification__list
+  position: fixed
+  top: 0
+  right: 0
+  left: 0
+  max-height: $maxListHeight
+  z-index: 100
+
+.notification__container
+  position: absolute
+  top: 0
+  right: 0
+  bottom: 0
+  left: 0
+  padding: ($vSpacing / 2) ($hSpacing)
+
+
+.main-container:not(.is-mobile)
+  .notification__list
+    width: var(--sidebar-width)
+    left: unset
+
+  .notification__container
+    padding: $vSpacing $hSpacing
+
+
+.fade-down-enter-active
+  transition: all 0.35s linear
+  transition-delay: 0.5s
+
+.fade-down-leave-active
+  transition: all 0.35s linear
+  transition-delay: 0s
+
+.fade-down-enter
+.fade-down-leave-to
+  opacity: 0
+  transform: "translateY(-%s)" % ($transformValue)

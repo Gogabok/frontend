@@ -1,0 +1,110 @@
+@import "~themes/_variables"
+
+$contactsListIndex = 100
+
+$headerHeight = 60px
+$footerHeight = 60px
+
+$maxContainerWidth = 500px
+$borderRadius = 13px
+
+.contacts
+  &__container
+    position: fixed
+    left: 0
+    top: 0
+    right: 0
+    bottom: 0
+    z-index: $contactsListIndex
+
+    &-overlay
+      position: absolute
+      left: 0
+      top: 0
+      right: 0
+      bottom: 0
+      background: var(--overlay-backplate)
+
+  &__list
+    &-body
+      position: absolute
+      left: 50%
+      top: $headerHeight
+      bottom: $footerHeight
+      transform: translateX(-50%)
+      width: 100%
+      background: var(--lightgray)
+      overflow: auto
+
+      &::-webkit-scrollbar
+        width: 1px
+
+      &::-webkit-scrollbar-track
+        background: var(--superlightgray)
+
+      &::-webkit-scrollbar-thumb
+        background: var(--graydarker)
+
+      &::-webkit-scrollbar-thumb:hover
+        background: var(--darksilver)
+
+      &-letter
+        width: 100%
+        padding: ($vSpacing * 0.5) ($hSpacing * 2.75)
+        background: var(--lightgrey2)
+        display: block
+        border-bottom: 1px solid var(--lightgray)
+        text-transform: capitalize
+        position:-webkit-sticky
+        position:sticky
+        top: 0px
+        z-index: 3
+
+    &-preview
+      padding-left: ($hSpacing * 2)
+      padding-right: ($hSpacing * 2)
+
+    &-alphabet
+      position: absolute
+      left: ($hSpacing * 0.25)
+      top: 50%
+      transform: translateY(-50%)
+      display: flex
+      flex-direction: column
+      align-items: center
+      z-index: 2
+
+      &-item
+        padding: ($vSpacing * 0.5) ($hSpacing * 0.5)
+
+.main-container:not(.is-mobile)
+  .contacts__list
+    position: absolute
+    left: 50%
+    transform: translateX(-50%)
+    top: $headerHeight
+    bottom: $footerHeight
+    max-width: $maxContainerWidth
+    width: 100%
+    border-radius: $borderRadius
+    overflow: hidden
+
+.is-mobile
+  .contacts__list
+    position: absolute
+    left: 0
+    top: $headerHeight
+    right: 0
+    bottom: 0
+    border-top-left-radius: $borderRadius
+    border-top-right-radius: $borderRadius
+    overflow: hidden
+    animation: 0.3s linear 0s 1 both running fadeUp
+
+
+@keyframes fadeUp
+  0%
+    transform: translateY(100%)
+  100%
+    transform: translateY(0)
+

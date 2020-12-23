@@ -1,0 +1,8 @@
+@import "~themes/_variables"
+
+.user-profile__section
+  &__item
+    .star path
+      transition: 0.2s ease-in-out fill
+      ^[1..-0].favorite svg
+        fill: var(--graydarker)

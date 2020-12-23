@@ -1,0 +1,246 @@
+@import "~themes/_variables"
+
+$inputBorderRadius = 13px
+
+button
+  background: unset
+  border: unset
+
+// Icons
+.input__emoji
+  display: flex
+  flex-direction: column
+  justify-content: center
+  cursor: pointer
+
+  &-send svg
+    height: round($iconSize * 1.18)
+
+  &-placeholder
+    display: flex
+    align-items: center
+
+  &-plus
+    transition: transform 0.2s ease-in-out
+
+    &-active
+      transform: rotateZ(-45deg)
+
+      &-single
+        margin-left: 0
+
+  &-transform
+    transform: "translateY(%s)" % (- $vSpacing * 0.4)
+
+  svg path
+    stroke: var(--own-message-background-color)
+
+
+
+// Chats field
+.contacts__input-field
+  display: grid
+  grid-template-columns: max-content 1fr minmax(min-content, max-content)
+  grid-column-gap: ($hSpacing * 2.5)
+  align-items: flex-end
+  align-content: center
+  position: absolute
+  left: 0
+  right: 0
+  bottom: 0
+  min-height: $chatsInputHeight
+  padding: $vSpacing ($vSpacing * 2.5)
+  border-top: 1px solid var(--gray)
+  background-color: var(--lightgray)
+  z-index: 3
+
+  &__input-wrapper
+    display: flex
+    align-items: center
+    width: 100%
+    max-width: 100%
+    height: 100%
+    border: 1px solid var(--gray)
+    border-radius: $inputBorderRadius
+    will-change: max-width, width
+    background: var(--message-background-color)
+    transition: max-width 0.2s ease-in-out, max-width 0.4s ease-in-out
+
+    &.wide
+      max-width: 99%
+
+    &.hidden
+      opacity: 0
+      visibility hidden
+
+    &__files-button
+      width: fit-content
+      padding: ($vSpacing * 0.8) ($hSpacing * 0.8)
+      margin-right: ($hSpacing * 0.5)
+
+      svg
+        height: round($iconSize * 0.72)
+
+    &__input
+      width: 100%
+      height: 100%
+      border: none
+      padding: ($vSpacing * 0.5) ($hSpacing * 0.5)
+      font-size: var(--regularFont)
+      line-height: 1.21
+      vertical-align: center
+      color: var(--darkgray)
+      resize: none
+      background: transparent
+
+      &::-webkit-scrollbar
+        width: 1px
+
+      &::-webkit-scrollbar-track
+        background: var(--message-background-color)
+
+      &::-webkit-scrollbar-thumb
+        background: var(--dark-gray)
+
+      &::-webkit-scrollbar-thumb:hover
+        background: var(--darksilver)
+
+
+  &__translate
+    margin-right: ($hSpacing * 1.8)
+
+  &__buttons-container
+    display: flex
+    align-items: center
+    height: 100%
+
+    &__media
+      display: flex
+      align-items: center
+      height: 100%
+
+
+// Confirm delete popup
+.confirm__delete
+  display: flex
+  align-items: flex-end
+  justify-content: center
+  position: fixed
+  left: var(--sidebar-width)
+  right: 0
+  top: $dialogHeaderHeight
+  bottom: $chatsInputHeight + $bottomAppMenuHeight
+  border-bottom: 1px solid var(--gray)
+  background: var(--overlay-backplate)
+  z-index: 6
+
+  &-container
+    width: 100%
+    max-width: unset
+    padding: ($vSpacing * 2.5) ($hSpacing * 3.5)
+    border-radius: $inputBorderRadius
+    border-bottom-left-radius: 0
+    border-bottom-right-radius: 0
+    background: var(--lightgray)
+
+  &-title
+    margin-bottom: ($vSpacing * 2)
+    font-size: var(--smallFont)
+    text-align: center
+
+  &-text
+    width: 100%
+    margin-right: auto
+    margin-bottom: $vSpacing
+    margin-left: auto
+    font-size: var(--smallFont)
+    text-align: center
+
+  &-controls
+    display: none
+    justify-content: space-between
+    align-items: center
+    padding-top: ($vSpacing * 2)
+    border-top: 1px solid var(--gray)
+
+    &-item
+      color: var(--graydarker)
+
+      &-cancel svg
+        transform: rotate(45deg)
+
+
+
+
+
+// Animations
+.wide
+  transition: max-width 0.2s ease-in-out
+
+
+.mic-icon-transition
+  &-enter-active
+  &-leave-active
+    transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out
+
+
+  &-enter
+  &-leave-to
+    opacity: 0
+    transform: "translateX(%s)" % ($hSpacing)
+
+
+.switch-icon-transition
+  &-enter-active
+  &-leave-active
+    transition: opacity 0.3s ease
+
+
+  &-enter
+  &-leave-to
+    opacity: 0
+
+.fade
+  &-enter-active
+  &-leave-active
+    transition: all .3s ease
+
+.fade
+  &-enter
+  &-leave-to
+    opacity: 0
+    margin-right: (- $hSpacing * 2.6)
+
+
+.is-mobile
+  .confirm__delete
+    align-items: flex-end
+    top: 0
+    bottom: $chatsInputHeight
+    left: 0
+    border-bottom: 1px solid var(--gray)
+
+    &-container
+      max-width: unset
+      border-bottom-left-radius: 0
+      border-bottom-right-radius: 0
+
+    &-controls
+      display: none
+
+    &-text
+      text-align: left
+
+  .input__emoji-plus
+    margin-left: 0
+
+
+.fade-enter
+.fade-leave-to
+  opacity: 0
+  margin-right: (- $hSpacing * 2.6)
+
+.fade-enter-active
+.fade-leave-active
+  transition: all 0.2s ease-in-out, margin-left 0.2s ease-in-out
+

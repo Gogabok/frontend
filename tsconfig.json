@@ -1,0 +1,46 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "*": [
+        "*",
+        "src/*"
+      ]
+    },
+    "noImplicitAny": false,
+    "sourceMap": true,
+    "strict": true,
+    "noImplicitReturns": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
+    "target": "es5",
+    "removeComments": true,
+    "strictPropertyInitialization": false,
+    "isolatedModules": true,
+    "skipLibCheck": true,
+    "lib": [
+      "dom",
+      "es5",
+      "es6",
+      "es2015",
+      "es2016",
+      "esnext"
+    ]
+  },
+  "exclude": [
+    "_build",
+    "_dev",
+    "_docker",
+    "_helm",
+    "node_modules",
+    "test/e2e"
+  ],
+  "typedocOptions": {
+    "out": "./_build/artifacts/rootfs/docs/ts/",
+    "mode": "modules",
+    "readme": "./GLOSSARY.md",
+    "ignoreCompilerErrors": true
+  }
+}

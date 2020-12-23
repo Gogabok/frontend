@@ -1,0 +1,71 @@
+@import "~themes/default/sizes"
+@import "~themes/_variables"
+
+$bottom = 150px
+
+.welcome-page
+  height: 100%
+  text-align: center
+  display: flex
+  flex-direction: column
+  justify-content: space-between
+  color: var(--graydarker)
+
+  .middle
+    position: absolute
+    top: $dialogHeaderHeight
+    bottom: $bottom
+    width: 100%
+
+    img
+      height: 100%
+      padding: ($vSpacing * 4) 0
+
+  h1
+    margin-top: ($vSpacing * 2)
+    font-weight: normal
+    font-size: calc(var(--largeFont) + 1px)
+
+    span
+      font-size: calc(var(--largeFont) - 1px)
+
+  img
+    height: 100%
+    padding: ($vSpacing * 4) 0
+
+  &__links
+    text-align: left
+    display: inline-block
+
+    .link
+      margin-bottom: $vSpacing
+      display: block
+      color: var(--graydarker)
+
+      &:hover
+        line, path, ellipse
+          stroke: var(--darkgray) !important
+
+      &__icon
+        width: round($iconSize * 1.09)
+        display: inline-block
+        margin-right: $hSpacing
+
+        svg
+          height: round($iconSize * 0.9)
+          margin-bottom: (- $vSpacing * 0.5)
+
+      span
+        font-size: var(--regularFont)
+        display: inline-block
+        padding: ($vSpacing * 0.5) 0
+
+  &__subtitle
+    margin: $vSpacing 0 ($vSpacing * 2)
+
+&.is-mobile
+  .welcome-page
+    padding-bottom: ($vSpacing * 5.5)
+
+    .middle
+      bottom: ($bottom + $vSpacing * 4)

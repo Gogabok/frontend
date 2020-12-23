@@ -1,0 +1,70 @@
+@import "~themes/_variables"
+
+$headerHeight = 60px
+$maxHeaderWidth = 460px
+$arrowRotate = 180deg
+
+.password__header
+  height: $headerHeight
+  position: absolute
+  left: 0
+  top: 0
+  right: 0
+  display: flex
+  align-items: center
+  justify-content: space-between
+  padding: 0 ($hSpacing * 2)
+  border-bottom: 1px solid var(--gray)
+
+  &-title
+    font-size: var(--regularFont)
+
+.new-contacts__arrow
+  padding: ($vSpacing / 2) ($hSpacing / 2)
+  margin-right: ($hSpacing * 2)
+  cursor: pointer
+  display: flex
+  align-items: center
+
+  svg
+    height: $iconSize
+    -webkit-transform: "rotate(%s)" % ($arrowRotate)
+    transform: "rotate(%s)" % ($arrowRotate)
+
+  span
+    margin-left: $hSpacing
+    font-size: var(--regularFont)
+
+
+.password__arrow
+  cursor: pointer
+  padding: ($vSpacing / 2) ($hSpacing / 2)
+  display: flex
+  align-items: center
+  color: var(--graydarker)
+  font-size: var(--regularFont)
+  transition: all 0.4s ease-out
+  svg
+    height: $iconSize
+    transform: "rotateY(%s)" % ($arrowRotate)
+  span
+    margin-left: ($hSpacing * 1.3)
+    transform: translateY(-1px)
+
+  &-transform
+    svg
+      transform: none
+
+.main-container:not(.is-mobile)
+  .password__header
+    max-width: $maxHeaderWidth
+    width: 100%
+    left: 50%
+    right: unset
+    transform: translateX(-50%)
+    padding-left: 0
+    padding-right: 0
+
+.is-mobile
+  .password__header
+    padding: 0 ($hSpacing)

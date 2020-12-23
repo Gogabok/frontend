@@ -1,0 +1,71 @@
+@import "~themes/_variables"
+
+$borderRadius = 20px
+$maxErrorWidth = 90%
+$cancelIconRotate = 45deg
+
+loginForm()
+  .login__body
+    &-title
+      font-size: var(--mediumFont)
+      margin-bottom: ($vSpacing * 2)
+      align-self: flex-start
+    &-cancel
+      position: absolute
+      right: $hSpacing
+      top: 50%
+      transform: translateY(-50%)
+      height: round($iconSize / 1.46)
+      svg
+        height: round($iconSize / 1.46)
+        transform: "rotate(%s)" % ($cancelIconRotate)
+
+    &-box
+      display: flex
+      margin-bottom: ($vSpacing * 2)
+      position: relative
+
+    &-input
+      width: 100%
+      padding: ($vSpacing * 0.95) ($hSpacing * 2)
+      border: 1px solid var(--gray)
+      border-radius: $borderRadius
+      font-size: var(--regularFont)
+      background: var(--message-background-color)
+
+    &-item
+      display: flex
+      flex-direction: column
+
+    &-errors
+      &-wrapper
+        display: flex
+        flex-direction: column
+        margin-bottom: ($vSpacing * 2)
+
+    &-error
+      margin-bottom: ($vSpacing * .7)
+      color: red
+      max-width: $maxErrorWidth
+      align-self: flex-start
+      text-align: left
+      margin-left: $hSpacing
+
+      &:last-child
+        margin-bottom: 0
+
+    &-btn
+      align-self: flex-end
+      font-size: var(--regularFont)
+      cursor: pointer
+
+    &-subtext
+      margin-bottom: ($vSpacing * 2)
+      align-self: flex-start
+      text-align: left
+      margin-left: $hSpacing
+
+      span
+        &.mt-2
+          display: block
+          margin-top: ($vSpacing * 2)

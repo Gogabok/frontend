@@ -1,0 +1,67 @@
+@import "~themes/_variables"
+
+$angleIconStrokeWidth = 5px
+
+.user-profile__header
+  &-bar
+    z-index: 4
+    width: 100%
+    position: sticky
+    top: 0
+    let: 0
+    padding: 0 $hSpacing
+    display: flex
+    height: $dialogHeaderHeight
+    justify-content: flex-start
+    align-items: center
+    border-bottom: 1px solid transparent
+    transition: 0.2s ease-in-out background-color,
+                0.2s ease-in-out border-color
+
+  &__action
+    margin-left: auto
+    color: var(--white)
+    font-size: var(--regularFont)
+
+  &__icon
+    svg
+      height: $iconSize
+
+    svg path.cls-1
+      stroke: white
+      transition: 0.2s ease-in-out stroke
+
+    &.arrow
+      display: flex
+      transition: 0.2s ease-in-out color
+      color: white
+
+      svg
+        transform: rotateZ(180deg)
+        margin-right: $hSpacing
+
+        .cls-1
+          stroke-width: $angleIconStrokeWidth
+
+
+  &__contacts
+    margin-left: auto
+    display: flex
+    gap: ($hSpacing * 3)
+
+.scrolled .user-profile__header
+  &-bar
+    background-color: var(--lightgray)
+    border-color: var(--gray)
+
+    svg path.cls-1
+      stroke: var(--graydarker)
+
+  &__icon.arrow
+    color: var(--graydarker)
+
+  &__action
+    color: var(--graydarker)
+
+.is-mobile .user-profile__header-bar
+  width: 100%

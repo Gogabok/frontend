@@ -1,0 +1,157 @@
+nameOverride: socfront
+
+
+image:
+  tag: edge
+  pullPolicy: Always
+
+deployment:
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+          - matchExpressions:
+              - key: "role/application"
+                operator: In
+                values: ["true"]
+
+ingress:
+  hosts:
+    - front.soc.stg.t11913.org
+  tls:
+    enabled: yes
+    auto: yes
+  httpAuth:
+    enabled: yes
+    # soc:wer321
+    htpasswd: |
+      soc:$apr1$pNxwdecP$TU31YgPKX8PHP/fa4cbmt/
+
+sftp:
+  enabled: yes
+  user: dev
+  pass: NQh7kfs&Q!Pp3h2QUJ^#n!*C?8
+
+
+backend:
+  deploy: yes
+  image:
+    tag: auto-injected  # see Makefile
+  conf:
+    db:
+      cockroachdb:
+        user: root
+        pass: ""
+    smtp:
+      host: server.mail
+      port: 587
+      user: robot@whost14.net
+      pass: u43MQ72dbuxkVhDpnUyJBtPTEBMddV
+      tls:
+        verify_host: no
+        verify_cert: yes
+  deployment:
+    affinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+            - matchExpressions:
+                - key: "role/application"
+                  operator: In
+                  values: ["true"]
+
+
+  cockroachdb:
+    deploy: yes
+    image:
+      tag: auto-injected  # see Makefile
+    statefulset:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+            - matchExpressions:
+                - key: "role/application"
+                  operator: In
+                  values: ["true"]
+      resources:
+        requests:
+          memory: 512Mi
+        limits:
+          memory: 512Mi
+
+
+    pgweb:
+      deploy: yes
+      deployment:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: "role/application"
+                    operator: In
+                    values: ["true"]
+
+
+  filestorage:
+    deploy: yes
+    accessKey: frontend
+    secretKey: EuMTPENwbe2sF5AWrpcSXJnZVyhG74
+    affinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+            - matchExpressions:
+                - key: "role/application"
+                  operator: In
+                  values: ["true"]
+    ingress:
+      enabled: no
+
+  medea:
+    control-url: https://front.soc.stg.t11913.org/medea-control-mock/control-api
+
+
+medea:
+  conf:
+    server:
+      client:
+        http:
+          public_url: wss://front.soc.stg.t11913.org/medea/ws
+          bind_port: 10001
+      control:
+        grpc:
+          bind_port: 10002
+    rpc:
+      idle_timeout: 30s
+      reconnect_timeout: 30s
+      ping_interval: 5s
+    turn:
+      host: front.soc.stg.t11913.org
+      pass: changeme
+    log:
+      level: DEBUG
+
+  control-mock:
+    conf:
+      bind_port: 10003
+      log:
+        level: DEBUG
+
+  coturn:
+    conf:
+      listening-port: 10004
+      cli-password: changeme
+  coturn-db:
+    conf:
+      port: 10005
+      requirepass: changeme
+
+  deployment:
+    affinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+            - matchExpressions:
+                - key: "role/application"
+                  operator: In
+                  values: ["true"]

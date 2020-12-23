@@ -1,0 +1,45 @@
+@import "~themes/_variables"
+
+$iconStrokeWidth = 5px
+
+.profile-item
+  display: flex
+  align-items: center
+  height: 100%
+  justify-content: flex-start
+  cursor: pointer
+  position: relative
+  padding: ($vSpacing * 1.5) 0
+  line-height: 1.21
+
+  &__text
+    font-size: var(--regularFont)
+    width: 0
+    flex-grow: 1
+    margin-right: ($vSpacing * 2)
+    overflow: hidden
+    text-overflow: ellipsis
+    white-space: nowrap
+
+  &__icon
+    margin-right: ($hSpacing * 1.5)
+    width: $iconSize
+
+    svg
+      height: floor($iconSize * 0.9)
+
+  &__price
+    margin-left: auto
+    font-size: var(--smallFont)
+
+    svg
+      transition: 0.2s ease-in-out transform
+      width: round($iconSize * 0.27)
+
+      path.cls-1
+        stroke-width: $iconStrokeWidth
+
+
+.active
+  .profile-item__price svg
+    transform: rotateZ(90deg)

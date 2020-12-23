@@ -1,0 +1,171 @@
+@import "~themes/_variables"
+
+$avatarSize = 70px
+$avatarSpacingBorderWidth = 2px
+$containerWidth = 500px
+$headerHeight = 60px
+$sliderHeightPercent = 60
+$paginationHeight = 25px
+
+.profile-settings__avatar-slider
+  --position: "calc((100% - %s) / 2)" % ($containerWidth)
+  height: "calc(var(--vh, 1vh) * %s)" % ($sliderHeightPercent)
+  width: 100%
+  position: relative
+  border-bottom: 1px solid var(--gray)
+  margin-top: - $headerHeight
+
+  .profile-settings__slider
+    height: 100%
+
+  .profile-settings__slider-gradient
+    z-index: 2
+    height: ($headerHeight * 1.2)
+    position: absolute
+    width: 100%
+    background-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.4),
+      rgba(0, 0, 0, 0)
+    )
+
+    &.top
+      bottom: unset
+      top: 0
+
+    &.bottom
+      top: unset
+      bottom: 0
+      opacity: 1
+      z-index: 1
+      background-image: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.4),
+        rgba(0, 0, 0, 0)
+      )
+
+
+  &__arrow
+    position: absolute
+    top: 0
+    height: 100%
+    width: 15%
+    z-index: 2
+    padding: ($vSpacing * 2.5) ($hSpacing * 2.5)
+    display: flex
+    align-items: center
+    justify-content: flex-end
+    cursor: pointer
+    transition: opacity .2s ease-out
+    opacity: 0
+    left: 0
+
+    &:active
+      outline-color: black
+
+    &:hover
+    &:focus
+      opacity: 1
+
+    &.left
+      transform: rotateZ(180deg)
+
+    &.right
+      right: 0
+      left: unset
+
+    img
+      width: round($iconSize * 0.72)
+
+  .profile-settings__gallery-controls
+    display: flex
+    justify-content: center
+    align-items: center
+    position: absolute
+    bottom: 0
+    left: var(--position)
+    right: var(--position)
+    width: 100%
+    max-width: $containerWidth
+    height: ($avatarSize + $vSpacing * 3)
+    margin: 0 auto
+    z-index: 3
+
+  &__set-avatar
+    color: white !important
+
+    &.empty
+      color: var(--graydarker)
+      font-size: var(--regularFont)
+
+  &__avatar
+    width: 100%
+    height: 100%
+    background-image: url('~assets/img/gapopa-img.svg')
+    background-size: cover
+    background-repeat: no-repeat
+    border-radius: 50%
+
+    &.default
+      background-color: var(--lightgray)
+      background-size: auto 170%
+      background-position-y: -10%
+
+    &-wrapper
+      display: flex
+      width: $avatarSize
+      height: $avatarSize
+      border-radius: 50%
+      background-color: var(--lightgray)
+      border: 1px solid var(--offline-color)
+      position: absolute
+      left: $hSpacing
+      top: ($vSpacing * 1.5)
+      color: white
+      z-index: 0
+      padding: $avatarSpacingBorderWidth
+
+      &.is-online
+        border-color: var(--online-color)
+      &.is-busy
+        border-color: var(--busy-color)
+      &.is-idle
+        border-color: var(--idle-color)
+
+  .swiper-pagination
+    height: $paginationHeight
+
+.profile-settings__slider__item
+  width: 100%
+  height: 100%
+  z-index: 0
+  position: relative
+  overflow: hidden
+
+  &__poster
+    height: "%s%" % ($sliderHeightPercent)
+    width: 100%
+    object-fit: contain
+    position: absolute
+    top: 50%
+    left: 50%
+    transform: translate(-50%, -50%)
+    z-index: 1
+
+    &:hover
+      cursor: pointer
+
+  &__set-avatar
+    color: white
+
+    &.empty
+      color: var(--graydarker)
+      font-size: var(--regularFont)
+
+
+.is-mobile
+  .profile-settings__avatar-slider
+    --position: 0
+
+  .profile-settings__slider__item__poster
+    object-fit: contain

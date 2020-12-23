@@ -1,0 +1,59 @@
+@import "~themes/_variables"
+
+$dialogHeaderHeight = 60px
+$chatsInputHeight = 55px
+$backgroundPatternSize = 120px
+
+.dialog-container
+  padding: 0 $hSpacing
+  padding-top: ($vSpacing * 2)
+
+.vue-bar-container
+  height: 100%
+  padding-bottom: ($chatsInputHeight)
+
+.is-mobile .contacts-page__dialogs
+  z-index: 7 !important
+
+.contacts-page__dialogs
+  position: relative
+  width: 100%
+  height: 100%
+  padding-top: $dialogHeaderHeight
+  padding-left: 0
+  opacity: 1
+
+
+.chat-window
+  display: block
+  height: 100%
+  width: 100%
+  padding-right: 0
+  overflow: hidden scroll
+  background-image: url("~assets/img/bg-gapopa.svg")
+  background-size: $backgroundPatternSize
+
+  &::-webkit-scrollbar
+    display: none
+
+.fade
+  &-enter, &-leave
+    &-active
+      transition: opacity .5s ease-in-out
+
+  &-enter, &-leave-to
+    opacity: 0
+
+.is-mobile
+  .contacts-page__dialogs
+    position: absolute
+    left: 0
+    top: 0
+
+.profile-transition
+  &-enter, &-leave
+    &-active
+      transition: 0.45s ease-in-out transform
+
+  &-enter, &-leave-to
+    transform: translateX(100%)

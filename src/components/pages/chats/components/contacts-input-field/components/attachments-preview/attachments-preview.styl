@@ -1,0 +1,31 @@
+@import "~themes/_variables"
+
+$containerWidth = 500px
+
+.attachments-preview
+  position: fixed
+  top: $dialogHeaderHeight
+  bottom: ($bottomAppMenuHeight + $chatsInputHeight)
+  right: 0
+  left: var(--sidebar-width)
+  width: calc(100% - var(--sidebar-width))
+  background-color: var(--overlay-backplate)
+
+  &-container
+    display: flex
+    justify-content: center
+    flex-direction: column
+    width: 100%
+    max-width: $containerWidth
+    height: 100%
+    margin: 0 auto
+    overflow-y: auto
+
+    &::-webkit-scrollbar
+      display: none
+
+.is-mobile
+  .attachments-preview
+    left: 0
+    bottom: $chatsInputHeight
+    width: 100%

@@ -1,0 +1,207 @@
+@import "~themes/_variables"
+
+$vSpacing = 20px
+$avatarSize = 66px
+$avatarSpacingBorderWidth = 3px
+$lineBorderGap = 10px
+$unreadCounterBorderRadius = 100px
+$unreadCounterHeight = 20px
+
+.contact-card
+  display: flex
+  align-items: flex-start
+  width: 100%
+  padding: $vSpacing ($hSpacing * 2) $vSpacing $hSpacing
+  position: relative
+  transition: color 0.2s ease-in-out,
+              background-color 0.2s ease-in-out
+
+  &:not(:first-child):not(.self)::before
+    content: ''
+    position: absolute
+    top: -1px
+    height: 1px
+    left: $lineBorderGap
+    right: $lineBorderGap
+    background-color: var(--gray)
+    transition: 0.2s ease-in-out left,
+                0.2s ease-in-out right
+    display: block
+
+  &:not(:last-child):not(.self)::after
+    content: ''
+    position: absolute
+    bottom: 0
+    height: 1px
+    left: $lineBorderGap
+    right: $lineBorderGap
+    background-color: var(--gray)
+    transition: 0.2s ease-in-out left,
+                0.2s ease-in-out right
+    display: block
+
+
+  &:hover
+    background-color: var(--lightgrey2)
+
+    &:not(:first-child)::before
+      left: 0
+      right: 0
+
+    &:not(:last-child)::after
+      left: 0
+      right: 0
+
+    & ^[0]__information__last-seen
+      color: var(--black)
+
+
+  &__avatar
+    width: 100%
+    height: @width
+    border-radius: 50%
+    overflow: hidden
+    background-repeat: no-repeat
+    background-position: center center
+
+    &-wrapper
+      display: block
+      position: relative
+      min-width: $avatarSize
+      width: $avatarSize
+      height: $avatarSize
+      margin-right: ($hSpacing * 1.5)
+      border-radius: 50%
+      background-color: var(--white)
+
+  &__join-call
+    background-color: var(--unread-messages-counter-background)
+    height: $unreadCounterHeight + $vSpacing * 0.6
+    font-size: var(--smallFont)
+    color: var(--lightgray)
+    text-align: center
+    overflow: hidden
+    text-overflow: ellipsis
+    white-space: nowrap
+    padding: 0 $hSpacing
+    width: fit-content
+    border-radius: $unreadCounterBorderRadius
+
+  &__information
+    display: flex
+    flex-direction: column
+    justify-content: flex-start
+    flex-grow: 1
+    width: 0
+    margin-top: round($vSpacing * 0.8)
+    font-size: var(--smallFont)
+    color: var(--graydarker)
+    text-align: left
+
+    &--top
+      margin-bottom: ($vSpacing * 0.33)
+
+    &--top
+    &--bottom
+      display: flex
+      align-items: center
+      justify-content: space-between
+
+    &__time
+    &__status
+      margin-left: $hSpacing
+
+    &__status
+      height: round($iconSize * 0.45)
+
+    &__name
+      font-size: var(--mediumFont)
+      overflow: hidden
+      color: var(--black)
+      text-overflow: ellipsis
+      white-space: nowrap
+      display: block
+      line-height: 1.21
+
+    &__unread-counter
+      font-size: var(--regularSubFont)
+      color: var(--lightgray)
+      background-color: var(--unread-messages-counter-background)
+      border-radius: $unreadCounterBorderRadius
+      height: $unreadCounterHeight
+      line-height: $unreadCounterHeight
+      vertical-align: middle
+      padding: 0 ($hSpacing * 0.65)
+
+    &__last-seen
+      color: var(--graydarker)
+      transition: 0.2s ease-in-out color
+      overflow: hidden
+      max-width: 100%
+      text-overflow: ellipsis
+      flex-shrink: 0
+      width: auto
+      flex-grow: 1
+
+    &__matching-parameters
+      margin-top: ($vSpacing * 0.4)
+      margin-left: $hSpacing
+      padding-left: $hSpacing
+      border-left: 1px solid var(--gray)
+
+      .parameter:not(:last-child)
+        margin-bottom: ($vSpacing * 0.3)
+
+  &__button
+    display: block
+    margin-top: round($vSpacing * 0.8)
+    margin-left: $hSpacing
+    margin-right: ($hSpacing * 2)
+    max-width: $iconSize
+    overflow: hidden
+
+    &__check
+      display: flex
+      justify-content: center
+      align-items: center
+      width: $iconSize
+      height: @width
+      border: 1px solid var(--gray)
+      border-radius: 50%
+
+      &__icon
+        width: ($iconSize * 0.5)
+
+
+  &:hover
+    cursor: pointer
+    color: var(--black)
+    svg path
+      stroke: var(--black)
+
+  .colored
+    color: var(--black)
+    text-decoration: underline
+    font-style: normal
+
+  &.center
+    align-items: center
+
+    .contact-card
+      &__information
+        margin-top: 0
+
+      &__button
+        margin-top: 0
+
+.fade
+  &-enter
+  &-leave-to
+    opacity: 0
+    max-width: 0
+    margin-right: 0
+    margin-left: 0
+
+  &-enter-active
+  &-leave-active
+    transition: 0.2s ease-in-out all

@@ -1,0 +1,76 @@
+@import "~themes/_variables"
+
+$footerItemHeight = 40px
+$footerHeight = 60px
+$inputBorderRadius = 20px
+
+.contacts__list
+  &-send
+    font-size: var(--regularFont)
+
+    &-icon
+      max-width: $footerItemHeight
+      min-width: $footerItemHeight
+      max-height: $footerItemHeight
+      min-height: $footerItemHeight
+      display: flex
+      align-items: center
+      justify-content: center
+      border: 1px solid var(--gray)
+      border-radius: 100%
+      transition: all 0.2s ease-out
+
+      &.active
+        border-color: var(--active-color)
+
+      svg
+        height: round($iconSize * 0.9)
+        transform: translateX(2px)
+
+  &-textarea
+    width: 100%
+    display: flex
+    align-items: center
+    border-radius: $inputBorderRadius
+    border: 1px solid var(--gray)
+    margin-left: ($hSpacing * 1.5)
+    margin-right: ($hSpacing * 1.5)
+
+    &-item
+      color: var(--darkgray)
+      width: 100%
+      height: $footerItemHeight
+      resize: none
+      border: none
+      padding: ($vSpacing * 0.9) ($vSpacing * 1.6)
+      background: transparent
+      font-family: "Verdana"
+      font-size: var(--regularFont)
+
+  &-footer
+    position: absolute
+    left: -1px
+    right: 0
+    bottom: 0
+    display: flex
+    align-items: flex-end
+    justify-content: space-between
+    padding: ($vSpacing * 0.8) ($hSpacing * 1.5)
+    min-height: $footerHeight
+    border-top: 1px solid var(--gray)
+    background: var(--lightgray)
+    z-index: 2
+
+    &-close
+      max-width: $footerItemHeight
+      min-width: $footerItemHeight
+      max-height: $footerItemHeight
+      min-height: $footerItemHeight
+      display: flex
+      align-items: center
+      justify-content: center
+      border: 1px solid var(--gray)
+      border-radius: 100%
+
+      svg
+        transform: rotate(45deg)

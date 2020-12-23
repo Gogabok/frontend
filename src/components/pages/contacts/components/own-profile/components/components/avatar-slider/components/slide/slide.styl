@@ -1,0 +1,29 @@
+$blurSize = 7px
+$avatarOverflowSize = 5%
+
+.profile-settings__slider__item
+  position: relative
+  width: 100%
+  height: 100%
+  z-index: 0
+  overflow: hidden
+
+  &__poster
+    position: absolute
+    width: 100%
+    height: 100%
+    z-index: 1
+    object-fit: contain
+
+  &__background
+    position: absolute
+    top: (-$avatarOverflowSize)
+    left: (- $avatarOverflowSize)
+    width: (100% + $avatarOverflowSize * 2)
+    height: @height
+    z-index: 0
+    object-fit: cover
+    filter: blur($blurSize)
+
+.is-mobile .profile-settings__slider__item__poster
+  object-fit: cover

@@ -1,0 +1,42 @@
+# Extends staging.vals.yaml for review cluster
+
+image:
+  repository: hub.instrumentisto.com/social/frontend/review
+  tag: auto-injected  # see Makefile
+  pullPolicy: Always
+
+ingress:
+  hosts:
+    - auto-injected  # see Makefile
+  httpAuth:
+    enabled: no
+
+
+backend:
+  medea:
+    controlsUrl: auto-injected  # see Makefile
+
+
+medea:
+  conf:
+    server:
+      client:
+        http:
+          public_url: auto-injected  # see Makefile
+          bind_port: 10011
+      control:
+        grpc:
+          bind_port: 10012
+    turn:
+      host: auto-injected  # see Makefile
+
+  control-mock:
+    conf:
+      bind_port: 10013
+
+  coturn:
+    conf:
+      listening-port: 10014
+  coturn-db:
+    conf:
+      port: 10015

@@ -1,0 +1,78 @@
+@import "~themes/_variables"
+
+$height = 80px
+
+.footer
+  width: 100%
+  height: $height
+  background-color: var(--call-footer-background)
+  position: relative
+
+  &.single
+    position: absolute
+    bottom: 0
+    left: 0
+    background-color: transparent
+
+    & > ^[0]__participants
+      justify-content: flex-end !important
+
+  &:hover
+    .footer__arrow:not(.hidden)
+      opacity: 1
+
+  .target-overlay
+    display: flex
+    justify-content: center
+    align-items: center
+    width: 100%
+    height: 100%
+    position: absolute
+    top: 0
+    left: 0
+    background-color: var(--call-drag-target-background-color)
+    z-index: 200
+    opacity: 0
+    transition: 0.2s opacity ease-in-out
+
+    &:hover
+      opacity: 1
+
+    svg
+      width: $iconSize
+      height: @width
+      fill: white
+      stroke: white
+
+  &__arrow
+    position: absolute
+    width: round($iconSize * 0.45)
+    left: $hSpacing
+    top: 50%
+    transform: translateY(-50%)
+    opacity: 0
+    transition: 0.2s opacity ease-in-out
+    z-index: 10
+
+    &.hidden
+      opacity: 0
+
+    &.left
+      transform: translateY(-50%) rotateZ(180deg)
+
+    &.right
+      left: unset
+      right: $hSpacing
+
+  &__participants
+    height: 100%
+    width: 100%
+    display: flex
+    justify-content: center
+    overflow-x: auto
+    align-items: center
+    flex-wrap: nowrap
+    padding: 0 ($hSpacing * 0.8)
+
+    &.full
+      justify-content: flex-start

@@ -1,0 +1,104 @@
+@import "~themes/_variables"
+
+$contentWidth = 500px
+$searchBarHeight = 56px
+$inputFieldHeight = 50px
+$contactPreviewAvatarSize = 25px
+
+.forward-container__contacts-list
+  position: relative
+  width: 100%
+  height: 0
+  flex-grow: 1
+  margin: 0 auto
+  overflow: hidden auto
+  z-index: 11
+  background: var(--lightgray)
+
+  &::-webkit-scrollbar
+    display: none
+
+  &__letter-group__letter
+    display: block
+    position:-webkit-sticky
+    position:sticky
+    top: 0
+    width: 100%
+    padding: ($contentWidth * 0.01) ($contentWidth * 0.055)
+    border-bottom: 1px solid var(--lightgray)
+    z-index: 1
+    background-color: var(--lightgrey2)
+    text-transform: capitalize
+    font-size: var(--regularFont)
+
+  .forward-container__contacts-list__contact-wrapper
+    position: relative
+    transition: all 0.2s ease-out
+    text-align: left
+    width: 100%
+
+
+    &:not(.blocked):hover
+      cursor: pointer
+      background-color: var(--superlightgray)
+
+
+    .forward-container__contacts-list__contact
+      display: flex
+      align-items: center
+      height: unset
+      padding: ($contactPreviewAvatarSize * 0.6)
+
+      &__title
+        width: 0
+        flex-grow: 1
+        overflow: hidden
+        flex-wrap: wrap
+        color: var(--black)
+        text-overflow: ellipsis
+
+      &__avatar
+        width: $contactPreviewAvatarSize
+        height: $contactPreviewAvatarSize
+        border-radius: 50%
+        overflow: hidden
+        display: block
+        margin-right: ($hSpacing * 3)
+
+        &.default
+          border: 1px solid var(--lightgrey2)
+
+        .avatar-icon
+          border-radius: 50%
+          overflow: hidden
+          height: 100%
+          width: 100%
+
+.contacts__list
+  &-check
+    position: absolute
+    right: ($checkboxSize * 0.9)
+    top: 50%
+    transform: translateY(-50%)
+
+    &-box
+      width: $checkboxSize
+      height: $checkboxSize
+      border: 1px solid var(--gray)
+      border-radius: 50%
+      transition: all 0.2s ease-out
+
+    &-icon
+      width: ($iconSize / 2)
+      position: absolute
+      left: 50%
+      top: 50%
+      transform: translate(-50%, -50%)
+
+.main-container:not(.is-mobile) .contacts__list
+  position: absolute
+  left: 50%
+  transform: translateX(-50%)
+  top: 0
+  bottom: 0
+  width: 100%

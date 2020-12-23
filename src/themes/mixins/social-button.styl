@@ -1,0 +1,21 @@
+@import "~themes/_variables"
+
+$socialButtonWidth = 70%
+$borderRadius = 20px
+
+socialButton()
+  .social-button
+    appearance: none
+    -webkit-appearance: none
+    -moz-appearance: none
+    width: $socialButtonWidth
+    padding: ($vSpacing * 0.95)
+    color: var(--graydarker)
+    border: 1px solid var(--gray)
+    border-radius: $borderRadius
+    font-size: var(--regularFont)
+    background: var(--message-background-color)
+    cursor: pointer
+    text-align: center
+    display: block
+    margin: 0 auto

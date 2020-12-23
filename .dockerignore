@@ -1,0 +1,12 @@
+*
+
+!/_docker/
+!/node_modules/
+!/out/
+
+# TODO: temporary stuff to simplify deploy to staging
+!/media-server-mock/
+!/src/api/
+!/api-mock-server.js
+!/graphql.schema.json
+!/graphql.mock.schema.json

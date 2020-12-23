@@ -1,0 +1,44 @@
+@import "~themes/_variables"
+
+$headerHeight = 60px
+
+.contacts__list
+  &-header
+    position: absolute
+    left: -1px
+    right: 0
+    top: 0
+    background: var(--lightgray)
+    z-index: 2
+
+    &-select
+      color: var(--graydarker)
+      font-size: var(--regularFont)
+      white-space: nowrap
+      cursor: pointer
+
+
+.search
+  display: flex
+  align-items: center
+  padding: $vSpacing ($hSpacing * 2)
+  height: $headerHeight
+  border-bottom: 1px solid var(--gray)
+
+  &__icon
+    margin-right: ($hSpacing * 2)
+
+    img
+      height: $iconSize
+
+  &__input
+    width: 100%
+
+    input
+      appearance: none
+      background: transparent
+      border: none
+      width: 100%
+      padding: ($vSpacing * 0.3) ($hSpacing * 0.3)
+      font-size: var(--regularFont)
+      font-family: "Verdana"

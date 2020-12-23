@@ -1,0 +1,53 @@
+@import "~themes/_variables"
+
+$controlsPanelHeight = 55px
+
+.avatar-editor
+  position: fixed
+  left: var(--sidebar-width)
+  top: 0
+  right: 0
+  bottom: 0
+  width: calc(100% - var(--sidebar-width))
+  height: "calc(100% - %s)" % ($bottomAppMenuHeight)
+  background-color: var(--lightgray)
+  z-index: 4
+
+  &__cropper
+    position: relative
+    height: "calc(100% - %s)" % ($controlsPanelHeight)
+    width: "calc(%s / 16 * 9)" % (@height)
+    margin: 0 auto
+
+    .cropper-container
+      height: 100%
+      width: 100%
+
+  &__controls
+    display: flex
+    justify-content: space-between
+    align-items: center
+    width: 100%
+    position: absolute
+    bottom: 0
+    left: 0
+    right: 0
+    height: $controlsPanelHeight
+    border-top: 1px solid var(--gray)
+    background-color: var(--lightgray)
+    padding: 0 ($hSpacing * 2)
+
+    &__button
+      width: fit-content
+      height: $iconSize
+
+      &.close
+        transform: rotateZ(45deg)
+
+      &.accept .cls-1
+        stroke-width: 3px
+
+
+.is-mobile .avatar-editor
+  left: 0
+  width: 100%

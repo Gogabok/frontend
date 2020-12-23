@@ -1,0 +1,32 @@
+@import "~themes/_variables"
+
+$iconSize = 16px
+
+.verified-email
+  display: flex
+  flex-direction: column
+
+  .profile-settings__section__editable-input-wrapper
+    margin-bottom: ($vSpacing * 2)
+    background-color: unset
+    color: var(--black)
+
+  &__icon.delete
+    display: flex
+    justify-content: center
+    align-items: center
+    width: fit-content
+    height: fit-content
+    transform: rotate(45deg)
+
+    svg
+      width: $iconSize
+      height: @width
+
+.fade-leave-to
+.face-enter
+  opacity: 0
+
+.fade-leave-active
+.face-enter-active
+  transition: opacity 0.15s ease-in-out

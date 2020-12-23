@@ -1,0 +1,38 @@
+$playButtonSize = 50px
+
+.contacts__image-preview
+  &-item
+    width: 100%
+    height: 100%
+    object-fit: contain
+
+  &-button
+    display: flex
+    align-items: center
+    justify-content: center
+    position: absolute
+    left: 0
+    top: 0
+    right: 0
+    bottom: 0
+    z-index: 5
+    transition: all .2s ease-out
+    cursor: pointer
+
+    &-item
+      display: flex
+      align-items: center
+      justify-content: center
+      width: $playButtonSize
+      height: $playButtonSize
+      border: 2px solid var(--white)
+      border-radius: 100%
+      background: var(--play-button-background-color)
+
+      svg
+        height: ($playButtonSize * 0.6)
+        transform: translateX(@height * 0.1)
+
+
+.support__body-preview-item .contacts__image-preview-item
+  object-fit: cover

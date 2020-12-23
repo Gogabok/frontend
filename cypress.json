@@ -1,0 +1,10 @@
+{
+  "baseUrl": "http://front.soc.localhost",
+  "video": false,
+  "integrationFolder": "test/e2e/specs",
+  "ignoreTestFiles": "Im.core.ts",
+  "screenshotsFolder": "test/e2e/screenshots",
+  "pluginsFile": "test/e2e/plugins",
+  "supportFile": false,
+  "fixturesFolder": false
+}

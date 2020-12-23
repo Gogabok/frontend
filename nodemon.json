@@ -1,0 +1,10 @@
+{
+  "watch": [
+    "src",
+    "test",
+    "webpack"
+  ],
+  "ext": "js ts json vue styl",
+  "runOnChangeOnly": true,
+  "verbose": true
+}

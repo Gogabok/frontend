@@ -1,0 +1,78 @@
+@import "~themes/_variables"
+
+$width = 399px
+
+.contacts-topbar
+  position: absolute
+  top: 0
+  width: 100%
+  max-width: $width
+  height: $dialogHeaderHeight
+  border-bottom: 1px solid var(--gray)
+  border-right: 1px solid var(--gray)
+  z-index: 5
+  background-color: var(--lightgray)
+
+  &__container
+    display: flex
+    justify-content: space-between
+    align-items: center
+    position: relative
+    width: 100%
+    height: $dialogHeaderHeight
+    padding: $vSpacing ($hSpacing * 2)
+
+    & > *
+      font-size: var(--regularFont)
+
+      ^[0]__select-counter
+        position: absolute
+        left: 50%
+        top: 50%
+        transform: translate(-50%, -50%)
+
+  .search
+    display: flex
+    justify-content: space-between
+    align-items: center
+    flex-shrink: 1
+    flex-grow: 1
+    width: 0
+
+    &__input
+      width: 100%
+      height: 100%
+
+      input
+        padding: ($vSpacing * 0.3) $hSpacing ($vSpacing * 0.4) ($hSpacing * 0.3)
+        font-size: var(--regularFont)
+
+    &__icon
+      margin-right: $hSpacing
+
+      img
+        height: $iconSize
+        width: auto
+
+  &__favorites
+  &__add-contact
+    margin-left: ($hSpacing * 3)
+
+    img
+      height: $iconSize
+
+.change-enter
+.change-leave-to
+  opacity: 0
+
+.change-leave-active
+  position: absolute
+  left: 0
+  top: 0
+
+.change-leave-active
+.change-enter-active
+  transition: 0.15s all ease-in-out
+
+.is-mobile .contacts-topbar
+  max-width: 100%

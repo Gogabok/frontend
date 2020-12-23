@@ -1,0 +1,81 @@
+@import "~themes/_variables"
+
+$loaderSize = 80px
+$loaderPadding = 8px
+$top = (63 68 71 72 71 68 63 56)
+$maxLoaderR = 72px
+$left = (63 56 48 40 32 24 17 12)
+$dt = 0.036s
+
+.contacts-group
+  &__header
+    display: flex
+    align-items: center
+    position: -webkit-sticky
+    position: sticky
+    top: 0
+    width: 100%
+    padding: ($vSpacing * 0.5) ($hSpacing * 2.75)
+    z-index: 1
+    background: var(--lightgrey2)
+    text-transform: capitalize
+
+    svg
+      width: round($iconSize* 0.72)
+      height: @width
+      margin-right: round(@width * 0.8)
+
+    .type
+      display: block
+      margin-left: auto
+
+  &__container
+    flex-shrink: 0
+    height: min-content
+    min-height: fit-content
+
+
+
+.lds-roller
+  width: $loaderSize
+  height: $loaderSize
+  position: relative
+
+  &-container
+    display: flex
+    flex-shrink: 0
+    justify-content: center
+    align-items: center
+    padding: $loaderPadding
+    width: 100%
+    height: $loaderSize + $loaderPadding * 2 + $maxLoaderR
+    min-height: $loaderSize + $loaderPadding * 2 + $maxLoaderR
+
+  div
+    animation: lds-roller 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite
+    transform-origin: ($loaderSize/2) ($loaderSize/2)
+
+    &:after
+      content: " "
+      display: block
+      position: absolute
+      width: ($loaderSize * 0.08)
+      height: @width
+      margin: @height * (-0.5) 0 0 @height * (-0.5)
+      border-radius: 50%
+      background: var(--graydarker)
+
+    for i in (1..8)
+      &:nth-child({i})
+        animation-delay: -0.036 - ($dt * (i - 1))
+
+        &:after
+          top: $top[(i - 1)]
+          left: $left[(i - 1)]
+
+@keyframes lds-roller
+  0%
+    transform: rotate(0deg)
+
+  100%
+    transform: rotate(360deg)

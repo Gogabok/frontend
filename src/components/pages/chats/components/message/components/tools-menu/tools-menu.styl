@@ -1,0 +1,127 @@
+@import "~themes/_variables"
+
+$borderRadius = 13px
+$bottom = $bottomAppMenuHeight + $chatsInputHeight
+$width = 240px
+$blurSize = 10px
+
+.is-speaker-message .tools-menu
+  right: unset
+  left: "calc(var(--sidebar-width) + %s)" % ($hSpacing)
+
+.tools-menu
+  position: fixed
+  right: $hSpacing
+  bottom: $bottom + $vSpacing
+  width: $width
+  height: fit-content
+  visibility: hidden
+  z-index: 12
+  opacity: 0
+  box-shadow: unset
+  background: var(--lightgray)
+  transition: opacity .2s linear, visibility 0.2s linear
+
+  &.active-menu
+    opacity: 1
+    visibility: visible
+
+  &-item
+    color: var(--graydarker)
+
+    &-forward
+      width: 100%
+      height: auto
+
+  &-left
+    right: "calc(100% + %s)" % ($hSpacing * 0.3)
+
+    &.tools-menu-top .tools-menu-list
+      border-bottom-right-radius: 0
+
+    &.tools-menu-bottom .tools-menu-list
+      border-top-right-radius: 0
+
+
+  &-right
+    left: "calc(100% + %s)" % ($hSpacing * 0.3)
+
+    &.tools-menu-top .tools-menu-list
+      border-bottom-left-radius: 0
+
+    &.tools-menu-bottom .tools-menu-list
+      border-top-left-radius: 0
+
+
+  &-bottom
+    top: "calc(100% - %s)" % ($vSpacing * 2.5)
+
+  &-top
+    bottom: $vSpacing * 0.6
+
+  &-list
+    position: relative
+    border: 1px solid var(--gray)
+    border-radius: round($borderRadius)
+    z-index: 2
+    background: var(--lightgray)
+
+  &-preview
+    position: absolute
+    right: 0
+    bottom: "calc(100% + %s)" % ($vSpacing)
+    transform: "translateX($s)" % (- $hSpacing)
+
+  &-overlay
+    position: fixed
+    left: var(--sidebar-width)
+    top: $chatsInputHeight
+    bottom: $bottom
+    right: 0
+    width: 100vw
+    background: rgba(0,0,0,.3)
+    backdrop-filter: "blur(%s)" % ($blurSize)
+
+
+
+.is-user-message .tools-menu-right
+  left: (- $hSpacing * 0.8)
+
+.is-speaker-message .tools-menu-left
+  right: (- $hSpacing * 0.8)
+
+
+.is-mobile .tools-menu
+  &.tools-menu
+    position: fixed
+    top: unset
+    left: 0
+    right: 0
+    bottom: 0
+    width: 100%
+    max-width: unset
+    border: unset
+    border-bottom-right-radius: 0
+    box-shadow: none
+
+  &-overlay
+    left: 0
+
+
+.message__checkbox
+  position: absolute
+  left: $hSpacing * 1.5
+  top: 50%
+  width: $checkboxSize
+  height: $checkboxSize
+  border: 1px solid var(--white)
+  border-radius: ($borderRadius * 0.65)
+  transform: translateY(-50%)
+  transition: all .2s ease-out
+
+  &-icon
+    position: absolute
+    width: ($iconSize / 2)
+    left: 50%
+    top: 50%
+    transform: translate(-50%, -50%)

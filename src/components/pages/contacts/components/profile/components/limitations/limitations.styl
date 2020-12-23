@@ -1,0 +1,41 @@
+@import "~themes/_variables"
+
+$iconSpacing = $hSpacing * 1.5
+$lineWidth = 1px
+
+.limitations-section__mute
+  &__options
+    display: flex
+    flex-direction: column
+    align-items: flex-start
+    padding-left: ($iconSize + $iconSpacing)
+
+  &__option
+    padding: ($vSpacing * 1.5) ($hSpacing * 2)
+    padding-left: 0
+    font-size: var(--smallFont)
+
+.rotated
+  transform: rotateZ(45deg)
+
+.mute-icon
+  position: relative
+
+  &:before
+    content: ''
+    opacity: 0
+    width: 110%
+    height: $lineWidth
+    transform: translate(-50%, -50%) rotateZ(-45deg)
+    position: absolute
+    top: 45%
+    left: 60%
+    border: 1px solid var(--white)
+    background-color: var(--graydarker)
+
+  &.crossed
+    &:before
+      opacity: 1
+
+.block-icon
+  transition: 0.2s ease-in-out transform

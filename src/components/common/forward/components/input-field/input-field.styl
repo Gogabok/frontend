@@ -1,0 +1,44 @@
+@import "~themes/_variables"
+
+$contentWidth = 500px
+$searchBarHeight = 56px
+$inputFieldHeight = 49px
+
+.forward-container__input-field
+  display: flex
+  align-items: flex-end
+  justify-content: space-between
+  width: 100%
+  max-width: $contentWidth
+  min-height: $inputFieldHeight
+  margin: 0 auto
+  padding: ($inputFieldHeight * 0.16) ($hSpacing * 2.5)
+  padding-bottom: ($vSpacing * 0.6)
+  border-top: 1px solid var(--gray)
+  z-index: 2
+  background: var(--lightgray)
+
+  .search__close
+    transform: rotateZ(45deg)
+
+  &__textarea
+    width: 100%
+    height: ($inputFieldHeight * 0.6)
+    padding: ($inputFieldHeight * 0.1) $hSpacing
+    border: none
+    resize: none
+    background: transparent
+    font-size: var(--regularFont)
+    font-family: 'Verdana'
+    color: var(--darkgray)
+
+    &-wrapper
+      display: flex
+      align-items: center
+      width: 100%
+      height: 100%
+      margin-right: ($hSpacing * 2.5)
+      margin-left: ($hSpacing * 2.5)
+      border: 1px solid var(--gray)
+      border-radius: ($hSpacing * 1.25)
+      background: var(--message-background-color)

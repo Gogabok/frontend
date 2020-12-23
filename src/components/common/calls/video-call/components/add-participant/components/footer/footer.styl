@@ -1,0 +1,22 @@
+@import "~themes/_variables"
+
+$height = 55px
+
+.footer
+  width: 100%
+  height: $height
+  display: flex
+  justify-content: space-between
+  align-items: center
+  padding: 0 $hSpacing * 2
+  background-color: var(--message-background-color)
+  border-top: 1px solid var(--gray)
+
+  &__close
+    width: $iconSize
+    height: @width
+    svg
+      width: $iconSize
+      height: @width
+      transform: rotateZ(45deg)
+

@@ -1,0 +1,196 @@
+@import "./colors"
+@import "./sizes"
+@import "./responsive"
+
+.default-tab-container
+  display: flex
+  flex-direction: column
+  position: relative
+  width: 100%
+
+.default-tab-wrapper
+  padding: 0 $padding.hz
+  display: flex
+  flex-direction: column
+  +tablet()
+    +touch-device()
+      overflow: scroll
+      -webkit-overflow-scrolling: touch
+  +mobile()
+    height: auto
+    overflow-y: scroll
+
+.header
+  padding-bottom: 16px
+  padding-top: 17px
+  border: none
+  border-bottom: $border.width solid $color.border.default
+  margin-bottom: $margin.large.vt
+  display: flex
+  justify-content: space-between
+  align-items: center
+  +mobile()
+    margin-bottom: 0
+    padding-top: 17px
+    border-bottom: none
+    padding-bottom: 0
+  .actions
+    white-space: nowrap
+    +mobile()
+      justify-content: space-between
+      display: flex
+
+.header-name-container
+  display: flex
+  flex-wrap: wrap
+  width: 100%
+  +mobile()
+    justify-content: space-between
+
+.header-value
+  word-break: break-all
+  > a
+    color: $color.font.dark
+    +mobile()
+      color: @color !important
+
+.more
+  +mobile()
+    color: $color.font.dark
+    margin-left: 10px
+
+.header-name
+  text-align: start
+  margin-right: 8px
+  display: flex
+
+.value
+  margin-left: 10px
+  +mobile()
+    margin-left: 0
+    margin-top: 17px
+    font-size: $page.font.size.small
+    color: $color.font.default
+    text-align: center
+    word-break: break-all
+    width: 100%
+
+.info
+  overflow: hidden
+  font-size: $page.font.size.small
+  color: $color.font.dark
+  transition: height $transition.duration.fast
+  &.hidden
+    height: 0 !important
+  &:first-child .info-container
+    padding-top: 0
+  +mobile()
+    width: 100%
+    text-align: start
+  .info-container
+    padding-top: $margin.vt
+    +mobile()
+      padding-top: 17px
+
+.setting-container
+  margin-bottom: $margin.large.vt
+  overflow: hidden
+  flex-shrink: 0
+  +mobile()
+    margin-bottom: 0
+    border-bottom: $border.width solid $color.border.default
+    padding-bottom: 20px
+  .actions
+    align-self: flex-start
+    +mobile()
+      align-self: center
+    a
+      color: $color.font.dark !important
+
+.setting-container
+  &.modal
+    margin-bottom: 0
+    position: absolute
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
+    +mobile()
+      position: fixed
+      z-index: 15
+
+.modal-content
+  padding-top: 30px
+  width: 100%
+  overflow: hidden
+  position: relative
+  padding-right: 26px
+  +mobile()
+    position: unset
+    overflow: unset
+    padding-right: 20px
+  +tablet()
+    +touch-device()
+      overflow: scroll
+      -webkit-overflow-scrolling: touch
+
+.modal-info
+  font-size: 0.93rem
+  color: #888
+  margin-bottom: 30px
+
+.menu
+  .actions
+    &.next
+      justify-content: flex-end
+
+.setting-container
+  .aside-panel-overlay
+    /deep/ .aside-panel
+      > .content
+        padding-left: 20px
+        padding-right: 0
+
+.setting-container
+  /deep/ .modal-window-overlay
+    justify-content: center
+    .modal-window
+      max-height: calc(100% - 10px)
+      min-height: auto
+      > .content
+        padding-right: 0
+        width: 330px !important
+        max-height: calc(100% - 27px)
+
+.setting-container
+  /deep/ .additional-content
+    padding-right: 0
+    margin-right: -26px
+    +mobile()
+      padding: 0
+      margin-right: 0
+
+.gapopa-id
+  color: $color.font.default
+
+.actions
+  &.additional
+    margin-top: 30px
+    border-top: 1px solid #ddd !important
+    border-bottom: none !important
+    height: 38px !important
+    justify-content: flex-end
+    align-items: center
+    display: flex
+    a
+      padding-right: 0 !important
+      padding-left: 0 !important
+      padding-bottom: 0
+      padding-top: 0
+      height: auto
+      margin-left 10px
+
+.slide-left-enter, .slide-left-leave-to
+  transform: translateX(100%)
+.slide-left-enter-active, .slide-left-leave-active
+  transition: transform $transition.duration.fast

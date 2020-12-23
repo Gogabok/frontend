@@ -1,0 +1,54 @@
+@import "./colors"
+@import "./sizes"
+
+.ps, .ps--active-y
+  &:hover.ps--in-scrolling,
+  &.ps--in-scrolling
+    &.ps--y
+      > .ps__rail-y > .ps__thumb-y
+        width: $scrollbar.width
+        background-color: $color.background.darker
+    &.ps--x
+      > .ps__rail-x > .ps__thumb-x
+        height: $scrollbar.height
+        background-color: $color.background.darker
+  &:hover > .ps__rail-y,
+  > .ps__rail-y
+    width: ($scrollbar.width + $scrollbar.margin.hz * 2)
+    opacity: 1
+    cursor: pointer
+    margin: 3px 0
+    &:hover
+      > .ps__thumb-y
+        width: $scrollbar.width
+    > .ps__thumb-y
+      width: $scrollbar.width
+      background-color: $color.border.default
+      transition: background-color $transition.duration.fast ease
+      border-radius: 0
+      margin: 0 $scrollbar.margin.hz
+      right: 0
+      z-index: 1
+      &:hover
+        background-color: $color.background.darker
+  &:hover > .ps__rail-x,
+  > .ps__rail-x
+    height: ($scrollbar.height + $scrollbar.margin.vt * 2)
+    opacity: 1
+    cursor: pointer
+    margin: 0 3px
+    &:hover
+      > .ps__thumb-x
+        height: $scrollbar.height
+    > .ps__thumb-x
+      height: $scrollbar.height
+      background-color: $color.border.default
+      transition: background-color $transition.duration.fast ease
+      border-radius: 0
+      margin: $scrollbar.margin.vt 0
+      bottom: 0
+      &:hover
+        background-color: $color.background.darker
+
+.sidebar .ps .ps__rail-y .ps__thumb-y
+  right: 1px

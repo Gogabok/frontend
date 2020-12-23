@@ -1,0 +1,97 @@
+@import "~themes/_variables"
+
+$borderRadius = 13px
+$maxWidth = 500px
+$minTextHeight = 30vh
+$closeIconRotate = 45deg
+
+.confirm
+  display: flex
+  justify-content: center
+  align-items: flex-end
+  position: fixed
+  top: 0
+  right: 0
+  bottom: 0
+  left: var(--sidebar-width)
+  z-index: 15
+
+  &-standart
+    left: 0
+
+  &-centered
+    align-items: center
+
+  &-centered .confirm__container
+    border-bottom-left-radius: $borderRadius
+
+
+  &__container
+    display: flex
+    flex-direction: column
+    align-items: center
+    width: 100%
+    max-width: $maxWidth
+    border-radius: $borderRadius
+    border-bottom-left-radius: 0
+    z-index: 5
+    background: var(--lightgray)
+    text-align: left
+
+  &__overlay
+    position: absolute
+    top: 0
+    right: 0
+    bottom: 0
+    left: 0
+    z-index: 1
+    background: var(--overlay-backplate)
+
+  &__text
+    display: flex
+    justify-content: center
+    align-items: center
+    padding: ($vSpacing * 2) ($hSpacing * 3.5)
+    min-height: $minTextHeight
+    text-align: center
+
+  &__controls
+    display: flex
+    justify-content: space-between
+    align-items: center
+    width: 100%
+    height: var(--bottom-menu-height)
+    padding-right: ($hSpacing * 2.5)
+    padding-left: ($hSpacing * 2.5)
+    border-top: 1px solid var(--gray)
+
+    &-item
+      display: flex
+      align-items: center
+      font-size: var(--regularFont)
+      color: var(--graydarker)
+      cursor: pointer
+
+      span
+        margin-left: $hSpacing
+
+      .confirm__controls-item-close
+        height: round($iconSize * 0.68)
+        transform: "rotate(%s)" % ($closeIconRotate)
+
+      .confirm__controls-item-accept
+        height: ($iconSize / 2)
+
+
+.is-mobile
+  .confirm
+    bottom: 0
+    left: 0
+
+    &-standart
+      left: 0
+
+    &__container
+      max-width: unset
+      border-bottom-right-radius: 0px
+

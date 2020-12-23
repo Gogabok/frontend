@@ -1,0 +1,68 @@
+@import "~themes/_variables"
+
+$scrollbarWidth = 2px
+
+.main-container
+  .contacts-page
+    .vue-bar-container
+      height: 100%
+
+    &__container
+      display: flex
+      position: absolute
+      top: 0
+      left: 0
+      right: 0
+      bottom: 0
+
+    &__contacts-menu
+      min-width: var(--sidebar-width)
+      margin: ($vSpacing * 0.5) 0
+      border-right: 1px solid var(--gray)
+      overflow: hidden
+      background-color: var(--lightgray)
+
+    .vb > .vb-dragger
+      right: 0
+      width: $scrollbarWidth
+      z-index: 2
+      background-color: var(--gray)
+
+    .dialog-container
+      padding: 0 ($hSpacing)
+
+    &-menu.active
+      left: 0 !important
+
+  &.is-mobile .contacts-page__dialogs
+    z-index: 5
+
+.empty-profile
+  width: 100%
+  height: 100%
+  text-align: center
+
+  span
+    font-size: var(--mediumFont)
+    vertical-align: middle
+    line-height: 100vh
+
+.sidebar-menu-transition-enter-active
+.sidebar-menu-transition-leave-active
+  transition: transform 0.2s ease-in-out
+
+.sidebar-menu-transition-enter
+.sidebar-menu-transition-leave-to
+  transform: translateX(-100%)
+
+
+.is-mobile
+  .slide
+    &-enter-active
+    &-leave-active
+      transition: 0.2s ease-in-out transform
+      transform: translateX(0)
+
+    &-enter
+    &-leave-to
+      transform: translateX(0)

@@ -1,0 +1,105 @@
+@import "~themes/_variables"
+
+$settingsHeaderHeight = 50px
+$selectBorderRadius = 20px
+$separatorLineHeight = 1px
+
+.call-hidden
+  overflow: hidden
+
+.call-settings
+  position: absolute
+  left: 0
+  top: 0
+  right: 0
+  bottom: 0
+  background: var(--lightgray)
+  z-index: 10
+
+  &__header
+    position: absolute
+    left: 0
+    top: 0
+    right: 0
+    height: $settingsHeaderHeight
+    display: flex
+    align-items: center
+    justify-content: space-between
+    padding: 0 ($hSpacing * 1.5)
+    border-bottom: 1px solid var(--gray)
+
+  &__title
+    font-size: var(--regularFont)
+    font-weight: 400
+
+  &__close
+    cursor: pointer
+
+    svg
+      transform: rotate(45deg)
+
+
+  &__body
+    position: absolute
+    left: 0
+    top: $settingsHeaderHeight
+    right: 0
+    bottom: 0
+    padding-top: ($vSpacing * 2.7)
+    padding-bottom: ($vSpacing * 2.7)
+
+  &__separator-line
+    margin-top: ($vSpacing * 2.7)
+    margin-bottom: ($vSpacing * 2.7)
+    display: block
+    height: 1px
+
+    &:before
+      content: ''
+      position: absolute
+      left: ($hSpacing * 0.5)
+      right: ($hSpacing * 0.5)
+      top: 50%
+      transform: translateY(-50%)
+      height: $separatorLineHeight
+      background: var(--gray)
+      display: none
+
+
+  &__section
+    display: flex
+    flex-direction: column
+    position: relative
+    padding: 0 ($vSpacing * 1.5)
+
+    &-label
+      margin-bottom: ($vSpacing * 2.7)
+      font-size: var(--regularFont)
+      font-weight: 400
+
+  &__select
+    display: flex
+    width: 100%
+    padding: ($vSpacing * 0.9) ($hSpacing * 2)
+    border: 1px solid var(--gray)
+    background: transparent
+    border-radius: $selectBorderRadius
+    cursor: pointer
+    position: relative;
+
+    &-input
+      width: 100%
+      font-size: var(--regularFont)
+      padding-right: ($hSpacing * 5)
+      appearance: none
+      -webkit-appearance: none
+      -moz-appearance: none
+      cursor: pointer
+
+    &-icon
+      position: absolute
+      right: ($hSpacing * 2)
+      top: 50%
+      transform: translateY(-50%) rotate(90deg)
+      height: round($iconSize * 0.45)
+
